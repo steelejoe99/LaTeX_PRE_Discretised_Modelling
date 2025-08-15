@@ -1,0 +1,313 @@
+% !TeX root = ../main.tex
+\section{Nondimensionalisation of the original LK Equations}
+\label{sec:LK_nondim}
+%
+\let\cleardoublepage\origcleardoublepage
+%
+To model the dynamics of a semiconductor laser with optical feedback from an external cavity, we use the well-known \textbf{Lang-Kobayashi equations} \cite{lang1980external}. These delay differential equations describe how the complex electric field \( E(s) \) of the laser and the carrier inversion \( N(s) \) evolve in time under the influence of both intrinsic gain mechanisms and delayed feedback. In dimensionalised form, the equations are written as:
+%
+\label{eq:dimensionalised_LK}
+\begin{gather}
+\begin{aligned}
+\frac{d E}{d s} &= \frac{1}{2} G_{\mathrm{M}0}(1 + i \alpha) \left[N(s) - N_N\right] E(s) + \kappa_0 e^{-i C_p} F(s, \tau_0)\\
+\frac{d N}{d s} &= J_0 - \gamma_0 N(s) - \left[\Gamma_{\mathrm{M}0} + G_{\mathrm{N}0}(N(s) - N_N)\right] |E(s)|^2.
+\end{aligned}
+\end{gather}
+%
+The physical parameters in these equations are defined as follows:
+\begin{itemize}
+  \item \( \alpha \): linewidth enhancement factor
+  \item \( \gamma_0 \): carrier decay rate
+  \item \( \Gamma_{\mathrm{M}0} \): cavity decay rate
+  \item \( \kappa_0 \): feedback strength
+  \item \( \tau_0 \): external round-trip delay
+  \item \( G_{\mathrm{M}0}, G_{\mathrm{N}0} \): small-signal gain coefficients
+  \item \( J_0 \): pump current
+  \item \( N_N \): inversion at threshold
+\end{itemize}
+%
+\par
+%
+To simplify the equations and reduce the number of parameters, we introduce scaled variables:
+%
+\[
+X = \frac{G_{\mathrm{M}0}}{2 \gamma_p}(N - N_N), \quad A = \sqrt{\frac{G_{\mathrm{N}0}}{2 \gamma_0}} E,
+\]
+where \( \gamma_p = \Gamma_{\mathrm{M}0} G_{\mathrm{M}0} / G_{\mathrm{N}0} \) is a rescaled photon lifetime. Rescaling time via \( t = \gamma_p s \), the Lang-Kobayashi equations become:
+%
+\[
+\begin{gathered}
+\frac{d A}{d t} = (1 + i \alpha) A X + \eta e^{-i C_p} F(t,\tau) \\
+T \frac{d X}{d t} = P - X - (1 + 2X)|A|^2
+\end{gathered}
+\]
+%
+The transformed parameters are defined as:
+%
+\begin{itemize}
+  \item \( P = \frac{G_{\mathrm{M}0}}{2 \gamma_p \gamma_0}(J_0 - \gamma_0 N_N) \): pumping rate above threshold
+  \item \( T = \frac{\gamma_p}{\gamma_0} \): ratio of photon to carrier lifetime
+  \item \( \eta = \frac{\kappa_0 G_{\mathrm{N}0}}{G_{\mathrm{M}0} \Gamma_{\mathrm{M}0}} \): normalized feedback strength
+  \item \( \tau = \gamma_p \tau_0 \): rescaled external delay
+\end{itemize}
+%
+The dimensionalised parameter values used are:
+%
+\[
+\alpha = 3.5, \quad \gamma_0 = 1.0 \times 10^9, \quad \Gamma_{\mathrm{M}0} = 0.55 \times 10^9, \quad \kappa_0 = 25.0 \times 10^9,
+\]
+\[
+\tau_0 = 0.22 \times 10^{-9}, \quad G_{\mathrm{M}0} = 50.0, \quad G_{\mathrm{N}0} = 0.05, \quad J_0 = 8.0 \times 10^9, \quad N_N = 5.0.
+\]
+Therefore, $\gamma_p = 5.5 \times 10^{11}$ resulting in nondimensionalised parameter values,
+\[
+\a = 3.5, \quad P = 0.136, \quad T = 550, \quad \eta = 0.0455, \quad \tau = 121.
+\]
+%
+It is noted that one can get from this nondimensionalised time to second by multiplying by the factor $\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}$.
+%
+%
+\section{Multiple EC reflection FBG LK model conversion}
+\label{sec:Li_chaos_nondim}
+%
+The form of the equations analysed by Li \textit{et. al} are given by
+%
+\begin{equation}
+\left\{\begin{array}{l}
+\displaystyle \frac{d a}{d t}=\frac{1-i b}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s}} \tilde{n}-\gamma_{p}\left(|a|^{2}-1\right)\right] a+\gamma_{c} \xi_{f} e^{i \theta}\left[r(t) e^{-i \Delta \Omega t}\right] * a\left(t-\tau_\text{RT}\right) \\
+\displaystyle \frac{d \tilde{n}}{d t}=-\left(\gamma_{s}+\gamma_{n}|a|^{2}\right) \tilde{n}-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|a|^{2}\right)\left(|a|^{2}-1\right)
+\end{array}\right.
+\end{equation}
+%
+we first make a change of notation:
+%
+\begin{equation*}
+\left\{\begin{aligned}
+a & =E \\
+\tilde{n} & =N \\
+F(t) & =\left[r(t) e^{-i \Delta \Omega t}\right] * a\left(t-\tau_\text{RT}\right) \\
+t & =s
+\end{aligned}\right.
+\end{equation*}
+%
+Resulting in
+%
+\begin{equation*}
+\left\{\begin{array}{l}
+\displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} N-\gamma_{p}\left(|E|^{2}-1\right)\right] E+\gamma_{c} \xi_{f} e^{i\theta} F(s) \\
+\displaystyle \frac{d N}{d s}=-\left(\gamma_{s}+\gamma_{n}|E|^{2}\right) N-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^{2}\right)\left(|E|^{2}-1\right)
+\end{array}\right.
+\end{equation*}
+%
+% Now, rescaling time by $s=\gamma_{c} t$
+% %
+% \begin{equation*}
+% \left\{\begin{array}{l}
+% \displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{n}}{\gamma_{s} \tilde{J}} N(s)-\frac{\gamma_{p}}{\gamma_{c}}\left(|E(s)|^{2}-1\right)\right] E(s)+\xi_{p} e^{i\theta} F(s) \\
+% \displaystyle \frac{d N}{d s}=-\left(\frac{\gamma_{s}}{\gamma_{c}}+\frac{\gamma_{n}}{\gamma_{c}}|E(s)|^{2}\right) N(s)-\frac{\gamma_{s} \tilde{J}}{\gamma_{c}}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E(s)|^2\right)\left(|E(s)|^{2}-1\right)
+% \end{array}\right.
+% \end{equation*}
+% %
+Focusing on the first equation, we use:
+%
+\begin{equation*}
+    \frac{\gamma_{n}}{\gamma_{s} \tilde{J}} \gg \frac{\gamma_{p}}{\gamma_{c}}
+\end{equation*}
+%
+to obtain:
+%
+\begin{equation*}
+    \frac{d E}{d s} \approx \frac{1}{2} \frac{\gamma_n \gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N(s) E(s)+ \gamma_c \xi_{f} e^{i\theta} F(s)
+\end{equation*}
+%
+Then, for the second equation,
+%
+\begin{align*}
+\displaystyle \frac{d N}{d s} &= -\gamma_s N - \gamma_n|E|^{2} N - \gamma_s \tilde{J}|E|^2 + \frac{\gamma_s \gamma_p \tilde{J}} {\gamma_{c}}|E|^{4} + \gamma_{s} \tilde{J} - \frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{2}\\
+&=\gamma_{s} \tilde{J}-\gamma_{s} N-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N\right]|E|^{2}+\frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{4}
+\end{align*}
+%
+Neglecting the $|E|^{4}$ term, the system can therefore be written as:
+%
+\begin{equation*}
+\left\{\begin{array}{l}
+\displaystyle \frac{d E}{d s}=\frac{1}{2} \frac{\gamma_{n}\gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N(s) E(s)+\gamma_c\xi_{f} e^{i\theta} F(s) \\ 
+\displaystyle \frac{d N}{d s}=\gamma_{s} \tilde{J}-\gamma_{s} N(s)-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N(s)\right]|E(s)|^{2}\end{array}\right.
+\end{equation*}
+%
+which is precisely the form of \eqref{eq:dimensionalised_LK} for
+%
+$$
+\begin{aligned}
+& b = -\a, \; \theta=-C_{p}, \; G_\text{M0}=\frac{\gamma_{n}}{\gamma_{s} \tilde{J}}, \; \kappa_{0}=\gamma_{c} \xi_{f}, \\
+& J_{0}=\gamma_{s} \tilde{J}, \; \gamma_{0}=\gamma_{s}, \; \Gamma_\text{M0}=\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right), \; G_\text{N0}=\gamma_{n}
+\end{aligned}
+$$
+%
+%
+\section{Multiple EC reflection FBG LK model conversion}
+\label{sec:multiple_EC_nondim}
+%
+The form of the LK equations studied by Naumenko \textit{et al.} \cite{naumenko2003characteristics,naumenko2004slow} is given by
+\begin{equation}
+\left\{\begin{aligned}
+\frac{d E}{d t} &= \left[\frac{1}{2} \Gamma G_N \big\{ i \alpha\left(N(t)-N_{\text {th }}\right)+g(N(t), I(t)) \big\} - \frac{1}{2 \tau_\mu}+\frac{1}{\tau_\text{in}} \ln \left(\frac{\bar{F}(t)}{E(t)}\right)+i \Delta \omega_0\right] E(t)
+\\
+\frac{d N}{d t} &= \frac{I(t)}{e V}-\frac{N(t)}{\tau_N(N(t))}-G_N \, g(N(t), I(t)) I(t)
+\end{aligned}\right.
+\end{equation}
+%
+where $g(N(t), I(t))$ is the nonlinear gain, $N(t) / \tau_N(N(t))$ is the spontaneous emission rate, $\Delta \omega_0$ is the frequency chirp due to thermal effects when the injection current is changed, and,
+%
+\begin{equation}
+\bar{F}(t)=  E(t)+\frac{(-1)}{2 \pi} \frac{\left(1-r_2^2\right)}{r_2^2} \sum_{n=1}^{\infty} e^{-i \omega_0 n \tau} \int_{-\infty}^{+\infty} d \omega\left(-r_2 r_B(\omega)\right)^n e^{i \omega(t-n \tau)} \int_{-\infty}^{+\infty} d t^{\prime} E\left(t^{\prime}\right) e^{-i \omega t^{\prime}}
+\end{equation}
+%
+Assuming a negligible gain compression factor and thermal frequency detuning (by setting $\epsilon \approx 0$ and $k=0$, respectively, following the expressions in \cite{naumenko2003characteristics}), and linearising the spontaneous emission rate, these equations can be rewritten as
+%
+\begin{equation*}
+\left\{\begin{aligned}
+\frac{d E}{d t} &= \frac{1}{2} \Gamma G_N(1+i \alpha)\left(N(t)-N_\text{th}\right) E(t) + \frac{1}{\tau_\text{in}} \ln \left(\frac{\bar{F}(t)}{E(t)}\right) E(t) 
+\\
+\frac{d N}{d t} &= \frac{J-\bar{J}_0}{e V}-\frac{N(t)}{\tau_0}-\left[\frac{1}{\Gamma \tau_{p h}} + G_N\left(N(t)-N_\text{th}\right)\right]|E(t)|^2
+\end{aligned}\right.
+\end{equation*}
+%
+Now, rescaling time by $t=\tau_\text{in} s$, one obtains
+%
+\begin{equation*}
+\left\{\begin{aligned}
+\frac{d E}{d s} &= \frac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)\left(N(s)-N_{\text {th }}\right) E(s) + \ln \left(\frac{\bar{F}(s)}{E(s)}\right) E(s)
+\\
+\frac{d N}{d s} &= \frac{\tau_{\text{in}}\left(J-\bar{J}_0\right)}{e V}-\frac{\tau_\text{in}}{\tau_e} N(s)-\left[\frac{\tau_\text{in}}{\Gamma \tau_{ph}}+G_N \tau_\text{in}\left(N(s)-N_{\text{th}}\right)\right]|E(s)|^2
+\end{aligned}\right.
+\end{equation*}
+%
+Which is precisely the form \eqref{eq:dimensionalised_LK} when replacing the multiple EC reflection term $E(s) \ln \left( \bar{F}(s) / E(s) \right)$ with $\kappa_{0,\mathrm{eff}} \, e^{-i C_p} F(s)$ for
+%
+\[ \alpha = \alpha , \quad N_N = N_{\text{th}}, \quad G_\text{M0} = \tau_\text{in} \Gamma G_N, \quad G_\text{N0} = G_N \tau_\text{in} 
+\]
+\[
+J_0 = \frac{\tau_\text{in}(J-\bar{J}_0)}{e V}, \quad \gamma_0 = \frac{\tau_\text{in}}{\tau_e}, \quad \Gamma_\text{N0} = \frac{\tau_\text{in}}{\Gamma \tau_\text{ph}}, \quad \tau_0 = \frac{2 L_\text{ext} n_\text{ext}}{c \tau_\text{in}} 
+\]
+%
+where:
+%
+\begin{equation*}
+\tau_\text{ph}=\frac{1}{c \alpha_\text{in} / n_g - 1 / \tau_\text{in} \ln \left(R_1 R_2\right)} \text{ and } N_{\text{th}} = N_0+\frac{1}{\Gamma G_N \tau_\text{ph}} 
+\end{equation*}
+%
+$\k_0 = \k_{0,\mathrm{eff}} R$ can be determined by reducing the multiple EC reflection feedback term as a single reflection,
+%
+\begin{equation*}
+E(s) \ln \left( \frac{\bar{F}(s)}{E(s)} \right) \overset{n=1}{\approx} \frac{1-R_2^2}{R_2}e^{-iC_p} \mathcal{F}^{-1}\big[ \rho(\w) \mathcal{F}\left[ E(s-\tau_0) \right](\w) \big](s)
+\end{equation*}
+%
+which is precisely in our notation
+%
+\begin{equation*}
+E(s) \ln \left(\frac{\bar{F}(s)}{E(s)}\right)=\frac{1-R_2^2}{R_2} e^{-i C_p} F(s)
+\end{equation*}
+%
+Therefore, in the single reflection case:
+%
+\begin{equation*}
+    \k_0=\frac{1-R_2^2}{R_2} R
+\end{equation*}
+%
+Then, we can convert to the non-dimensionalised model following the transformations in Appendix~\ref{sec:LK_nondim}.
+%
+%
+\section{Numerical Integration of the LK Equations}
+\label{app:integration}
+%
+The Lang Kobayashi equations are well known to exhibit numerical stiffness, due to the relaxation mechanism inherent in the system's dynamics \cite{pieroux2003low}. Although there is no concrete definition for stiffness, the basic idea is that the equations include some terms that can lead to rapid variation in the solution, therefore requiring a very small step size to ensure convergence. Multistep implicit methods like the Adams-Bashforth-Moulton 3-step predictor-corrector (ABM3) scheme offer significant advantages for solving stiff differential equations. These methods improve numerical stability and allow for larger time steps without sacrificing accuracy, which is crucial for stiff problems where explicit methods like Runge-Kutta 4 (RK4) require prohibitively small step sizes to maintain stability \cite{turner2001guide}. The implicit corrector step in ABM3 provides enhanced stability properties (A-stability or near A-stability), making it suitable for the stiff regimes common in delay systems \cite{suli2003introduction}. Particularly in the case of DDEs, because multistep methods reuse past computed values, they tend to be more computationally efficient than high-order one-step methods like RK4, especially over long integration intervals. This balance of speed, accuracy, and stability makes predictor-corrector multistep methods particularly effective for stiff DDEs, where the delay terms further complicate numerical integration.
+%
+\par
+%
+The ABM3 method is carried out for DDEs as follows. Given a system of DDEs with $m$ delays and maximum delay $\tau_\text{max} = \text{max}(\{\tau_k\}_{k\in[1,m]})$
+%
+\begin{equation*}
+    \dot{y}(t) = f(y(t), y(t-\tau_1), \dots, y(t-\tau_m), t), y(t) = \phi(t), -\tau_\text{max} < t < 0
+\end{equation*}
+%
+The initial history is discretised into $N$ points as $\phi = \{ \phi_i \}_{i \in [ 1, n ] }$ dictated by the step size $\Delta t$ through $N = \tau_\text{max} / \Delta t$. The solution at the next time step is first predicted through 
+%
+\begin{equation*}
+    y_{n+1}^\text{pred} = y_n + \frac{\Delta t (23 f_n - 16 f_{n-1} + 5 f_{n-2})}{12}
+\end{equation*}
+%
+Allowing an approximate evaluation of the RHS of the DDE through,
+%
+\begin{equation}
+    f_{n+1}^\text{pred} = f(y_{n+1}^\text{pred}, y_{n - \sfrac{\tau_1}{\Delta t} + 1}, \dots , y_{n - \sfrac{\tau_m}{\Delta t}  + 1})
+\end{equation}
+%
+The solution is then corrected using this approximated RHS by,
+%
+\begin{equation*}
+     y_{n+1}^\text{corr} = y_n + \frac{\Delta t (9 f_{n+1}^\text{corr} + 19 f_{n} - 5 f_{n-1} + f_{n-2})}{24}   
+\end{equation*}
+%
+with the approximated RHS of the DDE then also corrected using this more accurate solution of $y_{n+1}$,
+%
+\begin{equation*}
+        f_{n+1}^\text{corr} = f(y_{n+1}^\text{corr}, y_{n - \sfrac{\tau_1}{\Delta t} + 1}, \dots , y_{n - \sfrac{\tau_m}{\Delta t}  + 1})
+\end{equation*}
+%
+Both the predictor and corrector formulas have fourth-order local truncation errors and therefore have a convergence comparable to RK4, while only requiring two evaluations of the RHS of the DDE compared to RK4's four evaluations. Therefore, computation time using this method is approximately half that of RK4 for the same fixed step size.
+%
+
+
+\section{Derivation of Variational equations for the Discretised reflection FBG LK Equations}
+\label{app:lyapunov}
+%
+Beginning with the discretised reflections model, consisting of the complex valued electric field variable $E$ and real valued carrier density variable $N$. 
+\begin{align*}
+\dot{E}&=(1+i \alpha) N(t) E(t)+\eta(1-t) e^{-i c_{p}} \sum_{k=0}^{N-1} t^{k} e^{-i \omega_B \delta \tau} E\left(t-\tau_k \right) \\
+\dot{N}&=\frac{1}{T}\left[P-N(t)-(1+2 N(t))|E(t)|^{2}\right]
+\end{align*}
+%
+The variational equations are defined as
+%
+\begin{equation}
+    \frac{d}{d t}\binom{\delta E}{\delta N} = \mathbf{J}(\underline{F})\binom{\delta E}{\delta N}+\mathbf{J}_{\tau_{1}}(\underline{F})\binom{\delta E_{\tau_{1}}}{\delta N_{\tau_{1}}} + \cdots + \mathbf{J}_{\tau_{N}}(\underline{F})\binom{\delta E_{\tau_{N}}}{\delta N_{\tau_{N}}}
+\end{equation}
+%
+where
+%
+\begin{equation*}
+    \underline{F}(t)=(\dot{E}(t), \dot{N}(t))^T 
+\end{equation*}
+%
+Then,
+%
+\begin{equation*}
+    \mathbf{J}(\underline{F}) = 
+    \left(\begin{array}{cc}
+\frac{\partial \dot{E}}{\partial E} & \frac{\partial \dot{E}}{\partial N}\\
+\frac{\partial \dot{N}}{\partial E}& \frac{\partial \dot{N}}{\partial N}
+\end{array}\right) = 
+    \left(\begin{array}{cc}
+(1+i \alpha) N & (1+i \alpha) E \\
+-\frac{1}{T}(1+2 N) \left( \overline{E}\frac{\partial E}{\partial E} + E\frac{\partial \overline{E}}{\partial E} \right) & -\frac{1}{T}\left(1+2|E|^{2}\right)
+\end{array}\right)
+\end{equation*}
+%
+\begin{equation*}
+    J_{\tau_{k}}(\underline{F})=\left(\begin{array}{ll}
+\frac{\partial \dot{E}}{\partial E_{\tau_{k}}} & \frac{\partial \dot{E}}{\partial N_{\tau_{k}}} \\
+\frac{\partial \dot{N}}{\partial E_{\tau_{k}}} & \frac{\partial \dot{N}}{\partial N_{\tau_{k}}}
+\end{array}\right)=\left(\begin{array}{cc}
+\eta(1-t) e^{-i C_p} t^{k} e^{-i k \omega_B \delta \tau} & 0 \\
+0 & 0
+\end{array}\right)
+\end{equation*}
+%
+Resulting in
+%
+\begin{align}
+    \dot{\delta E}(t) &= (1+i \alpha)[\delta E(t) N(t)+E(t) \delta N(t)]+\eta(1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^{k} e^{-i \wB \dt} \delta E\left(t-\tau_{k}\right)
+    \\
+    \dot{\delta N}(t) &=-\frac{1}{T}\left[2(1+2 N(t)) \text{Re}\left\{\overline{E(t)} \delta E(t)\right\} + (1+2|E(t)|^{2} ) \delta N(t) \right]
+\end{align}
