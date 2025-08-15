@@ -1,0 +1,34 @@
+# latex build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lot
+*.lof
+# glossaries/indices
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.xdy
+# beamer
+*.nav
+*.snm
+# minted/listings
+_minted*/
+*.lol
+# latexmk cache
+latexmkrc
+# OS/editor
+.DS_Store
+Thumbs.db
