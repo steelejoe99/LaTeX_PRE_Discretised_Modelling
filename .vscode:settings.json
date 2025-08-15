@@ -1,0 +1,9 @@
+{
+  "latex-workshop.latex.outDir": "./build",
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk (rc)", "tools": ["latexmk_rc"] }
+  ],
+  "latex-workshop.latex.tools": [
+    { "name": "latexmk_rc", "command": "latexmk", "args": ["-pdf", "-cd", "%DOC%"] }
+  ]
+}

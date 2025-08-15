@@ -1,0 +1,137 @@
+% =======================
+\documentclass[
+  reprint,            % journal-like 2-column
+  amsmath,amssymb,    % math packages
+  aps,pre             % APS + Physical Review E style            
+]{revtex4-2}
+
+% ---- Core packages APS samples rely on ----
+\usepackage{graphicx} % \includegraphics
+\usepackage{dcolumn}  % decimal-aligned tables
+\usepackage{bm}       % bold math
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Hyperlinks (APS allows it; keep unobtrusive)
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% PACKAGES FOR LANGUAGE AND FONT
+\usepackage{verbatim} % For code blocks
+
+% PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
+\usepackage{etoolbox} 
+\usepackage{algorithm}
+
+% PACKAGES FOR IMAGES
+\usepackage{tikz} % A package for high-quality hand-made figures.
+\usetikzlibrary{}
+\usepackage{float}
+\usepackage[percent]{overpic} % For adding annotations to figures
+\usepackage{graphbox} 
+
+% FOR TABLES
+\usepackage{array}     % enables m{...}, >{...}, \arraybackslash, etc.
+\usepackage{booktabs}  % enables \toprule \midrule \bottomrule
+
+% STANDARD MATH PACKAGES
+\usepackage{mathtools}
+\usepackage{cases}
+\usepackage{xfrac}
+
+% OTHER PACKAGES
+\usepackage{lipsum} % DUMMY PACKAGE
+
+% Graphics search paths (adjust as you like)
+% You can keep just {Images/} and reference subfolders in filenames,
+% or list subfolders explicitly as below.
+\graphicspath{
+  {Images/}
+  {Images/Introduction/}
+  {Images/Chapter 1/}
+  {Images/Chapter 2/}
+  {Images/Chapter 3/}
+}
+
+% Miscellaneous operators
+\DeclareMathOperator{\arctanh}{arctanh}
+
+\newcommand{\bea}{\begin{eqnarray}} % Shortcut for equation arrays
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\e}[1]{\times 10^{#1}}  % Powers of 10 notation
+\def\norm#1{\|#1\|} %Norm
+
+% Commonly used symbols
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\renewcommand{\k}{\kappa}
+\newcommand{\w}{\omega}
+\newcommand{\wB}{\omega_B}
+\newcommand{\wZ}{\omega_0}
+\newcommand{\wz}{\omega_z}
+\newcommand{\wpm}{\omega_\pm}
+\newcommand{\neff}{n_{eff}}
+\newcommand{\dn}{\delta n}
+\newcommand{\dnbar}{\overline{\delta n}_{eff}}
+\newcommand{\dt}{\delta \tau}
+
+\newcommand{\Skenderas}{Sk\"{e}nderas}
+
+\pdfpageattr{/Rotate 0}
+
+% =======================
+% Document
+% =======================
+\begin{document}
+
+\preprint{APS/123-QED} % optional
+
+\title{Modelling and Analysis of Semiconductor Lasers Under Fiber Bragg Grating Feedback}
+
+% --- Example author block (edit to suit) ---
+\author{First A. Author}
+\affiliation{Your Department, Your University, City, Country}
+\author{Second B. Author}
+\email{second.author@example.edu}
+\affiliation{Another Affiliation, City, Country}
+\date{\today}
+
+% ---- Abstract kept modular: put the whole environment in Sections/Abstract.tex ----
+
+\input{Sections/Abstract}
+
+%\keywords{Suggested keywords}%Use showkeys class option if keyword
+                              %display desired
+
+\maketitle
+
+% =======================
+% Main text (modular)
+% =======================
+% Use \include so each section gets its own .aux (these will land in build/Sections/ with your latexmkrc)
+% File names below are examples; create the matching files in Sections/ with no spaces in names.
+\include{Sections/C_Introduction}
+\include{Sections/Chapter_2}
+\include{Sections/Conclusion}
+
+% =======================
+% Acknowledgments (optional)
+% =======================
+\begin{acknowledgments}
+We acknowledge ...
+\end{acknowledgments}
+
+% =======================
+% Appendices (optional, modular)
+% =======================
+\appendix
+\include{Sections/Appendices}
+
+% =======================
+% Bibliography
+% =======================
+\bibliographystyle{apsrev4-2}     % APS-recommended style
+\bibliography{bibliography}       % e.g., bibliography.bib at repo root
+% =======================
+
+\end{document}
