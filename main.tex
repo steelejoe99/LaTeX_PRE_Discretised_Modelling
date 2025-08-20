@@ -6,7 +6,7 @@
 ]{revtex4-2}
 
 % ---- Core packages APS samples rely on ----
-\usepackage{graphicx} % \includegraphics
+\usepackage{graphicx} % \inputgraphics
 \usepackage{dcolumn}  % decimal-aligned tables
 \usepackage{bm}       % bold math
 \usepackage[T1]{fontenc}
@@ -42,14 +42,8 @@
 % OTHER PACKAGES
 \usepackage{lipsum} % DUMMY PACKAGE
 
-% Graphics search paths (adjust as you like)
-% You can keep just {Images/} and reference subfolders in filenames,
-% or list subfolders explicitly as below.
-\graphicspath{
-  {Images/}
-  {Images/Introduction/}
-  {Images/Chapter 2/}
-}
+% Graphics search paths
+\graphicspath{{Images/}}
 
 % Miscellaneous operators
 \DeclareMathOperator{\arctanh}{arctanh}
@@ -98,7 +92,7 @@
 
 % ---- Abstract kept modular: put the whole environment in Sections/Abstract.tex ----
 
-\input{Sections/Abstract}
+\input{Sections/0Abstract}
 
 %\keywords{Suggested keywords}%Use showkeys class option if keyword
                               %display desired
@@ -108,11 +102,12 @@
 % =======================
 % Main text (modular)
 % =======================
-% Use \include so each section gets its own .aux (these will land in build/Sections/ with your latexmkrc)
+% Use \input so each section gets its own .aux (these will land in build/Sections/ with your latexmkrc)
 % File names below are examples; create the matching files in Sections/ with no spaces in names.
-\include{Sections/_Introduction}
-\include{Sections/Chapter_2}
-\include{Sections/Conclusion}
+\input{Sections/1Introduction}
+\input{Sections/2Derivation}
+\input{Sections/3Results}
+\input{Sections/4Conclusion}
 
 % =======================
 % Acknowledgments (optional)
@@ -125,13 +120,13 @@ We acknowledge ...
 % Appendices (optional, modular)
 % =======================
 \appendix
-\include{Sections/Appendices}
+\input{Sections/5Appendices}
 
 % =======================
 % Bibliography
 % =======================
-\bibliographystyle{apsrev4-2}     % APS-recommended style
-\bibliography{bibliography}       % e.g., bibliography.bib at repo root
+\bibliographystyle{apsrev4-2}
+\bibliography{bibliography}
 % =======================
 
 \end{document}

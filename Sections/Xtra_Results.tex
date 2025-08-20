@@ -1,0 +1,159 @@
+% !TeX root = ../main.tex
+\section{Analysis of EGM solution structure and influence on laser stability}
+\label{sec:EGM_analysis}
+%
+Figures~\ref{fig:discretised_EGM_fold_varyeta}, \ref{fig:discretised_EGM_fold_varywz}, and \ref{fig:discretised_EGM_fold_varywB} demonstrate how the structure of the EGMs can be affected by varying the grating parameters $\wz, \, \wB,$ and $\eta_{eff}$, respectively, away from the base case given by Figure~\ref{fig:discretised_EGM_accuracy}. Most notably, it can be seen that varying each of $\wz, \, \wB,$ and $\eta_{eff}$ can cause intersections of $f(\w_s)$ and $g(\w_s)$ at side lobes of the reflection spectrum and introduce new `satellite' EGMs, an observation previously made in \cite{naumenko2003characteristics} using a significantly more complex for for $F(t)$. Specifically, when varying $\wz$ as in (a1) and (a2),.... Panels (b1) and (b2) demonstrate that the central EGM component is centred around the detuning $\wB$ of the grating with the EGM components moving along the diagonal as $\wB$ is varied. Finally, varying the feedback $\eta_{eff}$ can introduce new EGM components while increasing the number of EGMs. As shown, for certain values of $\eta_{eff}$ and $\wz$, one can find two or even three rather than just one intersection of the line $g(\w_s)$ with the interior of the envelope. The number of EGM components can be studied by setting the envelope of $f(\w_s)$ given by \eqref{eq:discretised_ws_envelope} equal to $g(\w_s)$, which yields the $\w_s$ values at the intersections as the roots of the function
+%
+\begin{equation}
+    \label{eq:EGM_components}
+    G(\w_s) = \w_s^2 - (1+\a^2)\left( \eta \, (1-t) \frac{S_N}{S} \right)^2 
+ \end{equation}
+ %
+Moreover, these roots bound intervals of $\w_s$-values that correspond to different EGM-components, so that the function $G(\w_s)$ presents a geometrical interpretation of the EGM-components. The number of EGM-components changes when fold points (with respect to $\w_s$) of the envelope pass through the line $g(\w_s)$. These fold points are given by roots of the first derivative of \eqref{eq:EGM_components} with respect to $\w_s$, that is, by
+%
+\begin{equation}
+    \label{fig:EGM_components_fold}
+    \frac{\partial G}{\partial \w_s} = \dt (1+\a^2)\left( \eta \, (1-t) \frac{S_N}{S} \right)^2 \bigg(  \frac{t}{S^2} \sin(\phi_{FBG}) 
+    - N \frac{t^{N}}{{S_N}^2}\sin(N\phi_{FBG}) \bigg) + \w_s = 0
+\end{equation}
+%
+\begin{figure}
+    \centering
+    
+    % First image: 2 rows × 3 columns
+    \begin{overpic}[width=0.85\linewidth]{Images/discretised_EGM_fold_varyeta.pdf}
+        \put(9,42){(a1)}
+        \put(39.5,42){(a2)}
+        \put(70,42){(a3)}
+        \put(9,21.5){(b1)}
+        \put(39.5,21.5){(b2)}
+        \put(70,21.5){(b3)}
+    \end{overpic}
+    % Second image: 2 rows × 3 columns
+    \begin{overpic}[width=0.9\linewidth]{Images/discretised_EGM_varyeta.pdf}
+        \put(12,42){(a1)}
+        \put(41.5,42){(a2)}
+        \put(71.3,42){(a3)}
+        \put(12,21.5){(b1)}
+        \put(41.5,21.5){(b2)}
+        \put(71.3,21.5){(b3)}
+    \end{overpic}
+    
+    \caption{Transition between different numbers of EGM components as $\eta_{\text{eff}}$ is varied.}
+    
+    \label{fig:discretised_EGM_fold_varyeta}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    
+    \begin{overpic}[width=0.85\linewidth]{Images/discretised_EGM_fold_varywz.pdf}
+        \put(9,42){(a1)}
+        \put(39.5,42){(a2)}
+        \put(70,42){(a3)}
+        \put(9,21.4){(b1)}
+        \put(39.5,21.4){(b2)}
+        \put(70,21.4){(b3)}
+    \end{overpic}
+    \begin{overpic}[width=0.9\linewidth]{Images/discretised_EGM_varywz.pdf}
+        \put(11,42){(a1)}
+        \put(41,42){(a2)}
+        \put(71,42){(a3)}
+        \put(11,21.3){(b1)}
+        \put(41,21.3){(b2)}
+        \put(71,21.3){(b3)}
+    \end{overpic}
+    
+    \caption{Transition between different numbers of EGM components as $\wz$ is varied.}
+    
+    \label{fig:discretised_EGM_fold_varywz}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    
+    \begin{overpic}[width=0.85\linewidth]{Images/discretised_EGM_fold_varywB.pdf}
+        \put(9,60){(a1)}
+        \put(39.5,60){(a2)}
+        \put(70,60){(a3)}
+        \put(9,40){(b1)}
+        \put(39.5,40){(b2)}
+        \put(70,40){(b3)}
+        \put(9,20.7){(c1)}
+        \put(39.5,20.7){(c2)}
+        \put(70,20.7){(c3)}
+    \end{overpic}
+    \begin{overpic}[width=0.9\linewidth]{Images/discretised_EGM_varywB.pdf}
+        \put(11.3,60.2){(a1)}
+        \put(41.1,60.2){(a2)}
+        \put(71,60.2){(a3)}
+        \put(11.3,40.8){(b1)}
+        \put(41.1,40.8){(b2)}
+        \put(71,40.8){(b3)}
+        \put(11.3,22){(c1)}
+        \put(41.1,22){(c2)}
+        \put(71,22){(c3)}
+    \end{overpic}
+    
+    \caption{Transition between different numbers of EGM components as $\wB$ is varied.}
+    
+    \label{fig:discretised_EGM_fold_varywB}
+\end{figure}
+
+%
+\begin{figure}[!t]
+    \centering
+    
+    \begin{overpic}[width=0.9\linewidth]{Images/discretised_EGM_null_varyCp.pdf}
+        \put(7,60.5){(a1)}
+        \put(38.1,60.5){(a2)}
+        \put(69.3,60.5){(a3)}
+        \put(7,40.5){(b1)}
+        \put(38.1,40.5){(b2)}
+        \put(69.3,40.5){(b3)}
+        \put(7,20.2){(c1)}
+        \put(38.1,20.2){(c2)}
+        \put(69.3,20.2){(c3)}
+    \end{overpic}
+    
+    \caption{Close-up of EGM components when the grating is detuned so that a reflection zero aligns with the laser free-running frequency, that is, $\wB = \wz$ for varying $C_p$.}
+    
+    % \label{fig:discretised_EGM_null_varyCp}
+\end{figure}
+
+%
+\par
+%
+Figure~\ref{fig:discretised_EGM_fold_varywB} illustrates the transition from one EGM component to two as $\wB$ is varied. When the grating is aligned with the laser free-running, that is, $\wB=0$, there is a single EGM component, indicated by the solid interval between the two roots of $G(\w_s)$ illustrated with circular markers. As $\wB$ is increased, a fold point approaches $G(\w_s) = 0$ with a new EGM-component being born for $\wB = 0.0197$. Two EGM-components exist until $\wB = \wz$, where the two components merge at $\w_s=0$, that is, at the laser free-running frequency. Two EGM components are immediately reborn for $\wB > \wz$. 
+%
+\begin{figure}[!t]
+    \centering
+    
+    \begin{overpic}[height=0.5\linewidth]{Images/discretised_RERPO_tau121_wz01_Cppm30.pdf}
+        \put(2,55){(a)}
+    \end{overpic}\\
+    \hspace{-1em}
+    \begin{overpic}[height=0.503\linewidth]{Images/discretised_localextrema_tau121_wz01_Cppm30.pdf}
+        \put(2,55){(b)}
+    \end{overpic}
+    
+    % \caption{Curve of ECMs with stability information of the discretised FBG reflection system for $\wz = 0.1$ in the $(C_p, N)$-plane, together with branches of periodic solutions bifurcating from Hopf bifurcation points in (a). Maxima and minima as a function of the feedback phase $C_p$ in (b). All plot details follow that of Figure~\ref{fig:3Lorentzian_COF_continuation_wide}}
+    
+    % \label{fig:discretised_wz01_continuation_wide}
+\end{figure}
+%
+\begin{figure}[!t]
+    \centering
+    
+    \begin{overpic}[width=0.9\linewidth]{Images/discretised_Cp2ws_tau121_wz01_Cppm30.pdf}
+        \put(0,3){(a)}
+    \end{overpic}\\
+    \hspace{-2em}
+    \begin{overpic}[width=0.92\linewidth]{Images/discretised_EGM_tau121_wz01.pdf}
+        \put(0,3){(b)}
+    \end{overpic}
+    
+    % \caption{Panel (a) shows the continued curve of EGMs in the $(\w_s, C_p)$-plane, with stable portions indicated in black and unstable sections indicated in grey while panel (b) projects the curve in the $(\w_s, N_s)$-plane. SN bifurcations are denoted by $\times$ and Hopf bifurcations by $\star$.}
+    
+    % \label{fig:3Lorentzian_Cp2ws_continuation}
+\end{figure}
