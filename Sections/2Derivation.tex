@@ -31,6 +31,21 @@ We demonstrate has the benefits of the mathematical tractability of the previous
 \section{Uniform FBG discretised reflection model derivation}
 \label{sec:FBG_discretised_derivation}
 %
+\begin{figure}[!t]
+    \centering
+    
+    \begin{overpic}[width=0.95\linewidth]{Images/discretised_reflections.pdf}
+        \put(-1,60){(a)}
+    \end{overpic}\\[0.5em]
+    \begin{overpic}[width=0.95\linewidth]{Images/single_reflection_tk.pdf}
+        \put(-1,60){(b)}
+    \end{overpic}
+    
+    \caption{Illustration of the first 6 layers in the decomposition of an FBG in slabs and the contributions to the total reflected electric field. Each layers' transmission and reflection coefficients are indicated where $j = i+1$. Illustration of the first 6 layers in the decomposition of an FBG in slabs where only the final contribution due to reflection at the $k^{\text{th}}$ is considered for the $k^{\text{th}}$ delayed signal. Forward and backward transmission is considered in (a) while only forward transmission is considered in (b).}
+    
+    \label{fig:discretised_FBG}
+\end{figure}
+%
 We model the reflection response of the uniform FBG as a series partial reflections at boundaries equally spaced over the $N$ layers of the grating. 
 The entire grating has a uniform refractive index $\neff$, while each boundary has an equal transmission coefficient $t$ and reflection coefficient $r$ at each boundary determined by the normalised refractive index variation $\dn = \dnbar/\neff$. 
 Further, we consider only the dominant paths that undergo a single reflection at the $(k-1)^\text{th}$ layer. 
@@ -54,22 +69,6 @@ The key observation then is that $R$ is approximated very well by
 as shown in Figure~\ref{fig:R_approximations}(a), where both expressions are plotted as a function of $\dn$ for different layer numbers $N$, demonstrating the excellent agreement. 
 We now describe two interpretations of this model that produce expressions for $r$ and $t$ which recovers this approximation for $R$. 
 %
-\begin{figure}[!t]
-    \centering
-    
-    \begin{overpic}[width=\linewidth]{Images/discretised_reflections.pdf}
-        \put(0,60){(a)}
-    \end{overpic}\\[0.5em]
-    \begin{overpic}[width=\linewidth]{Images/single_reflection_tk.pdf}
-        \put(0,60){(b)}
-    \end{overpic}
-    
-    \caption{Illustration of the first 6 layers in the decomposition of an FBG in slabs and the contributions to the total reflected electric field. Each layers' transmission and reflection coefficients are indicated where $j = i+1$. Illustration of the first 6 layers in the decomposition of an FBG in slabs where only the final contribution due to reflection at the $k^{\text{th}}$ is considered for the $k^{\text{th}}$ delayed signal. Forward and backward transmission is considered in (a) while only forward transmission is considered in (b).}
-    
-    \label{fig:discretised_FBG}
-\end{figure}
-%
-%
 \subsection{Discretised reflection interpretation 1: Effective reflectivity}
 %
 Figure~\ref{fig:discretised_FBG}(a) illustrates this interpretation of the discretised FBG reflection. 
@@ -86,9 +85,10 @@ Given that each of these signals are transmitted through $2(k-1)$ layers and ref
 We now require an $r$ and $t$ that recovers \eqref{eq:R_approx} when we sum over all reflections $h_r(k)$. Rewriting \eqref{eq:R_approx} as a sum,
 %
 \begin{align*}
-    R_\text{approx} &= 1 - (1-\dn)^2 + (1-\dn)^2 - \dots - (1-\dn)^{2N-2} + (1-\dn)^{2N-2} - (1-\dn)^{2N}
-    \\
-    &= (1-(1-\dn)^2) \left( 1 + (1-\dn)^2 + \dots (1-\dn)^{2N-2} \right)
+    R_\text{approx} &= 1 - (1-\dn)^2 + (1-\dn)^2 - \dots \\
+                    &- (1-\dn)^{2N-2} + (1-\dn)^{2N-2} - (1-\dn)^{2N}\\
+                    \vspace{0.5em}
+                    = (&1-(1-\dn)^2) \left( 1 + (1-\dn)^2 + \dots (1-\dn)^{2N-2} \right)
 \end{align*}
 %
 Therefore,
@@ -171,7 +171,7 @@ where $e^{-i k \wB \dt}$ accounts for the phase accumulated while propagating th
 \begin{equation}
 \label{eq:LK_discretised}
     \begin{aligned}
-        \frac{d E}{d t} &= (1+i \alpha) N(t) E(t) + \\
+        \frac{d E}{d t} &= (1+i \a) N(t) E(t) + \\
                         &\quad \eta (1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^k E(t-\tau-k\, \dt) e^{-i k \wB \dt} \\
         T \frac{d N}{d t} &= P-N(t)-(1+2 N(t))|E(t)|^2
     \end{aligned}
@@ -276,58 +276,61 @@ As the filter detuning D is increased further, the envelope undergoes a saddle t
 The equations derived for the discretised reflection model very similar to the original LK equations given by \eqref{eq:LK} in that CW solutions are given by $(E(t), N(t)) = (E_s e^{i\w_s t}, N_s)$ without additional dimensions introduced by the feedback $F(t)$. We may solve this equation by expanding the complex exponentials into their real and imaginary components,
 %
 \begin{align*}
-    i \w_s = &(1+i \alpha) N_s + \eta (1-t) \big(\cos{(\phi_{EC})} -i\sin{(\phi_{EC})}  \big) \times \\ 
-             &\left( \sum_{k=0}^{N-1} t^k \cos{(k\phi_{FBG})} - i \sum_{k=0}^{N-1} t^k \sin{(k\phi_{FBG})} \right)
+    i \w_s = (1+i \a) N_s &+ \eta (1-t) \big(\cos{(\phi_\text{E})} -i\sin{(\phi_\text{E})}  \big) \times \\ 
+             &\left( \sum_{k=0}^{N-1} t^k \cos{(k\phi_\text{F})} - i \sum_{k=0}^{N-1} t^k \sin{(k\phi_\text{F})} \right)
 \end{align*}
 %
-where $\phi_{FBG} = \dt(\wB + \w_s), \, \phi_{EC} = C_p+\tau \w_s$ are distinguished as the phases accrued in the EC and FBG, respectively. In this form, with the aid of identities
+where $\phi_\text{F} = \dt(\wB + \w_s), \, \phi_\text{E} = C_p+\tau \w_s$ are distinguished as the phases accrued in the EC and FBG, respectively. In this form, with the aid of identities
 %
 \begin{align*}
-    \sum_{k=0}^{N-1} t^k \cos(k\phi_{FBG}) &= \frac{1 - t \cos(\phi_{FBG}) - t^N \cos(N\phi_{FBG}) + t^{N+1} \cos((N-1)\phi_{FBG})}{1 - 2t \cos(\phi_{FBG}) + t^2} \\
-    \sum_{k=0}^{N-1} t^k \sin(k\phi_{FBG}) &= \frac{t \sin(\phi_{FBG}) - t^N \sin(N\phi_{FBG}) + t^{N+1} \sin((N-1)\phi_{FBG})}{1 - 2t \cos(\phi_{FBG}) + t^2}
+    \sum_{k=0}^{N-1} &t^k \cos(k\phi_\text{F}) = \\
+    &   \frac{1 - t \cos(\phi_\text{F}) - t^N \cos(N\phi_\text{F}) + t^{N+1} \cos((N-1)\phi_\text{F})}{t^2 - 2t \cos(\phi_\text{F}) + 1} \\
+    \sum_{k=0}^{N-1} &t^k \sin(k\phi_\text{F}) = \\
+    &\quad \quad \frac{t \sin(\phi_\text{F}) - t^N \sin(N\phi_\text{F}) + t^{N+1} \sin((N-1)\phi_\text{F})}{1 - 2t \cos(\phi_\text{F}) + t^2}
 \end{align*}
 %
 an implicit equation for the EGM frequencies $\w_s$ can be derived,
 %
 \begin{gather*}
     \begin{aligned}
-\w_s = \frac{\eta (1-t) \sqrt{1 + \alpha^2}}{t^2 - 2 t  \cos(\phi_{FBG}) + 1} \Big[ - &\sin(\phi_{EC} + \arctan(\alpha)) \\
-     +  t&\sin(\phi_{EC} + \arctan(\alpha) - \phi_{FBG}) \\
-     + t^N&\sin(\phi_{EC} + \arctan(\alpha) + N \phi_{FBG})   \\
-     -  t^{N+1}&\sin(\phi_{EC} + \arctan(\alpha) + (N-1) \phi_{FBG})
+\w_s = \frac{\eta (1-t) \sqrt{1 + \a^2}}{t^2 - 2 t  \cos(\phi_\text{F}) + 1} \times \\
+&&\hspace{-6em} \Big[- &\sin(\phi_\text{E} + \arctan\a) \\
+&&\hspace{-6em}      +  t&\sin(\phi_\text{E} + \arctan\a - \phi_\text{F}) \\
+&&\hspace{-6em}      + t^N&\sin(\phi_\text{E} + \arctan\a + N \phi_\text{F})   \\
+&&\hspace{-6em}      -  t^{N+1}&\sin(\phi_\text{E} + \arctan\a + (N-1) \phi_\text{F})
 \Big]
-\end{aligned}
+    \end{aligned}
 \end{gather*}
 %
 The RHS can then be written as a single sine function, yielding
 %
 \begin{equation}
     \label{eq:discretised_ws}
-    \w_s = -\eta (1-t) \sqrt{1+\alpha^2}\frac{S_N}{S} \sin{\left( \phi_{EC}+\arctan{(\alpha) + \Phi - \Phi_N } \right)}
+    \w_s = -\eta (1-t) \sqrt{\a^2+1}\frac{S_N}{S} \sin{\left( \phi_\text{E}+\arctan\a + \Phi - \Phi_N  \right)}
 \end{equation}
 %
 where
 %
 \begin{align}
-    S &= \sqrt{1 - 2 t \cos{(\phi_{FBG}) + t^2}}
+    S &= \sqrt{1 - 2 t \cos{(\phi_\text{F}) + t^2}}
     \\
-    S_N &= \sqrt{1 - 2 t^N \cos{(N\phi_{FBG}) + t^{2N}}}
+    S_N &= \sqrt{1 - 2 t^N \cos{(N\phi_\text{F}) + t^{2N}}}
     \\
-    \Phi &= \arctan{\left( \frac{t \sin{(\phi_{FBG})}}{1 - t \cos{(\phi_{FBG})}} \right)} 
+    \Phi &= \arctan{\left( \frac{t \sin{(\phi_\text{F})}}{1 - t \cos{(\phi_\text{F})}} \right)} 
     \\
-    \Phi_N &= \arctan{\left( \frac{t^N \sin{(N\phi_{FBG})}}{1 - t^N \cos{(N\phi_{FBG})}} \right)} 
+    \Phi_N &= \arctan{\left( \frac{t^N \sin{(N\phi_\text{F})}}{1 - t^N \cos{(N\phi_\text{F})}} \right)} 
 \end{align}
 %
 We note that in the plane mirror limit, the front face of the FBG would reflect all incoming light, that is $ t = 0 \implies S = S_N = 1, \, \Phi = \Phi_N = 0$, yielding 
 %
 \begin{equation*}
-    \w_s = - \eta \sqrt{\alpha^2 + 1} \sin{(C_p + \w_s \tau + \arctan(\alpha) })
+    \w_s = - \eta \sqrt{\a^2+1} \sin{(C_p + \w_s \tau + \arctan\a })
 \end{equation*}
 %
 which is precisely the well studied implicit ECM equation \cite{rottschafer2007ecm}. Given the solutions for $\w_s$, one can calculate $N_s$ and $E_s$ through
 %
 \begin{equation}
-    N_s = -\eta (1-t) \frac{S_N}{S} \cos{\left( \phi_{EC} + \Phi - \Phi_N \right)}  
+    N_s = -\eta (1-t) \frac{S_N}{S} \cos{\left( \phi_\text{E} + \Phi - \Phi_N \right)}  
 \end{equation}
 %
 \begin{equation}
@@ -338,14 +341,17 @@ The envelope of $f$ is obtained by setting the sine term in \eqref{eq:discretise
 %
 \begin{equation}
     \label{eq:discretised_ws_envelope}
-    \w_s = \mp \eta (1-t) \sqrt{1+\alpha^2}\frac{S_N}{S}
+    \w_s = \mp \eta (1-t) \sqrt{\a^2+1}\frac{S_N}{S}
 \end{equation}
 while a curve of EGMs can also be derived by substituting the CW ansatz into \eqref{eq:LK_discretised}.
 %
-\begin{equation}
+\begin{gather}
     \label{eq:discretised_Ns_curve}
-    N_s(\w_s) = \frac{\alpha \w_s}{1+\alpha^2} \pm \frac{1}{1+\alpha^2}\sqrt{-\w_s^2 + (1+\alpha^2) \left(\eta (1-t) \frac{S_N}{S} \right)^2}
-\end{equation}
+    \begin{aligned}
+        \hspace{-0.5em}N_s(\w_s) = &\frac{\a \w_s}{1+\a^2} \pm \\
+                    &\frac{1}{1+\a^2}\sqrt{-\w_s^2 + (1+\a^2) \left(\eta (1-t) \frac{S_N}{S} \right)^2}        
+    \end{aligned}
+\end{gather}
 %
 % \begin{figure}[!t]
 %     \centering
@@ -376,7 +382,7 @@ At this point, we have equations which can visualise the structure of the EGMs p
 We would like to study physically relevant EGMs of FBGs in parameter regions of interest. 
 For 1550 nm light, the lasers angular frequency corresponds to $\w_c=1216\;\text{rad\,ps}^{-1}$. 
 Then, to compare to the Lorentzian model, that nominally had $\wz = 0.1$, we must first determine the FBG parameters $(\wB, R, N)$ in \eqref{eq:wztoN}. 
-We first prescribe the parameters of the laser and EC to the previously studied values $\tau = 121, \alpha = 3.5, \eta R = 0.0455, C_p = 0, T = 550, P = 0.186$ for COF \cite{heil2003delay}. 
+We first prescribe the parameters of the laser and EC to the previously studied values $\tau = 121, \a = 3.5, \eta R = 0.0455, C_p = 0, T = 550, P = 0.186$ for COF \cite{heil2003delay}. 
 It is then important to note that $\wz$ in the derived form of the LK equations is a dimensionless quantity normalised by the cavity lifetime $\tau_p$, 
 which for these laser parameters is equal to $1.82 \,\text{ps}$, see Appendix~\ref{app:LK_approx} for details. 
 Therefore, the angular frequency $\w_c$ is nondimensionalised to $\w_c=2211$ and then, beginning with a reflectivity $R = 0.5$ the grating number, calculated through \eqref{eq:wztoN}, is $N \approx 22440$. 
@@ -431,8 +437,8 @@ while very long gratings ($L \gg 1$) produce a narrow bandwidth filtering respon
 %
 \begin{figure}[!t]
     \centering
-    
-    \begin{overpic}[width=\linewidth]{Images/Low_N_gratings.pdf}
+    \hspace{1em}
+    \begin{overpic}[width=0.9\linewidth]{Images/Low_N_gratings.pdf}
         \put(0,78){(a)}
     \end{overpic} \\
     \vspace{1em}
@@ -464,16 +470,16 @@ The first case demonstrated in the left column illustrates how if the detuning $
 As the amplitude of side lobes will begin to increase again past this point as shown in (c1) (where they should continue to diminish) one could find larger EGM regions than is physically correct. 
 This can be avoided by ensuring that over the parameter region being studied, $N$ is larger than $2{\w}_{B, \max}/{\w}_{z,\min}$. 
 The second and perhaps more problematic case shown on the right column, occurs when repeated side lobes intersect the line $f(\w_s) = \w_s$. 
-and the repeated main reflection lobes over the entire parameter region of interest. The first repetitions of the main lobe occur at $\w_s = \pm N \wz + \wB$, while each main lobe has a maximum at $\pm \eta \sqrt{1+\a^2}$. 
-The line $f(\w_s)$ can therefore hit the first repeated main lobes at $\w_s = \pm \eta \sqrt{1+\a^2}$. 
+and the repeated main reflection lobes over the entire parameter region of interest. The first repetitions of the main lobe occur at $\w_s = \pm N \wz + \wB$, while each main lobe has a maximum at $\pm \eta \sqrt{\a^2+1}$. 
+The line $f(\w_s)$ can therefore hit the first repeated main lobes at $\w_s = \pm \eta \sqrt{\a^2+1}$. 
 For $\wB=0$ as shown in (a2), only valid regions of the EGM envelope intersect the line $f(\w_s)$, but as $\wB$ increases, 
-the first repeated main lobe begins to intersect $f(\w_s)$ at $\w_s = \pm \eta \sqrt{1+\a^2}$ as shown in (b2), introducing invalid EGM components to the solution structure as $\wB$ is increased as shown in (c2). 
+the first repeated main lobe begins to intersect $f(\w_s)$ at $\w_s = \pm \eta \sqrt{\a^2+1}$ as shown in (b2), introducing invalid EGM components to the solution structure as $\wB$ is increased as shown in (c2). 
 Note that detuning is not the only mechanism for which this can occur, for example, 
 increasing the feedback rate $\eta$ in (b1) would increase the amplitude of the solution envelope and quickly cause intersections between the repeated main lobes and $f(\w_s)$. 
-To guarantee these non-physical features are not introduced into the EGM structure, we therefore require the first repeated peaks to never be within $\w_s = \pm \eta \sqrt{1+\a^2}$, which can be ensured through
+To guarantee these non-physical features are not introduced into the EGM structure, we therefore require the first repeated peaks to never be within $\w_s = \pm \eta \sqrt{\a^2+1}$, which can be ensured through
 %
 \begin{equation*}
-    N \wz + |\wB| > \w_s = \eta \sqrt{1+\a^2}
+    N \wz + |\wB| > \w_s = \eta \sqrt{\a^2+1}
 \end{equation*}
 %
 Combining these two conditions, a lower bound on the grating number $N$ for a particular parameter region can then be prescribed as
@@ -500,7 +506,7 @@ Combining these two conditions, a lower bound on the grating number $N$ for a pa
 \begin{figure*}[!t]
     \flushleft
     \hspace{0.5em}
-    \includegraphics[width=0.9\linewidth]{Images/discretised_EGM_minimumN.pdf}
+    \includegraphics[width=0.87\linewidth]{Images/discretised_EGM_minimumN.pdf}
     
     \caption{EGM solutions for varying detuning $\wB$ with $\wz=0.1$ (left) and $\wz=0.02$ (right) and $N=10$ in both cases. 
     Valid region solution regions are plotted with opaque lines while the entire frequency region is plotted with semi transparent lines.}

@@ -5,5 +5,7 @@
   ],
   "latex-workshop.latex.tools": [
     { "name": "latexmk_rc", "command": "latexmk", "args": ["-pdf", "-cd", "%DOC%"] }
-  ]
+  ],
+  "latex-utilities.countWord.path": "/Library/TeX/texbin/texcount",
+  "latex-utilities.countWord.args": ["-inc", "-sum"]
 }

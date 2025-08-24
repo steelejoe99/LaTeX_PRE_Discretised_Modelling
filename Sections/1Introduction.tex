@@ -25,7 +25,7 @@ A non-dimensionalised form of these equations that distils the key parameters go
 \end{equation}
 %
 These key parameters can be separated into laser and external cavity (EC) parameters. The laser, which emits light at a single frequency $\w_0$ is characterised by the pump current $P$, 
-the linewidth enhancement factor $\alpha$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
+the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
 The EC is characterised by the EC delay time $\tau = 2L\neff/c$, the feedback power level (ratio of power from the external mirror to that from the diode mirror) $\eta$, 
 and the feedback phase $C_p = \w_0 \tau$, which is equal to the number of optical wavelengths in the EC. 
 Treating the feedback phase as an independent parameter to the delay $\tau$ simplifies the analysis of the system while being physically justified for standard cavity lengths which are on the order of centimetres.
@@ -113,7 +113,7 @@ they showed that integro-differential equations for the distributed FOF can be c
 \begin{equation}
     \begin{aligned}
     \label{eq:FOF_LK}
-        \frac{d E}{d t} &= (1+i \alpha) N(t) E(t)+\eta F(t) \\
+        \frac{d E}{d t} &= (1+i \a) N(t) E(t)+\eta F(t) \\
         T \frac{d N}{d t} &= P - N(t) - (1 + 2 N(t))|E(t)|^2 \\
         \frac{d F}{d t} &= \lambda E(t-\tau) e^{-i C_p}+(i \Delta-\lambda) F(t)
     \end{aligned}
@@ -355,16 +355,16 @@ The preference for positive detuning is attributed to the red-shifting of the la
 %
 The convolution representation for $F(t)$ under FBG feedback can alternatively be written as a distributed delay term. Using the definition of the convolution,
 %
-\begin{equation*}
+\begin{align*}
     \tilde{\rho}(t) \otimes E(t-\tau)
-    = \int_{-\infty}^{\infty} \tilde{\rho}(t-s) E(s-\tau) ds 
-    = \int_{-\infty}^{t+\tau} \tilde{\rho}(t-s) E(s-\tau) ds
-\end{equation*}
+    &= \int_{-\infty}^{\infty} \tilde{\rho}(t-s) E(s-\tau) ds \\
+    &= \int_{-\infty}^{t+\tau} \tilde{\rho}(t-s) E(s-\tau) ds
+\end{align*}
 %
 as $E(s-\tau)=0$ for $s>t+\tau$. Now, choosing the lower bound $t-T$ so that $\tilde{\rho}(s) \approx 0 \; \forall \; s>T$.
 %
 \begin{equation*}
-    \tilde{\rho}(t) \otimes E(t-\tau) = \int_{t-T}^{t+\tau} \tilde{\rho}(t-s) E(s - \tau) ds
+    \tilde{\rho}(t) \otimes E(t-\tau) \approx \int_{t-T}^{t+\tau} \tilde{\rho}(t-s) E(s - \tau) ds
 \end{equation*}
 %
 This equivalent expression for $F(t)$ has been used in further numerical studies on the use of chirped FBGs (CFBGs), 
@@ -401,14 +401,13 @@ Indeed, truncating this expression for $F(t)$ to first order reduces to single r
 %
 \begin{equation*}
     \begin{aligned}
-        E(t) \ln{\left[ \frac{E_r(t)}{E(t)} \right]} &= \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}\left( \frac{E_r(t)}{E(t)} - 1\right)^n \\
-        = \sum_{n=1}^\infty &\frac{(-1)^{n-1}}{n}\left( \frac{E(t) + \frac{R_2^2 - 1}{R_2^2} \sum_{n=1}^\infty (-R_2 R)^n e^{-i n C_p} E(t-n \tau)}{E(t)} - 1\right)^n\\
-        &\approx E(t)\left( \frac{E(t) + \frac{R_2^2 - 1}{R_2^2}(-R_2 R)e^{-i C_p} E(t - \tau) - E(t)}{E(t)} \right), n=1 \\
-        &= \eta e^{-i C_p} E(t - \tau)
+        &E(t) \ln{\left[ \frac{E_r(t)}{E(t)} \right]} = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}\left( \frac{E_r(t)}{E(t)} - 1\right)^n \\
+        &\,\overset{n=1}{\approx} E(t)\left( \frac{E(t) + \frac{R_2^2 - 1}{R_2^2}(-R_2 R)e^{-i C_p} E(t - \tau) - E(t)}{E(t)} \right)\\
+        &\;\;= \eta e^{-i C_p} E(t - \tau)
     \end{aligned}   
 \end{equation*}
 %
-as desired. 
+as desired.
 Reflection due to an FBG can be modelled by modifying this expression to account for the spectral filtering $\rho_{\text{Bragg}}(\w)$ of the grating. 
 Multiple reflections given by the terms $(R_2 R)^n e^{-i n C_p} E(t-n \tau)$ are now replaced by terms given by \eqref{eq:FOF}, see Appendix~\ref{sec:multiple_EC_nondim} for details. 
 Through the use of Green's functions, an expression for the ECMs of the system can be derived, allowing for significantly deeper insights into the dynamics compared to the convolution method discussed previously. 
