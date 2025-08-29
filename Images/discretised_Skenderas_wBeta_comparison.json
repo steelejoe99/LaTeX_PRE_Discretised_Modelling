@@ -1,7 +1,11 @@
 {
-  "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/discretised_Skenderas_wBeta_comparison.pdf",
+  "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/discretised_Skenderas_wBeta_comparison.svg",
   "script": "Documents/Python scripts/LK work/Continuation/LK_discretised_continuation/Skenderas/All_replications.ipynb",
-  "data_files": [],
-  "date": "2025-08-20 17:39:59",
+  "data_files": [
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/Discretised_comparisons/Skenderas_comparison/wBvars_Cpeq2pi3/LK_discretised_Skenderas_wB_newCp_all_2025-07-03_15-57_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/Discretised_comparisons/Skenderas_comparison/wBvars_Cpeq2pi3/LK_discretised_Skenderas_wB_newCp_extra_2025-08-26_18-26_bifurcation_data.csv",
+    "/Users/jste924/Documents/Python scripts/LK work/Integration/LK_FBG_discretised/Numerical Integration/Skenderas/Skenderas_period_varywB_wz00288_newCp_N500.npy"
+  ],
+  "date": "2025-08-29 08:40:10",
   "git_commit": "4aa9b509b8d3168cbbe75291fa48b26ac77b7165"
 }

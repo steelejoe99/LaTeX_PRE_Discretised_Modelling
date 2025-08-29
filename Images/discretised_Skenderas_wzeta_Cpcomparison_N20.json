@@ -1,7 +1,9 @@
 {
   "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/discretised_Skenderas_wzeta_Cpcomparison_N20.pdf",
   "script": "Documents/Python scripts/LK work/Continuation/LK_discretised_continuation/Skenderas/All_replications.ipynb",
-  "data_files": [],
-  "date": "2025-08-20 17:35:49",
+  "data_files": [
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/Discretised_comparisons/Skenderas_comparison/wzvars/LK_discretised_Skenderas_wzeta_Cpvars_2025-06-17_00-15_bifurcation_data.csv"
+  ],
+  "date": "2025-08-29 08:40:09",
   "git_commit": "4aa9b509b8d3168cbbe75291fa48b26ac77b7165"
 }

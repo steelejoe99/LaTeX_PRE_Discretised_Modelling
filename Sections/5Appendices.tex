@@ -6,12 +6,13 @@
 %
 To model the dynamics of a semiconductor laser with optical feedback from an external cavity, we use the well-known \textbf{Lang-Kobayashi equations} \cite{lang1980external}. These delay differential equations describe how the complex electric field \( E(s) \) of the laser and the carrier inversion \( N(s) \) evolve in time under the influence of both intrinsic gain mechanisms and delayed feedback. In dimensionalised form, the equations are written as:
 %
-\label{eq:dimensionalised_LK}
 \begin{gather}
+\label{eq:dimensionalised_LK}
 \begin{aligned}
 \frac{d E}{d s} &= \frac{1}{2} G_{\mathrm{M}0}(1 + i \alpha) \left[N(s) - N_N\right] E(s) + \kappa_0 e^{-i C_p} F(s, \tau_0)\\
-\frac{d N}{d s} &= J_0 - \gamma_0 N(s) - \left[\Gamma_{\mathrm{M}0} + G_{\mathrm{N}0}(N(s) - N_N)\right] |E(s)|^2.
+\frac{d N}{d s} &= J_0 - \gamma_0 N(s) - \left[\Gamma_{\mathrm{M}0} + G_{\mathrm{N}0}(N(s) - N_N)\right] |E(s)|^2.\\
 \end{aligned}
+\raisetag{-1.5em} % adjust as needed
 \end{gather}
 %
 The physical parameters in these equations are defined as follows:
@@ -51,31 +52,23 @@ The transformed parameters are defined as:
   \item \( \tau = \gamma_p \tau_0 \): rescaled external delay
 \end{itemize}
 %
-The dimensionalised parameter values used are:
+For example, dimensionalised parameter values $\alpha = 3.5, \, \gamma_0 = 1.0 \times 10^9, \, \Gamma_{\mathrm{M}0} = 0.55 \times 10^9,\,
+\kappa_0 = 25.0 \times 10^9, \, \tau_0 = 0.22 \times 10^{-9}, \, G_{\mathrm{M}0} = 50.0, \, G_{\mathrm{N}0} = 0.05, \, J_0 = 8.0 \times 10^9, \,
+N_N = 5.0$ result in $\gamma_p = 5.5 \times 10^{11}$ and nondimensionalised parameter values $\a = 3.5, \, P = 0.136, \, T = 550, \, \eta = 0.0455, \, \tau = 121$.
 %
-\[
-\alpha = 3.5, \quad \gamma_0 = 1.0 \times 10^9, \quad \Gamma_{\mathrm{M}0} = 0.55 \times 10^9, \quad \kappa_0 = 25.0 \times 10^9,
-\]
-\[
-\tau_0 = 0.22 \times 10^{-9}, \quad G_{\mathrm{M}0} = 50.0, \quad G_{\mathrm{N}0} = 0.05, \quad J_0 = 8.0 \times 10^9, \quad N_N = 5.0.
-\]
-Therefore, $\gamma_p = 5.5 \times 10^{11}$ resulting in nondimensionalised parameter values,
-\[
-\a = 3.5, \quad P = 0.136, \quad T = 550, \quad \eta = 0.0455, \quad \tau = 121.
-\]
-%
-It is noted that one can get from this nondimensionalised time to second by multiplying by the factor $\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}$.
+It is noted that one can get from this nondimensionalised time to seconds by multiplying by the factor $\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}$.
 %
 %
-\section{Multiple EC reflection FBG LK model conversion}
+\section{Convolution FBG LK model equivalence}
 \label{sec:Li_chaos_nondim}
 %
-The form of the equations analysed by Li \textit{et. al} are given by
+The form of the equations analysed by Li \textit{et. al} \cite{li2012distributed,li} are given by
 %
 \begin{equation}
 \left\{\begin{array}{l}
-\displaystyle \frac{d a}{d t}=\frac{1-i b}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s}} \tilde{n}-\gamma_{p}\left(|a|^{2}-1\right)\right] a+\gamma_{c} \xi_{f} e^{i \theta}\left[r(t) e^{-i \Delta \Omega t}\right] * a\left(t-\tau_\text{RT}\right) \\
-\displaystyle \frac{d \tilde{n}}{d t}=-\left(\gamma_{s}+\gamma_{n}|a|^{2}\right) \tilde{n}-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|a|^{2}\right)\left(|a|^{2}-1\right)
+\displaystyle \frac{d a}{d t}=\frac{1-i b}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} \tilde{n}-\gamma_{p}\left(|a|^{2}-1\right)\right] a+\gamma_{c} \xi_{f} e^{i \theta}\left[r(t) e^{-i \Delta \Omega t}\right] * a\left(t-\tau_\text{RT}\right) \\
+\displaystyle \frac{d \tilde{n}}{d t}=-\left(\gamma_{s}+\gamma_{n}|a|^{2}\right) \tilde{n}-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|a|^{2}\right)\left(|a|^{2}-1\right)\\
+\;
 \end{array}\right.
 \end{equation}
 %
