@@ -2,19 +2,23 @@
 \section{Introduction}
 \label{sec:introduction}
 %
-Semiconductor lasers are crucial components in many technological applications. 
-They have the advantage that their emission wavelengths are very popular as light sources in optical communication networks, 
-while offering considerably smaller sizes (fractions of a millimetre) compared to the typical helium-neon lasers (tens of centimetres) allowing for their use across a plethora of practical applications \cite{vantartwijk1995semiconductor}. 
-Semiconductor lasers are not only smaller than conventional lasers, but also significantly more open, allowing about 70\% of light intensity to escape, compared to the 1-5\% typical of conventional lasers. 
-However, this openness makes semiconductor lasers more susceptible to external disturbances, resulting in a strong reaction to outside signals, 
-which, albeit undesirable in practical applications, can be a promising route into the study of the potential nonlinear dynamics that can be produced with semiconductor lasers.
-The influence of external light on the operation of a laser has been studied in detail since the 1970s through the mechanisms of optical feedback (both conventional (COF) and phase-conjugate (POF)) and optical injection \cite{weiss1991dynamics}. 
-The feedback and injection mechanisms have important practical implications; the former, for example, could be encountered in the operation of CD players, while the latter could be encountered in laser amplification systems. 
-From a dynamical systems perspective, a significant breakthrough in the analysis of semiconductor laser dynamics came in 1980 through the seminal paper by Lang and Kobayashi, 
-who introduced the so-called Lang Kobayashi (LK) rate equations describing the dynamics of a semiconductor laser under COF from a distant external mirror \cite{lang1980external}. 
-A conceptual setup of this system is provided in Figure~\ref{fig:COF}. 
-The LK equations describe the time evolution of the complex electric field $E = E_x + i E_y$ and the inversion (number of electron-hole pairs) $N$ inside the laser under the influence of external feedback $F(t) = \eta e^{-i\wZ\tau} E(t-\tau)$. 
-A non-dimensionalised form of these equations that distils the key parameters governing the dynamics of this system is given by \eqref{eq:LK} \cite{heil2003delay}.
+Semiconductor lasers are fundamental components in modern photonic technologies.
+Their emission wavelengths align with those used in optical communication networks, making them valuable light sources. 
+In addition, they are orders of magnitude smaller than typical helium–neon lasers, with coherence lengths of only a few millimetres compared to many metres, which enables widespread practical applications \cite{heiskanen2018photobiomodulation}.
+Semiconductor lasers are not only smaller than conventional gas lasers, but also exhibit much higher output coupling, with approximately 70\% of the light intensity escaping them compared to 1-5\% for gas lasers \cite{vantartwijk1995semiconductor}.
+However, this openness makes semiconductor lasers more susceptible to external disturbances, leading to a strong response to incident signals.
+Although undesirable in practical applications, this sensitivity has made semiconductor lasers a central platform for investigating nonlinear dynamics induced by external optical feedback.
+The influence of external light on laser operation has been extensively investigated since the 1970s, with particular focus on optical feedback mechanisms, both conventional (COF) and phase conjugate (PCF), as well as on optical injection \cite{weiss1991dynamics}.
+Feedback and injection mechanisms have important practical implications: for example, the former arises in the operation of CD players, while the latter is central to laser amplification systems.
+Beyond their direct historical significance, semiconductor lasers with feedback underpin key technologies in modern photonics. 
+Feedback control is exploited to stabilize frequency and linewidth in coherent optical communication \cite{tkach2003regimes}, to enhance sensitivity in precision sensing and metrology, and to enable secure chaos-based encryption schemes \cite{uchida2008fast}. 
+At the same time, semiconductor lasers with feedback provide a prototypical and experimentally accessible example of delay differential equations, serving as a testbed for nonlinear dynamics with relevance extending to control theory \cite{stepan1989retarded}, electronics, and biological systems \cite{mackey1977oscillation}.
+%
+\par
+%
+A major breakthrough occurred in 1980 with the seminal work of Lang and Kobayashi, who introduced the Lang–Kobayashi (LK) rate equations to describe the dynamics of a semiconductor laser subject to COF from a distant external mirror \cite{lang1980external}.
+The LK equations describe the time evolution of the complex electric field $E = E_x + iE_y$ and the carrier inversion $N$ under the influence of external feedback $F(t)$.
+A nondimensionalized form of these equations, highlighting the key parameters governing the system dynamics, is given by \eqref{eq:LK} \cite{heil2003delay}
 %
 \begin{equation}
 \label{eq:LK}
@@ -24,56 +28,46 @@ A non-dimensionalised form of these equations that distils the key parameters go
     \end{aligned}
 \end{equation}
 %
-These key parameters can be separated into laser and external cavity (EC) parameters. The laser, which emits light at a single frequency $\w_0$ is characterised by the pump current $P$, 
-the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
-The EC is characterised by the EC delay time $\tau = 2L\neff/c$, the feedback power level (ratio of power from the external mirror to that from the diode mirror) $\eta$, 
-and the feedback phase $C_p = \w_0 \tau$, which is equal to the number of optical wavelengths in the EC. 
-Treating the feedback phase as an independent parameter to the delay $\tau$ simplifies the analysis of the system while being physically justified for standard cavity lengths which are on the order of centimetres.
-Therefore the change in the delay times between these cases is negligible. 
-Comparing this to the large change in the phase - which shifts by $2\pi$ as the cavity length changes by half a wavelength due to the forward and backward propagation of the feedback signal within the cavity - 
-to the negligible change in delay time, it is clear that on can treat the phase change $C_p$ as being independent from $\tau$. 
-These equations are formulated with reference to the centre frequency of the laser, that is, we consider $\wZ = 0$ at the operating frequency, thus implying that $C_p=0$ in the first instance. 
-Varying $C_p$ over a full $2\pi$ then amounts to changing the mirror position less than micron for wavelengths corresponding to visible light, using for example a piezoelectric transducer \cite{heil2003delay}. 
-The application of these equations requires a single-mode laser system under the influence of weak feedback (up to a few \% of emitted light) from a long EC ($\mathcal{O}(\text{cm}) - \mathcal{O}(\text{m})$). 
-Physically, the feedback rate $\eta$ is controlled by the reflectivities of the front facet $R_2$ and the external mirror $R$ and is given by the well-known expression 
-%
-\begin{equation}
-    \eta = \frac{(1-R_2^{\;2})R}{R_2}
-\end{equation}
-%
-and is commonly kept low by using an anti-reflection coating for the front laser facet, ensuring $R_2$ and thus $\eta \ll 1$. 
-Weak feedback ensures that multiple EC reflections between the front facet of the laser and the external mirror can be neglected. 
-If this is not satisfied, the feedback $F(t)$ is more complex, taking the form \cite{vantartwijk1995semiconductor}
+where $F(t) = \eta e^{-i\wZ\tau} E(t-\tau)$. 
+These key parameters can be separated into intrinsic laser parameters and external cavity (EC) parameters. 
+The laser, emitting at a single frequency $\w_0$, is characterised by the pump current $P$, the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
+The EC is characterised by the round-trip delay time $\tau = 2L\neff/c$, the feedback power level (defined as the ratio of power reflected from the external mirror to that from the diode mirror) $\eta$, and the feedback phase $C_p = \w_0 \tau$, corresponding to the number of optical wavelengths in the EC.
+The application of these equations requires a single-mode laser subject to weak feedback (up to a few percent of the emitted light) from a long EC ($\mathcal{O}(\text{cm})$–$\mathcal{O}(\text{m})$). 
+As the LK equations assume single-mode operation, they do not capture mode competition or spectral dynamics; for approaches to the analysis of multimode lasers, see \cite{yacomotti2004dynamics} and references therein.
+A long EC justifies treating the feedback phase $C_p$ as an independent parameter from the delay $\tau$, since a $2\pi$ phase shift corresponds to only a half-wavelength change (about one micron), which is negligible at these scales \cite{green2006mode}. 
+In practice, varying $C_p$ over a full $2\pi$ is achieved by shifting the mirror position by less than a micron for visible wavelengths, for example using a piezoelectric transducer \cite{heil2003delay}.
+It is noted that, these equations are formulated with reference to the centre frequency of the laser, with $\wZ = 0$ at the operating frequency, which implies $C_p = 0$ in the first instance. 
+The weak-feedback condition further ensures that multiple EC reflections between the laser facet and the external mirror can be neglected; if this condition is not satisfied, the feedback $F(t)$ takes a more complex form \cite{vantartwijk1995semiconductor}.
 %
 \begin{equation}
 \label{eq:multiple_EC}
-    F(t) = \frac{R_2^{\;2} - 1}{R_2^{\;2}} \sum_{n=1}^\infty (-R_2 R)^n e^{-i n C_p} E(t-n \tau)
+    F(t) = \frac{r_2^{\;2} - 1}{r_2^{\;2}} \sum_{n=1}^\infty (-r_2 r)^n e^{-i n C_p} E(t-n \tau)
 \end{equation}
 %
-The LK equations have been shown to successfully describe a plethora of the complex dynamics observed in semiconductor lasers under weak external feedback, including steady-state, periodic, quasi-periodic, and chaotic emission, 
-as well as more exotic behaviour such as regular pulse packages (RPPs), coherence collapse (CC), and low-frequency fluctuations (LFFs) \cite{heil1998coexistence}. 
-The presence of the delayed feedback term $E(t-\tau)$ means that the LK equations are delay-differential equations (DDEs) whose phase space is the infinite-dimensional space $C[-\tau, 0]$ of continuous functions with values in $(E,N)$-space. 
-It should be noted that this `memory' feature associated with optical feedback, where the system's evolution depends not only on its current state but also on past states due to time-delayed feedback, 
-is not present when dealing with injected semiconductor laser systems.
+\par
+%
+The LK equations successfully capture the rich dynamical behaviour of semiconductor lasers under weak external feedback, including steady-state, periodic, quasi-periodic, and chaotic emission, as well as complex behaviours such as regular pulse packages (RPPs), coherence collapse (CC), and low-frequency fluctuations (LFFs) \cite{heil1998coexistence}.
+The delayed term $E(t-\tau)$ makes the LK equations delay-differential equations (DDEs) with phase space in the infinite-dimensional Banach space $C([-\tau,0],\mathbb{C}\times\mathbb{R})$, consisting of continuous functions that describe the past history of the optical field.
+Due to the rotational symmetry of the complex field $E$, the effective phase space is this function space modulo the action of $\mathrm{S}^1$.
+This memory effect, arising from time-delayed optical feedback whereby the system evolves according to both its current and past states, is absent in injected semiconductor laser systems, where dynamics are instead dominated by phase locking and frequency pulling \cite{krauskopf1998semiconductor}.
+The impact of the LK equations stems from their role as a minimal yet sufficient model: a coupled nonlinear DDE system that reproduces experimentally observed behaviours while remaining amenable to rigorous analysis.
+In this framework, equilibria can be analysed in detail, including their creation and annihilation via saddle-node bifurcations and their loss of stability through Hopf bifurcations, yielding a clear picture of local dynamics \cite{rottschafer2007ecm}.
+Moreover, numerical continuation tools for DDEs, such as \texttt{DDE-Biftool}, enable systematic tracking of equilibria and periodic orbits, as well as the detection of secondary bifurcations that organise the global dynamics \cite{sieber2014dde, krauskopf2004dynamics}.
 %
 \par
 %
-The LK equations' success can be attributed to the fact that their formulation as a system of coupled nonlinear DDEs is sufficient to give rise to rich dynamics observed in experiment, while simultaneously being amenable to mathematical analysis. 
-The LK equations can be analysed in detail analytically, providing a deep understanding of the systems equilibria, creation/annihilation of steady state solutions through saddle-node (SN) bifurcations, 
-and loss of stability through Hopf bifurcations \cite{rottschafer2007ecm}. 
-In addition, with the advent of DDE numerical continuation software packages such as DDE-Biftool \cite{sieber2014dde}, the complex observed dynamics have been analysed and characterised in great detail \cite{krauskopf2004dynamics}.
-%
-\par
-%
-A key insight provided by the LK equations into the complex dynamics observed in semiconductor lasers under COF is the structure of steady-state solutions of the system, referred to as EC modes (ECMs). 
-ECMs exist in the well known ellipse of ECMs centred at the lasers free-running frequency, with the most stable mode, referred to as the maximum gain mode (MGM) lying on the edge of the ellipse, that is, furthest from the centre frequency. 
-The number of available ECMs and the frequency range they occupy depends on the feedback rate of the external mirror and generally increase with the feedback rate and cavity length. 
-Trajectories of $(E,N)$ in phase space can `wrap around' the ECMs, these trajectories and thus the lasers dynamics increase in complexity for larger ellipses of ECMs \cite{heil2003delay}. 
-A natural question that arose following this insight is the possibility of suppressing the number and bandwidth of available ECMs, increasing the lasers stability when exposed to larger amounts of external feedback.
+A central insight of the LK model is the structure of its steady states, known as external cavity modes (ECMs).
+The ECMs form an ellipse in frequency space centred at the free-running laser frequency, with the maximum gain mode (MGM) located on the outer boundary, farthest from the centre frequency.
+The number of ECMs and the frequency interval they occupy increase with feedback strength and external cavity length. 
+ECMs are typically created in saddle-node pairs as parameters vary, and their stability changes through Hopf bifurcations \cite{heil2003delay, rottschafer2007ecm}.
+The set of ECMs provides the backbone of the LK dynamics: it organises transients and families of periodic and quasi-periodic motions that arise from Hopf and subsequent bifurcations.
+In regimes such as LFFs and CC, trajectories spend long intervals near weakly stable ECMs before departing along unstable manifolds of neighbouring saddle ECMs, producing intensity dropouts; the prevalence and severity of these behaviours increase with the size of the ECM ellipse \cite{heil2003delay, krauskopf2004dynamics}.
+Thus, understanding the geometry, multiplicity, and stability of ECMs is essential for explaining observed dynamical regimes and for devising control strategies.
+This perspective naturally motivates efforts to reduce or confine the set of accessible ECMs, thereby enhancing stability under stronger feedback by limiting the number of available steady-states.
 %
 %
-\section*{Filtered optical feedback}
-\label{sec:FOF}
+\subsection*{Filtered Optical Feedback}
+\label{subsec:FOF}
 %
 The most natural method to suppress the frequency of emitted frequencies in a semiconductor laser is by filtering the externally fed back light, referred to as filtered optical feedback (FOF). 
 Several practical implementations of this have been studied in the past. 
@@ -140,7 +134,7 @@ The FBG is therefore a natural reflective component to enable FOF.
 \begin{figure}
     \centering 
 
-    \includegraphics[width=\linewidth]{Images/FBG_setup_dneff_1col.pdf}
+    \includegraphics[width=\linewidth]{Images/FBG_setup_dneff_only_1col.pdf}
 
     \caption{Sketch of an optical fiber with an FBG written along its length.}
 
