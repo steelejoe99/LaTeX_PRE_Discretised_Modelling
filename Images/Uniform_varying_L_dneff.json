@@ -1,7 +1,7 @@
 {
-  "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/Uniform_varying_kL_Rtau.pdf",
+  "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/Uniform_varying_L_dneff.pdf",
   "script": "Documents/Python scripts/FBG_modelling/FBG_Spectra/Reflectivity spectra/LK_FBG_discretised_EGM_tau121.ipynb",
   "data_files": [],
-  "date": "2025-09-09 14:32:54",
+  "date": "2025-09-09 14:35:04",
   "git_commit": null
 }

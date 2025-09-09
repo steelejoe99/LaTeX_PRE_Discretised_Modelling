@@ -8,14 +8,14 @@ In addition, they are orders of magnitude smaller than typical helium–neon las
 Semiconductor lasers are not only smaller than conventional gas lasers, but also exhibit much higher output coupling, with approximately 70\% of the light intensity escaping them compared to 1-5\% for gas lasers \cite{vantartwijk1995semiconductor}.
 However, this openness makes semiconductor lasers more susceptible to external disturbances, leading to a strong response to incident signals.
 Although undesirable in practical applications, this sensitivity has made semiconductor lasers a central platform for investigating nonlinear dynamics induced by external optical feedback.
-The influence of external light on laser operation has been extensively investigated since the 1970s, with particular focus on optical feedback mechanisms, both conventional (COF) and phase conjugate (PCF), as well as on optical injection \cite{weiss1991dynamics}.
+The influence of external light on laser operation has been extensively investigated since the 1970s, with particular focus on conventional optical feedback (COF), typically achieved by reflecting output laser light back into the laser cavity using a mirror, as well as on optical injection of laser light from another laser \cite{weiss1991dynamics}.
 Feedback and injection mechanisms have important practical implications: for example, the former arises in the operation of CD players, while the latter is central to laser amplification systems.
 Beyond their direct historical significance, semiconductor lasers with feedback underpin key technologies in modern photonics. 
 Feedback control is exploited to stabilize frequency and linewidth in coherent optical communication \cite{tkach2003regimes}, to enhance sensitivity in precision sensing and metrology, and to enable secure chaos-based encryption schemes \cite{uchida2008fast}. 
-At the same time, semiconductor lasers with feedback provide a prototypical and experimentally accessible example of delay differential equations, serving as a testbed for nonlinear dynamics with relevance extending to control theory \cite{stepan1989retarded}, electronics, and biological systems \cite{mackey1977oscillation}.
+At the same time, semiconductor lasers with feedback provide a prototypical and experimentally accessible example of delay differential equations (DDEs), serving as a testbed for nonlinear dynamics with relevance extending to control theory \cite{stepan1989retarded}, electronics, and biological systems \cite{mackey1977oscillation}.
 %
-\par
 %
+\subsection{Lang-Kobayashi equations}
 A major breakthrough occurred in 1980 with the seminal work of Lang and Kobayashi, who introduced the Lang–Kobayashi (LK) rate equations to describe the dynamics of a semiconductor laser subject to COF from a distant external mirror \cite{lang1980external}.
 The LK equations describe the time evolution of the complex electric field $E = E_x + iE_y$ and the carrier inversion $N$ under the influence of external feedback $F(t)$.
 A nondimensionalized form of these equations, highlighting the key parameters governing the system dynamics, is given by \eqref{eq:LK} \cite{heil2003delay}
@@ -28,10 +28,10 @@ A nondimensionalized form of these equations, highlighting the key parameters go
     \end{aligned}
 \end{equation}
 %
-where $F(t) = \eta e^{-i\wZ\tau} E(t-\tau)$. 
+where $F(t) = e^{-i\wZ\tau} E(t-\tau)$. 
 These key parameters can be separated into intrinsic laser parameters and external cavity (EC) parameters. 
 The laser, emitting at a single frequency $\w_0$, is characterised by the pump current $P$, the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
-The EC is characterised by the round-trip delay time $\tau = 2L\neff/c$, the feedback power level (defined as the ratio of power reflected from the external mirror to that from the diode mirror) $\eta$, and the feedback phase $C_p = \w_0 \tau$, corresponding to the number of optical wavelengths in the EC.
+The EC is characterised by the round-trip delay time $\tau = 2L_\text{EC}/c$, the feedback power level (defined as the ratio of power reflected from the external mirror to that from the diode mirror) $\eta$, and the feedback phase $C_p = \w_0 \tau$, corresponding to the number of optical wavelengths in the EC.
 The application of these equations requires a single-mode laser subject to weak feedback (up to a few percent of the emitted light) from a long EC ($\mathcal{O}(\text{cm})$–$\mathcal{O}(\text{m})$). 
 As the LK equations assume single-mode operation, they do not capture mode competition or spectral dynamics; for approaches to the analysis of multimode lasers, see \cite{yacomotti2004dynamics} and references therein.
 A long EC justifies treating the feedback phase $C_p$ as an independent parameter from the delay $\tau$, since a $2\pi$ phase shift corresponds to only a half-wavelength change (about one micron), which is negligible at these scales \cite{green2006mode}. 
@@ -47,9 +47,9 @@ The weak-feedback condition further ensures that multiple EC reflections between
 \par
 %
 The LK equations successfully capture the rich dynamical behaviour of semiconductor lasers under weak external feedback, including steady-state, periodic, quasi-periodic, and chaotic emission, as well as complex behaviours such as regular pulse packages (RPPs), coherence collapse (CC), and low-frequency fluctuations (LFFs) \cite{heil1998coexistence}.
-The delayed term $E(t-\tau)$ makes the LK equations delay-differential equations (DDEs) with phase space in the infinite-dimensional Banach space $C([-\tau,0],\mathbb{C}\times\mathbb{R})$, consisting of continuous functions that describe the past history of the optical field.
+The delay $E(t-\tau)$ present in the feedback term $F(t)$ makes the LK equations DDEs with phase space in the infinite-dimensional Banach space $C([-\tau,0],\mathbb{C}\times\mathbb{R})$, consisting of continuous functions that describe the past history of the optical field.
 Due to the rotational symmetry of the complex field $E$, the effective phase space is this function space modulo the action of $\mathrm{S}^1$.
-This memory effect, arising from time-delayed optical feedback whereby the system evolves according to both its current and past states, is absent in injected semiconductor laser systems, where dynamics are instead dominated by phase locking and frequency pulling \cite{krauskopf1998semiconductor}.
+This memory effect, arising from time-delayed optical feedback whereby the system evolves according to both its current and past states, is absent in injected semiconductor laser systems, where dynamics are instead dominated by phase-locking and frequency pulling \cite{wieczorek1999unifying,wieczorek2005dynamical}.
 The impact of the LK equations stems from their role as a minimal yet sufficient model: a coupled nonlinear DDE system that reproduces experimentally observed behaviours while remaining amenable to rigorous analysis.
 In this framework, equilibria can be analysed in detail, including their creation and annihilation via saddle-node bifurcations and their loss of stability through Hopf bifurcations, yielding a clear picture of local dynamics \cite{rottschafer2007ecm}.
 Moreover, numerical continuation tools for DDEs, such as \texttt{DDE-Biftool}, enable systematic tracking of equilibria and periodic orbits, as well as the detection of secondary bifurcations that organise the global dynamics \cite{sieber2014dde, krauskopf2004dynamics}.
@@ -64,114 +64,123 @@ The set of ECMs provides the backbone of the LK dynamics: it organises transient
 In regimes such as LFFs and CC, trajectories spend long intervals near weakly stable ECMs before departing along unstable manifolds of neighbouring saddle ECMs, producing intensity dropouts; the prevalence and severity of these behaviours increase with the size of the ECM ellipse \cite{heil2003delay, krauskopf2004dynamics}.
 Thus, understanding the geometry, multiplicity, and stability of ECMs is essential for explaining observed dynamical regimes and for devising control strategies.
 This perspective naturally motivates efforts to reduce or confine the set of accessible ECMs, thereby enhancing stability under stronger feedback by limiting the number of available steady-states.
+A crucial step in this direction is understanding how different forms of feedback, beyond conventional optical feedback, can suppress or restructure the ECM ellipse, providing new routes to controlled laser dynamics.
 %
 %
-\subsection*{Filtered Optical Feedback}
+\subsection*{Phase-conjugate feedback}
+\label{subsec:PCF}
+%
+A single-mode semiconductor laser with phase-conjugate feedback (PCF) receives wavefront-inverted light from a phase-conjugating mirror (PCM), typically realised by degenerate four-wave mixing in vapours or semiconductors or by gratings and optical crystals, creating a self-aligning configuration that compensates EC distortions.
+By reversing wavefront errors on each round trip, phase conjugation stabilises both beam quality and frequency, motivating its application in semiconductor lasers.
+Owing to these potential stabilisation features, PCF was among the earliest feedback configurations investigated beyond COF \cite{krauskopf1998semiconductor, green2004bifurcation}.
+In the standard LK rate-equation framework \eqref{eq:LK}, PCF is represented by a delayed conjugated field term, $F(t) = e^{-i \phi_\text{PCM}} E^*(t-\tau)$, which yields a DDE system with discrete $\mathbb{Z}_2$ symmetry $E \rightarrow -E$ \cite{krauskopf2002routes}.
+This symmetry leads to qualitative differences in the mode structure: whereas COF produces a continuous ellipse of ECMs organised by the feedback phase, PCF gives rise instead to isolated branches of pulsating ECMs whose frequencies are locked near integer multiples of the cavity frequency \cite{erneux2003external}.
+Within the locking range, the PCF laser is both frequency- and phase-locked to the pump, and, unlike COF, phase locking does not depend on the feedback phase.
+Overall, the resulting linewidth is ultranarrow and robust against added noise \cite{green2002global}.
+%`'
+%
+\subsection*{Filtered optical feedback}
 \label{subsec:FOF}
 %
-The most natural method to suppress the frequency of emitted frequencies in a semiconductor laser is by filtering the externally fed back light, referred to as filtered optical feedback (FOF). 
-Several practical implementations of this have been studied in the past. 
-For example, the inclusion of a Fabry-P\'erot resonator within the feedback loop \cite{detienne1997semiconductor} and most notably, replacing the external mirror with a frequency selective surface, 
-such as a grating \cite{dahmani1987frequency, harvey1991external, jin1996single}, or phase conjugating surface, for example, a Kerr-type nonlinear medium which has been shown to filter feedback \cite{agrawal1984line}. 
-As expected in each of these cases, significant linewidth narrowing is observed leading to more stable operation around the filters free-running frequency. 
+The most direct method of controlling the ECMs in a semiconductor laser is to filter the light fed back into the cavity, a scheme known as filtered optical feedback (FOF). 
+By modifying the spectrum of the reinjected light, FOF reshapes the set of accessible ECMs.
+Several practical implementations of FOF have been investigated. One approach is the insertion of a Fabry–Pérot resonator within the feedback loop \cite{detienne1997semiconductor}. More commonly, the external mirror is replaced by a frequency-selective surface, such as a grating \cite{dahmani1987frequency, harvey1991external, jin1996single}, or by a phase-conjugating surface, for example a Kerr-type nonlinear medium, which in this context acts primarily as a spectral filter \cite{agrawal1984line}.
+As expected, all of these implementations lead to significant linewidth narrowing, resulting in more stable operation around the filter’s free-running frequency.
+This makes FOF a practical approach for stabilising single-mode operation and narrowing emission spectra in photonic applications.
 %
 \par
 %
 Mathematical analysis of FOF poses additional challenges. 
-Now, the spectral components of the electric field must be accounted as their reflection is dictated by the frequency response of the chosen filter, defined as $\rho(\w)$. 
-Therefore, the feedback term $\eta e^{-i C_p} E(t-\tau)$ present in the LK equations must be replaced by a more complicated feedback term $\eta F(t)$ to account for this frequency selectivity. 
-For a particular reflection response, the term $F(t)$ can be calculated by decomposing the field into its Fourier components, 
-letting the filters reflectivity spectrum $\rho(\w)$ operate on it, and finally taking the inverse Fourier transform \cite{yousefi1999dynamical}.
+In this case, the spectral components of the electric field must be included explicitly, since their reflection is governed by the frequency response of the chosen filter, denoted $\rho(\w)$.
+Therefore, the feedback term $F(t)$ must be replaced by a more general expression that accounts for this frequency selectivity.
+For a given reflection response, $F(t)$ can be obtained by decomposing the field into its Fourier components, applying the filter’s reflectivity spectrum $\rho(\w)$, and then taking the inverse Fourier transform \cite{yousefi1999dynamical}.
+Mathematically, this amounts to
 %
 \begin{equation}
     \begin{aligned}
     \label{eq:FOF}
          F(t) &=  \mathcal{F}^{-1}\big[ \mathcal{F}[E(t)](\w) \times \rho(\w) \big](t-\tau)\\
-              &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \rho(\w) \int_{-\infty}^{\infty} E(t') e^{-i \w t'} dt' e^{i \w (t-\tau)} d\w
+              &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \rho(\w) \int_{-\infty}^{\infty} E(t') e^{-i \w t'} dt' e^{i \w (t-\tau)} d\w.
     \end{aligned}
 \end{equation}
 %
-Note that \eqref{eq:FOF} again assumes a single reflection to be sufficient to describe the external feedback signal $\eta F(t)$. 
-This expression for the distributed external feedback is generally challenging to analyse both analytically and numerically. 
-The modified LK equations are now integro-differential equations which are not amenable to standard tools of bifurcation analysis such as the calculation of fixed points and their stability, 
-clouding even basic insights into the influence of filtering on the system. 
-Further, numerical methods such as the integration of time series for $(E,N)$ are significantly more computationally expensive, as now \eqref{eq:FOF} must be calculated at each time step, 
-rather than simply using the stored value $E(t-\tau)$ as in the case of the standard LK equations.
+This expression highlights that the feedback is no longer a simple delayed replica of the field, but a spectrally filtered version shaped by $\rho(\w)$.
+Unlike COF and PCF, FOF directly reshapes the spectral window of accessible ECMs.
+Note that \eqref{eq:FOF} again assumes a single reflection is sufficient to describe the external feedback signal $\eta F(t)$.
+he distributed nature of the feedback expressed in \eqref{eq:FOF} makes the system difficult to treat analytically and computationally demanding to simulate.
+The modified LK equations take the form of integro-differential equations that are not amenable to standard bifurcation analysis tools, such as fixed-point calculation and stability analysis, which obscures even basic insights into the influence of filtering on the system.
+Furthermore, numerical methods such as direct time-series integration of $(E,N)$ become significantly more computationally demanding, since \eqref{eq:FOF} must be re-evaluated at every time step through numerical integration, rather than simply retrieving the stored value $E(t-\tau)$ as in the standard LK equations.
 %
 \par
 %
-A key insight was made in 1999 by Yousefi and Lenstra \cite{yousefi1999dynamical} by assuming that filtering leads to a frequency-dependent reflectivity spectrum $\rho(\w)$ composed of a sum of Lorentzians. 
-By considering a single Lorentzian (and $A_0=1$), which may be sufficient to describe certain external feedback mechanisms \cite{dahmani1987frequency,detienne1997semiconductor}, 
-they showed that integro-differential equations for the distributed FOF can be converted to a system of DDEs.
+A key insight was provided in 1999 by Yousefi and Lenstra \cite{yousefi1999dynamical}, who assumed that filtering yields a frequency-dependent reflectivity spectrum $\rho(\w)$ represented as a sum of Lorentzians.
+By considering a single Lorentzian, which can adequately describe certain external feedback mechanisms \cite{dahmani1987frequency,detienne1997semiconductor}, they showed that the integro-differential equations for distributed FOF can be reduced to a system of DDEs.
+In this formulation, the first two equations remain identical to the standard LK system, while the effect of filtering is incorporated by coupling an additional equation for $F(t)$.
 %
 \begin{equation}
-    \begin{aligned}
-    \label{eq:FOF_LK}
-        \frac{d E}{d t} &= (1+i \a) N(t) E(t)+\eta F(t) \\
-        T \frac{d N}{d t} &= P - N(t) - (1 + 2 N(t))|E(t)|^2 \\
-        \frac{d F}{d t} &= \lambda E(t-\tau) e^{-i C_p}+(i \Delta-\lambda) F(t)
-    \end{aligned}
+\label{eq:FOF_LK}
+    \frac{d F}{d t} = \Lambda E(t-\tau) e^{-i C_p}+(i \Delta-\Lambda) F(t)
 \end{equation}
 %
-where $\Lambda$ is the full width half maximum (FWHM) of the filter, thus controlling the filter's spectral width, and $\Delta$ is the detuning of the Lorentzian filter from the laser's free-running frequency. 
-As \eqref{eq:FOF_LK} are simply a system of DDEs, they are amenable to all analytical methods and numerical methods available to the original LK equations. 
-They demonstrated that as expected, the system generally has fewer ECMs available compared to COF and that, globally speaking, the filtering leads to more stable dynamics. 
-Alongside the reduction of the available ECMs, the MGM tends to lie nearer to the filter frequency (but not precisely at it) rather than at the edge of the fixed point ellipse as in the case of COF. 
-The form of these equations as coupled DDEs allows for detailed analysis through continuation and stability analysis of these stationary states, providing deep insights into the influence of FOF on semiconductor lasers 
-\cite{erzgraber2006frequency, erzgraber2007bifurcation, erzgraber2007dynamics, fischer2000experimental, fischer2004experimental, green2006mode, hek2007semiconductor, 
-erzgraber2007feedback, fischer2004filtered, yousefi2001global, yousefi2002simulations, yousefi2003nonlinear}. 
+Here, $\Lambda$ is the full width at half maximum (FWHM) of the filter, which sets its spectral width, and $\Delta$ is the detuning of the Lorentzian filter from the laser’s free-running frequency.
+Since coupling \eqref{eq:FOF_LK} to the standard LK equations \eqref{eq:LK} again yields a system of DDEs, the model remains amenable to the same analytical and numerical methods as the original LK system.
+They demonstrated that, as expected, the system generally admits fewer ECMs than COF and that, overall, filtering leads to more stable dynamics.
+Alongside the reduction in the number of accessible ECMs, the MGM tends to lie closer to the filter frequency (though not exactly at it) rather than at the edge of the fixed-point ellipse as in COF.
+Overall, the formulation of these equations as coupled DDEs allows for detailed investigation through continuation and stability analysis of the stationary states, providing deeper insight into the influence of FOF on semiconductor lasers 
+\cite{erzgraber2006frequency, erzgraber2007bifurcation, erzgraber2007dynamics, fischer2000experimental, fischer2004experimental, green2006mode, 
+hek2007semiconductor, erzgraber2007feedback, fischer2004filtered, yousefi2001global, yousefi2002simulations, yousefi2003nonlinear}. 
 %
 %
-\section*{Fiber Bragg gratings}
-\label{sec:FBG}
+\subsection*{Fiber Bragg grating feedback}
+\label{subsec:FBG_LK}
 %
-One such frequency selective component which has been the subject of extensive research in recent decades are fiber Bragg gratings (FBGs). 
-FBGs have several advantages over other fiber optic technologies. 
-They offer all-fiber design, low insertion loss, high return loss or extinction,  potential for lower costs, and most notably, exceptional flexibility in achieving specific spectral characteristics. 
-With current manufacturing techniques, it is possible to create gratings with near arbitrary spectral responses $\rho_\text{Bragg}(\w)$ and normalized bandwidths ranging from $0.1$ to $10^{-4}$ \cite{erdogan1997fiber}. 
-The FBG is therefore a natural reflective component to enable FOF.
+\subsubsection*{Fiber Bragg gratings}
+\label{subsubsec:FBG}
+%
+One frequency-selective component that has been the focus of extensive research in recent decades is the fiber Bragg grating (FBG).
+FBGs offer several advantages over other fibre-optic technologies.
+These include all-fibre design, low insertion loss, high return loss, potential for lower cost, and, most notably, exceptional flexibility in tailoring spectral characteristics.
+With current manufacturing techniques, gratings can be fabricated with nearly arbitrary spectral responses $\rho_\text{Bragg}(\w)$ and normalised bandwidths ranging from $10^{-4}$ to $0.1$ \cite{erdogan1997fiber}.
+The FBG is therefore a natural reflective element for implementing FOF.
 %
 \begin{figure}
     \centering 
-
     \includegraphics[width=\linewidth]{Images/FBG_setup_dneff_only_1col.pdf}
-
     \caption{Sketch of an optical fiber with an FBG written along its length.}
-
     \label{fig:FBG_setup}
-
 \end{figure}
 %
 \par
 %
-It is defined as a repeating periodic variation $\delta n_{eff}(z)$ of the refractive index every $\Lambda$ along a length $L$ of a fiber. 
-The number of gratings along an FBG is therefore $N = L/\Lambda$. The most general form for this periodic variation is given by
+An FBG is defined as a periodic modulation $\delta n_{eff}(z)$ of the refractive index with period $\Lambda$ along a fibre of length $L_\text{FBG}$.
+The number of gratings in an FBG is therefore $N = L_\text{FBG}/\Lambda$. The most general form of this periodic modulation is
 %
 \begin{equation}
 \label{eq:dneff}
-    \delta n_{eff}(z) = \dnbar(z) \left[ 1 + v \cos{\left( \frac{2 \pi}{\Lambda} z + \phi(z) \right)} \right]
+    \delta n_{eff}(z) = \dnbar(z) \left[ 1 + v \cos{\left( \frac{2 \pi}{\Lambda} z + \phi(z) \right)} \right].
 \end{equation}
 %
-where $\Lambda$ is the period of the grating, $\dnbar(z)$ is the profile of the periodic variations over $L$, for example, $\dnbar(z) \sim e^{-z^2}$ produces a Gaussian variation to the profile of the refractive index variation, 
-$v$ is the fringe visibility of the index change, and $\phi(z)$ can vary the grating period along the fiber, allowing different frequencies to be reflected along the fiber's length.
+Here, $\dnbar(z)$ describes the envelope of the periodic modulation along $L_\text{FBG}$; for example, $\dnbar(z) \sim e^{-z^2}$ yields a Gaussian refractive index profile. 
+This flexibility allows tailoring of the spectral response through modulation depth and phase, directly influencing the accessible ECM structure.
+In addition to the envelope, $v$ denotes the fringe visibility of the index modulation, and $\phi(z)$ allows variation of the grating period along the fibre, enabling different frequencies to be reflected at different positions.
 %
 \par
 %
-Light propagating through the fiber that interfaces with the FBG can undergo diffraction when its wavelength close to the design wavelength, given by $\lambda_D = 2 \neff \Lambda$. 
-It is typically assumed that the light only undergoes first-order diffraction as this typically dominates in FBGs and thus a single propagating mode is considered. 
-In this case, through the use of coupled-mode theory and the synchronous approximation, 
-coupled first-order differential equations describing the interaction between the forward and backward propagating waves, $A(z)$ and $B(z)$, respectively, can be derived. 
-See \cite{erdogan1997fiber} and references therein for further details.
+Light propagating in the fibre and interacting with the FBG undergoes diffraction when its wavelength is close to the design wavelength, $\lambda_D = 2 n_{\text{eff}} \Lambda$.
+It is typically assumed that the light undergoes only first-order diffraction, which dominates in FBGs, so that a single propagating mode is considered; higher-order diffraction is negligible under standard design conditions.
+In this case, using coupled-mode theory and the synchronous approximation, one can derive coupled first-order differential equations describing the interaction between the forward- and backward-propagating waves, $A(z)$ and $B(z)$, respectively.
+For further details, see \cite{erdogan1997fiber} and references therein.
 %
 \begin{equation}
 \label{eq:wave_eqs}
     \begin{aligned}
-        \frac{dR}{dz} &= i \hat{\sigma} R(z) + i \k S(z), \, R(z) = A(z) \exp{ \left( -i \left( \frac{\phi}{2} -\delta z \right) \right) }\\
-        -\frac{dS}{dz} &= i \hat{\sigma} S(z) + i \k R(z), \, S(z) = B(z) \exp{ \left( -i \left( \frac{\phi}{2} + \delta z \right) \right) }
+        \frac{dR}{dz} &= i \hat{\sigma} R(z) + i \k S(z), \\
+        -\frac{dS}{dz} &= i \hat{\sigma} S(z) + i \k R(z),
     \end{aligned}
 \end{equation}
 %
-The terms $\delta$, referred to as the detuning, $\k$, referred to as the "AC" coupling coefficient and $\hat{\sigma}$, referred to as the general "dc" self-coupling coefficient, are given by
+with $R(z) = A(z) \exp{ \left( -i \left( \phi/2 -\delta z \right) \right) }, \; S(z) = B(z) \exp{ \left( -i \left( \phi/2 + \delta z \right) \right) }$.
+The parameters $\delta$, the wavevector mismatch, $\kappa$, the alternating-current (AC) coupling coefficient, and $\hat{\sigma}$, the direct-current (DC) self-coupling coefficient, are given by
 %
 \begin{align}
     \label{eq:delta}
@@ -182,103 +191,109 @@ The terms $\delta$, referred to as the detuning, $\k$, referred to as the "AC" c
     \hat{\sigma} &= \frac{2\k}{v} + \delta -\frac{1}{2}\frac{d\phi}{dz}
 \end{align}
 %
-As $\k$ and $\hat{\sigma}$ generally depend on $z$, \eqref{eq:wave_eqs} cannot usually be solved analytically, but they are easily solved numerically following the prescription of a particular $\Lambda$, $\neff$, $\dnbar(z)$, $\phi(z)$, and $L$. 
+Since $\k$ and $\hat{\sigma}$ generally depend on $z$, \eqref{eq:wave_eqs} cannot in general be solved analytically, but they can be readily solved numerically once $\Lambda$, $n_{\text{eff}}$, $\dnbar(z)$, $\phi(z)$, and $L_\text{FBG}$ are specified.
 %
 \par
 %
-At this point, we have all the necessary ingredients to calculate the key characteristic of an FBG - its reflectivity spectrum $\rho(\w)$. 
-Physically speaking, one is most interested in the reflection spectrum of light being reflected at the front FBG interface with no reflection at the back FBG interface. 
-Therefore, \eqref{eq:wave_eqs} is typically solved (by defining $z=0$ to be half way along the FBGs length) subject to the boundary conditions $R(-L/2)=1$ and $S(L/2)=0$ and integrating backwards from $L/2$ to $-L/2$, 
-with the amplitude reflection coefficient then given by
+At this point, all the necessary ingredients are in place to calculate the key characteristic of an FBG—its reflectivity spectrum $\rho(\w)$.
+Physically, the primary interest lies in the reflection spectrum of light reflected at the front FBG interface, assuming no reflection from the back interface.
+Therefore, \eqref{eq:wave_eqs} is typically solved by setting $z = 0$ at the midpoint of the FBG, imposing boundary conditions $R(-L_\text{FBG}/2) = 1$ and $S(L_\text{FBG}/2) = 0$, and integrating backwards from $L_\text{FBG}/2$ to $-L_\text{FBG}/2$. The amplitude reflection coefficient is then given by
 %
 \begin{equation}
 \label{eq:rho}
-    \rho = \frac{S(-L/2)}{R(-L/2)}
+    \rho = \frac{S(-L_\text{FBG}/2)}{R(-L_\text{FBG}/2)}
 \end{equation}
 %
-Although closed-form expressions for $\rho(\w)$ are typically not possible, as \eqref{eq:wave_eqs} must be solved numerically, 
-some commonly used gratings allow for analytic expressions for $\rho(\w)$ and thus give excellent insights into common properties of FBG reflection spectra.
+which defines the reflectivity spectrum $\rho(\omega)$.
+Although \eqref{eq:wave_eqs} must generally be solved numerically and closed-form expressions for $\rho(\omega)$ are rarely available, certain standard grating designs such as uniform or raised-cosine-apodised gratings admit analytic solutions and provide valuable insight into the typical properties of FBG reflection spectra.
+Among the different grating profiles, the simplest and most widely studied is the uniform grating.
 %
 %
-\subsection{Uniform FBG reflection spectra $\rho_\text{Bragg}(\w)$}
-\label{subsec:FBG_feedback}
+\subsubsection*{Uniform FBG reflection spectra $\rho_\text{Bragg}(\w)$}
+\label{subsubsec:FBG_feedback}
 %
-The most basic FBG is called the uniform grating. 
-Its grating chirp $\sfrac{d\phi}{dz} = 0$ and the apodization $\dnbar=\text{const.}$ so that its grating index variation given by $\eqref{eq:dneff}$ is essentially a sine wave as shown in Figure~\ref{fig:dneff}(a). 
-Therefore, $\k, \, \hat{\sigma}$ are constant in $z$, allowing an analytic reflectivity spectrum $\rho(\w)$ to be calculated by solving \eqref{eq:wave_eqs} and subsequently evaluating \eqref{eq:rho}.
+The uniform FBG serves as the canonical case for analysis, characterised by constant period and constant modulation depth.
+It admits analytic solutions that not only reveal the fundamental characteristics of FBG reflection spectra but also serve as a reference for more complex grating designs.
+In this case, the grating chirp satisfies $\sfrac{d\phi}{dz} = 0$ and the apodisation is constant, $\dnbar = \text{const.}$, so that the grating index variation given by \eqref{eq:dneff} reduces to a sine wave, as shown in Figure~\ref{fig:FBG_setup}.
+Therefore, $\k$ and $\hat{\sigma}$ are constant in $z$, which allows the reflectivity spectrum $\rho(\omega)$ to be obtained analytically by solving \eqref{eq:wave_eqs} and then evaluating \eqref{eq:rho}.
 %
 \begin{equation}
 \label{eq:uniform_rho}
-    \rho = \frac{-\k \sinh\left(\sqrt{\k^2 - \hat{\sigma}^2}L\right)}{\hat{\sigma} \sinh\left(\sqrt{\k^2 - \hat{\sigma}^2}L\right) + i\sqrt{\k^2 - \hat{\sigma}^2} \cosh\left(\sqrt{\k^2 - \hat{\sigma}^2}L\right)}
+    \rho = \frac{-\k \sinh\left( L_\text{FBG}\right)}{\hat{\sigma} \sinh\left(\gamma L_\text{FBG}\right) + i\gamma \cosh\left(\gamma L_\text{FBG}\right)}
 \end{equation}
 %
-Several interesting features of reflection spectra $\rho$ are most easily visualised by varying $\k L$ for a particular fixed $N$ against normalised frequency, given by \cite{erdogan1997fiber}
+where $\gamma = \sqrt{\k^2 - \hat{\sigma}^2}$. Several key features of the reflection spectrum $\rho(\omega)$ are most clearly visualised by plotting it as a function of normalised frequency while varying $\kappa L_\text{FBG}$ for a fixed $N$ \cite{erdogan1997fiber}.
 %
 \begin{equation*}
-    \frac{\omega}{\omega_\text{max}} = 1 + \frac{\hat{\sigma} L}{\pi N}
+    \frac{\omega}{\omega_\text{max}} = 1 + \frac{\hat{\sigma} L_\text{FBG}  }{\pi N}
 \end{equation*}
 %
-Figure~\ref{fig:uniform_spectra_varykL} illustrates representative amplitude reflectivity and phase curves for uniform gratings plotted against angular frequency, 
-for gratings centred at the most commonly used laser wavelength of 1550 nm, with values of $\k L \in [0.5, 2, 5]$, and a fixed $N = 5000$. 
-Increasing $N$ (and therefore increasing $L$) results in a narrower reflection bandwidth, while decreasing $N$ (and therefore decreasing $L$) leads to a broader one, assuming $\k L$ remains constant. 
-Reflection spectra consist of a main lobe and a series of side lobes, partitioned by reflection zeros, spaced symmetrically (as a function of $\lambda$) on either side of it. 
-For gratings with a low $\k L$ such as 0.5, the main lobe was a bandwidth, which we define as the interval between its reflection zeros, equal to twice that of its side lobes \cite{erdogan1997fiber}. 
-Evidently, increasing $\k L$ not only increases the grating's maximum reflectivity, but additionally broadens the bandwidth of the main lobe while narrowing the bandwidth of the side lobes. 
-Additionally, the phase variations are approximately linear for low reflectivities while becoming more distorted as $\k L$ increases.
+Figure~\ref{fig:uniform_spectra_varykL} shows representative amplitude reflectivity and phase spectra for uniform gratings, plotted against angular frequency. 
+The gratings are centred at the common laser wavelength of 1550 nm, with $\kappa L_\text{FBG} \in {0.5, 2, 5}$ and a fixed $N = 5000$, chosen to illustrate weak, moderate, and strong coupling regimes.
+Increasing $N$ (and thus $L_\text{FBG}$) results in a narrower reflection bandwidth, whereas decreasing $N$ (and thus $L_\text{FBG}$) produces a broader one, provided that $\kappa L_\text{FBG}$ remains constant.
+The reflection spectrum consists of a main lobe and a series of side lobes, separated by reflection zeros that are symmetrically spaced in wavelength on either side of the main lobe.
+For gratings with low $\kappa L_\text{FBG}$, such as 0.5, the main lobe has a bandwidth, defined as the interval between its reflection zeros, that is twice the width of the side lobes \cite{erdogan1997fiber}.
+Evidently, increasing $\kappa L_\text{FBG}$ increases the grating's maximum reflectivity and also broadens the main-lobe bandwidth while narrowing that of the side lobes.
+Additionally, the time delay is approximately constant for low reflectivities but becomes increasingly distorted as $\kappa L_\text{FBG}$ increases.
 %
-\begin{figure}
-    
-\includegraphics[width=\linewidth]{Images/Uniform_varying_kL_Rtau.pdf}
-
-\caption{Examples of magnitude and phase of uniform FBG reflection spectra with varying dimensionless grating strength $\k L \in [0.5, 2, 5]$ and constant number of grating periods $N=5000$.}
-
-\label{fig:uniform_spectra_varykL}
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{Images/Uniform_varying_kL_Rtau.pdf}
+    \caption{Examples of magnitude and phase of uniform FBG reflection spectra with varying dimensionless grating strength $\k L_\text{FBG} \in [0.5, 2, 5]$ and constant number of grating periods $N=5000$.}
+    \label{fig:uniform_spectra_varykL}
 \end{figure}
 %
 \par
 %
-As $\k, \hat{\sigma}$ depend solely on $\lambda$ and the prescribed grating parameters, 
-the reflected amplitude $|\rho|$ and reflected phase $\arg(\rho)$ can be immediately plotted against frequency by substituting \eqref{eq:kappa} and \eqref{eq:sigma} into \eqref{eq:uniform_rho}. 
-Figure~\ref{fig:uniform_spectra_varyLdneff} shows some examples of the reflection spectra of uniform FBGs, now plotted against frequency, with their design frequency given by
+Since $\kappa$ and $\hat{\sigma}$ depend only on $\lambda$ and the prescribed grating parameters, the reflected amplitude $|\rho|$ and phase $\arg(\rho)$ can be directly plotted against frequency by substituting \eqref{eq:kappa} and \eqref{eq:sigma} into \eqref{eq:uniform_rho}.
+Figure~\ref{fig:uniform_spectra_varying_L_dneff} shows examples of reflection spectra of uniform FBGs plotted against frequency, with the design frequency given by
 %
 \begin{equation}
     \w_D = \frac{\pi c}{\Lambda n_{eff}^2}
 \end{equation}
 %
-highlighted to demonstrate the intrinsic detuning in the spectrum. The reflection spectrum of a uniform grating has a maximum reflectivity 
+highlighted to demonstrate the intrinsic frequency shift in the spectrum. The reflection spectrum of a uniform grating has a maximum reflectivity
 %
 \begin{equation}
 \label{eq:rmax}
-    R \equiv |\rho_\text{max}| = \tanh{(\k L)}
+    R \equiv |\rho_\text{max}| = \tanh{(\k L_\text{FBG})}
 \end{equation}
 %
-centred at the Bragg centre frequency $\w_c \equiv \omega_\text{max}$
+centred at the Bragg frequency $\omega_\text{max}$,
 %
 \begin{equation}
 \label{eq:wBragg}
-    \w_c = \frac{\w_D}{\left( 1 + \frac{\dnbar }{\neff}\right)}
+    \w_\max = \frac{\w_D}{\left( 1 + \frac{\dnbar }{\neff}\right)}
 \end{equation}
 %
-We note that typically, $R$ is used for reflected power rather than reflected amplitude, but this choice of notation is made for clarity reasons in later sections. 
-The phase at $\w_c$ is $\sfrac{\pi}{2}$ for all uniform gratings, while the reflection zeros are symmetric about $\w_c$, with the zeros either side of the main lobe occurring at $\w_c \pm \wz$, where
+corresponding to the peak reflectivity.
+We note that $R$ is more commonly used to denote reflected power rather than reflected amplitude; however, the present notation is adopted for clarity in later sections.
+The phase at $\omega_\text{max}$ is $\sfrac{\pi}{2}$ for all uniform gratings, while the reflection zeros are symmetric about $\omega_\text{max}$. 
+The first zeros on either side of the main lobe occur at $\omega_\text{max} \pm \omega_z$, where
 %
 \begin{equation}
 \label{eq:wz}
-    \wz = \w_c \sqrt{\left( \frac{\dnbar}{2 \neff} \right)^2 + \frac{1}{N^2} }
+    \wz = \w_\max \sqrt{\left( \frac{\dnbar}{2 \neff} \right)^2 + \frac{1}{N^2} }
 \end{equation}
 %
-and the phase of the reflection spectrum varies by $2 \pi$ between the zeros. Outside of the main lobe, side lobe reflectivity peaks decay exponentially with periodic phase variations of $\pi$ within each lobe. 
-Note the phase shift of $\pi$ between side lobes on either side of the reflectivity spectrum.
+and the phase of the reflection spectrum shifts by $2\pi$ between these zeros.
+Outside the main lobe, the reflectivity peaks of the side lobes decay exponentially, with a $\pi$ phase change across each lobe.
+%
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{Images/Uniform_varying_L_dneff.pdf}
+    \caption{Examples of the magnitude and group delay of uniform FBG reflection spectra, illustrating the effect of varying $\dnbar$ and $L_\text{FBG}$. 
+    The nominal case (black curves) corresponds to $\dnbar = 5\e{-5}\neff$ and $L_\text{FBG} = 2.64,\text{mm}$; in (a) the grating length is doubled to $L_\text{FBG} = 5.28,\text{mm}$, and in (b) the index change is doubled to $\dnbar = 1\e{-4}\neff$.}
+    \label{fig:uniform_varying_L_dneff}
+\end{figure}
 %
 \par
 %
-Figure~\ref{fig:uniform_spectra_varyLdneff}(a) demonstrates the effect of doubling $L$ on reflection spectrum. 
-Intuitively, $R$ increases for longer gratings as more gratings are available to prevent signal transmission. 
-The bandwidth of each lobe decreases while the detuning from the design frequency is unchanged. When doubling $\dnbar$ as demonstrated in (b), $R$ is again increased. 
-Conversely to (a), detuning increases while the grating bandwidth is unchanged. As these two parameters control the three features of the spectrum (detuning, maximum reflection, and bandwidth), 
-one cannot vary a single feature of the reflection spectrum without additionally adjusting the grating period $\Lambda$, which can be used to compensate the detuning in $\w_c$ while having a negligible affect on $\wz$ and $R$. 
-This is because optical lasers' centre frequencies are in THz while the amount of detuning is at most in GHz. Therefore, $\w_c/\w_D = \Lambda_D/\Lambda_c \approx 1$. 
-Using this approximation, \eqref{eq:wBragg}, and \eqref{eq:wz}, $\dnbar, L, \Lambda$ can be calculated sequentially through the expressions
+Figure~\ref{fig:uniform_varying_L_dneff}(a) shows that doubling $L_\text{FBG}$ increases $R$ because more grating periods contribute to reflection, reducing transmission. 
+At the same time, the bandwidth of each lobe is halved, while the offset from the design frequency remains unchanged. 
+In contrast, doubling $\dnbar$, as shown in (b), again increases $R$, but now the offset from the design frequency increases while the bandwidth remains unchanged. 
+Since these two parameters govern the three key spectral features—offset, maximum reflectivity, and bandwidth—one cannot vary a single feature independently. 
+Instead, compensation requires adjusting the grating period $\Lambda$, which shifts $\w_\max$ while leaving $\wz$ and $R$ essentially unchanged. 
+This holds because laser centre frequencies are in the THz range, whereas the frequency offset is at most in GHz, so $\w_\max}/\w_D = \Lambda_D/\Lambda_{\max} \approx 1$.
+Using this approximation, together with \eqref{eq:wBragg} and \eqref{eq:wz}, $\dnbar$, $L_\text{FBG}$, and $\Lambda$ can be calculated sequentially.
 %
 \begin{align}
 \label{eq:spec2phys}
