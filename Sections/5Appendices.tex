@@ -1,6 +1,6 @@
 % !TeX root = ../main.tex
 \section{Nondimensionalisation of the original LK Equations}
-\label{sec:LK_nondim}
+\label{app:LK_nondim}
 %
 \let\cleardoublepage\origcleardoublepage
 %
@@ -57,10 +57,14 @@ For example, dimensionalised parameter values $\alpha = 3.5, \, \gamma_0 = 1.0 \
 N_N = 5.0$ result in $\gamma_p = 5.5 \times 10^{11}$ and nondimensionalised parameter values $\a = 3.5, \, P = 0.136, \, T = 550, \, \eta = 0.0455, \, \tau = 121$.
 %
 It is noted that one can get from this nondimensionalised time to seconds by multiplying by the factor $\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}$.
+For 1550 nm light, the lasers angular frequency corresponds to $\w_c=1216\;\text{rad\,ps}^{-1}$. 
+It is then important to note that $\wz$ in the derived form of the LK equations is a dimensionless quantity normalised by the cavity lifetime $\tau_p$, 
+which for these laser parameters is equal to $1.82 \,\text{ps}$, see Appendix~\ref{app:LK_approx} for details. 
+Therefore, the angular frequency is nondimensionalised to $\w_\text{max}=2211$ and then, beginning with a reflectivity $R = 0.5$ the grating number, calculated through \eqref{eq:wztoN}, is $N \approx 22440$. 
 %
 %
 \section{Convolution FBG LK model equivalence}
-\label{sec:Li_chaos_nondim}
+\label{app:Li_chaos_nondim}
 %
 The form of the equations analysed by Li \textit{et. al} \cite{li2012distributed,li2015chaotic,li2020stable} are given by
 %
@@ -148,8 +152,24 @@ $$
 %
 %
 \section{Multiple EC reflection FBG LK model conversion}
-\label{sec:multiple_EC_nondim}
+\label{app:EC_multiple}
 %
+\begin{equation*}
+    E_r(t) = E(t) + \frac{R_2^2 - 1}{R_2^2} \sum_{n=1}^\infty (-R_2 R)^n e^{-i n C_p} E(t-n \tau)
+\end{equation*}
+%
+Indeed, truncating this expression for $F(t)$ to first order reduces to single reflection feedback. Taking the Taylor expansion of the logarithm,
+%
+\begin{equation*}
+    \begin{aligned}
+        &E(t) \ln{\left[ \frac{E_r(t)}{E(t)} \right]} = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}\left( \frac{E_r(t)}{E(t)} - 1\right)^n \\
+        &\,\overset{n=1}{\approx} E(t)\left( \frac{E(t) + \frac{R_2^2 - 1}{R_2^2}(-R_2 R)e^{-i C_p} E(t - \tau) - E(t)}{E(t)} \right)\\
+        &\;\;= \eta e^{-i C_p} E(t - \tau)
+    \end{aligned}   
+\end{equation*}
+%
+as desired.
+
 The form of the LK equations studied by Naumenko \textit{et al.} \cite{naumenko2003characteristics,naumenko2004slow} is given by
 \begin{equation}
 \left\{

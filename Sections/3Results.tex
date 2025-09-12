@@ -1,17 +1,28 @@
 % !TeX root = ../main.tex
-\section{Comparison to previously studied FBG feedback models}
+\section{Results}
 \label{sec:model_comparison}
 %
-Given the excellent agreement in ECMs confined to the main lobe between the three Lorentzian model and the discretised reflection model, we now compare agreement in solution structure and system dynamics between the discretised reflection model and the various approaches to modelling the feedback term $F(t)$ within the LK equations in the literature. This section demonstrates the excellent agreement this discretised model demonstrates with significantly less computational effort, while portraying several analysis techniques available to this system that is not possible with previously studied forms of FBG feedback. 
+The discretised-reflection model now allows us to revisit and extend established results on semiconductor lasers with FBG feedback. 
+We first show that the EGM structure predicted by the model reproduces earlier findings from the literature with excellent agreement, while providing a more complete classification through analytic expressions and continuation methods. 
+Building on this foundation, we then examine laser stability, demonstrating how reflection zeros interact with the laser centre frequency and relaxation oscillations in close parallel to previous studies, but on a far more concrete basis enabled by the present formulation.
 %
 %
-\subsection{EGM Accuracy}
-\label{subsec:naumenko}
-A considerably more complex system presented by Naumenko \textit{et al.} in \cite{naumenko2003characteristics} considers the feedback term $F(t)$ in the form of \eqref{eq:multiple_EC} that is, as the inverse Fourier transform of the product of the time delayed electric field in the spectral domain $\mathcal{F}[E(t-\tau)](\w)$ and the grating reflection spectrum $\rho(\w)$. The model additionally considers nonlinear gain and frequency chirp due to thermal effects when the injection current is changed. Ignoring these additional effects, and making suitable approximations, the system simplifies to the derived discretised reflection system as shown in Appendix~\ref{sec:multiple_EC_nondim} with parameter values $(\a, P, T, \tau, C_p) = (4, 0.5, 123, 512, 0)$, and varying grating parameters $\eta$, $\wB$, and $\wz$.
+\subsection{EGM Structure}
+\label{subsec:EGM_structure}
+%
+\subsubsection{Comparison to multiple reflection FBG feedback}
+\label{subsubsec:naumenko}
+%
+A considerably more elaborate treatment of FBG feedback was developed by Naumenko et al. \cite{naumenko2003characteristics,naumenko2004slow}, who modeled the feedback term $F(t)$ as the inverse Fourier transform of the product of the delayed electric field spectrum and the grating reflection spectrum $\rho(\w)$, see Appendix~\ref{app:EC_multiple}.
+This formulation, summarised in the introduction, enabled them to capture the essential role of spectral filtering in reorganising EGMs by means of a Green-function formalism. 
+Their model further incorporated nonlinear gain compression and thermally induced frequency chirp, which strongly affect stability under current modulation.
+When these additional effects are neglected, and appropriate simplifications are made, their system reduces to the discretised-reflection formulation derived here (Appendix~\ref{app:multiple_EC_nondim}), with parameter set $(\a, P, T, \tau, C_p) = (4, 0.5, 123, 512, 0)$ and varying grating parameters $\eta$, $\wB$, and $\wz$.
 %
 \par
 %
-EGMs were calculated with the help of Green functions through an involved mathematical procedure, as opposed to deriving closed form analytical equations. As discussed in the introduction, they identified `satellite' EGMs, separated from the central EGM envelope by the zeros of the main lobe by varying both grating bandwidth $\wz$ and detuning $\wB$.
+In their analysis, EGMs were constructed through a Green-function expansion rather than closed-form analytical conditions, leading to an involved but tractable calculation of mode frequencies.
+As noted earlier, Naumenko \textit{et al.} identified the appearance of “satellite” EGM branches, separated from the central EGM ellipse by the reflection zeros of the FBG, as the bandwidth $\wz$ narrowed or detuning $\wB$ increased.
+This insight was critical in establishing the connection between spectral features of the grating and the global organisation of EGMs, but the complexity of their feedback term limited the use of continuation methods and left the bifurcation structure only partially characterised.
 %
 \begin{figure}[!t]
     \centering
@@ -25,10 +36,11 @@ EGMs were calculated with the help of Green functions through an involved mathem
             \put(-5,80){(c)}
         \end{overpic}
 
-    \caption{A comparison between EGMs in the multiple reflection (left) and discretised FBG (right) models in the frequency-intensity domain for varying grating bandwidth and zero detuning. 
-    The curves in panels (a1) and (a2) illustrate the FBG frequency responses. 
-    A constant reflectivity of $R=0.0316$ yields a nondimensionalised effective feedback rate $\eta=0.085$ while Bragg grating reflection zeros at 1/3, 4/3, and 20/3 GHz yield nondimensionalised reflection zero locations $\wz=0.016\pi, \; 0.064\pi, \; 0.32\pi$. 
-    The EGMs in panels (b1) and (b2) corresponding to these respective bandwidths are plotted with circles $(\circ)$, diamonds $(\diamond)$ and squares $(\square)$, while the MGM in each case is plotted indicated by a $\times$.}
+    \caption{Comparison of EGM structures from the multiple-reflection model of Naumenko \textit{et al.} and the discretised-reflection model. 
+    Panel (a) shows the common FBG frequency responses corresponding to bandwidths with reflection zeros at $1/3$, $4/3$, and $20/3\,$GHz, giving nondimensionalised locations $\wz = 0.016\pi, \; 0.064\pi, \; 0.32\pi$. 
+    A constant reflectivity $R=\sqrt{0.001}$ yields an effective feedback rate $\eta=0.085$. 
+    Panels (b) and (c) plot the resulting EGMs for these bandwidths using the multiple-reflection formulation and the discretised model, respectively. 
+    In both cases, EGM branches are distinguished by circles, diamonds, and squares, while the MGM is marked by $\times$.}
     
     \label{fig:Naumenko_rB003}
 \end{figure}
@@ -36,34 +48,140 @@ EGMs were calculated with the help of Green functions through an involved mathem
 \begin{figure}[!t]
     \centering
 
-    \includegraphics[width=\linewidth]{Images/EGM_components_2D_coloured.pdf}
+        \begin{overpic}[width=0.725\linewidth]{Images/rB_02_annotated.pdf}
+            \put(-2,45){(b)}
+            \put(-2,96){(a)}
+        \end{overpic}\\
+        \hspace{-0.3em}
+        \begin{overpic}[width=0.612\linewidth]{Images/Naumenko_EGM_rB02.pdf}
+            \put(-12,87){(c)}
+        \end{overpic}
 
-    \caption{Caption.}
-    
+    \caption{Comparison of EGM structures for a detuned FBG under moderate feedback shown in (a) from the multiple-reflection model (b) and the discretised-reflection model (c) . 
+    Here, a reflectivity $R=\sqrt{0.05}$ gives an effective feedback rate $\eta=0.600$, the first reflection zero at $10/3\,$GHz corresponds to $\wz=0.16\pi$, and a detuning of $8\,$GHz yields $\wB=0.384\pi$.}
+
+    \label{fig:Naumenko_rB02}
+\end{figure}
+%
+\par
+%
+Figure~\ref{fig:Naumenko_rB003} compares the EGM structures obtained from the multiple-reflection model of Naumenko \textit{et al.} \cite{naumenko2003characteristics} with those predicted by the discretised-reflection formulation for varying grating bandwidth. 
+For the parameter set under consideration, the layer number $N=10$ was chosen, which exceeds the minimal value $N_\text{min}=7$ required for validity according to \eqref{eq:Nmin}. 
+The solutions are plotted in the frequency–intensity plane ($I=|E|^2$), rather than the more common $(\w_s,N_s)$-projection, which results in an inversion of the cavity-mode structure about the frequency axis. 
+Conversion of bandwidths from hertz to the nondimensionalised form $\wz$ was performed using the quoted photon lifetime $\tau_p=24$ ps \cite{naumenko2003characteristics}. 
+%
+\par
+%
+In the case of zero detuning and weak feedback (Figure~\ref{fig:Naumenko_rB003}), excellent agreement is achieved between the two models. 
+For a wide Bragg-reflector bandwidth (here a main-lobe width of $40/3\,$GHz, corresponding to $2\wz=0.64\pi$ in nondimensional form), the EGMs trace a closed curve strongly resembling the ECM ellipse of the COF case. 
+The maximal gain mode (MGM), marked by $\times$, is located near the edge of the left-hand side of this curve. 
+Further information is provided in the discretised case, as the closed curve which traces the EGM solutions given by \eqref{eq:discretised_Ns_curve} is also shown in (c), giving a clearer picture of the seperate components.
+As the FBG bandwidth narrows, the number of EGMs decreases and the EGM curve contracts, remaining confined within the main lobe of the reflection spectrum. 
+This behaviour is fully consistent with the analytic results of Section~\ref{subsec:EGM_discretised} and with earlier studies of Lorentzian-filter feedback \cite{yousefi1999dynamical}. 
+%
+\par
+%
+For sufficiently narrow bandwidths, additional satellite EGMs appear, marked with triangles in Figure~\ref{fig:Naumenko_rB003}. 
+These satellites arise from the side lobes of the FBG reflection spectrum and are a distinctive feature of grating-based feedback. 
+Notably, they do not appear in the single Lorentzian-filter model under zero detuning, underscoring the richer spectral structure captured here. 
+In this regime, the MGM shifts closer to the Bragg frequency, as expected from physical considerations. 
+%
+\par
+%
+When the feedback strength is increased and the grating is detuned from the free-running laser frequency (Figure~\ref{fig:Naumenko_rB02}), the EGM branches themselves become detuned and reorganise into three disjoint curves. 
+These correspond to the main reflection lobe and the two nearest side lobes. 
+An analogous splitting was observed in the Lorentzian-filter model \cite{yousefi1999dynamical}, but only up to two branches could form \cite{green2006mode}. 
+The present results therefore highlight the additional richness of the FBG spectrum, where multiple side lobes can sustain distinct EGM families. 
+%
+\par
+%
+Across all regimes, the discretised-reflection model reproduces the locations of EGM components, the MGM, and the number of EGM solutions with excellent accuracy compared to the multiple-reflection formulation. 
+The main discrepancy lies in distortions along the intensity axis, most visible under strong feedback, which can be attributed to the absence of gain-suppression effects in the simplified discretised model. 
+Nevertheless, the structural agreement between the two approaches confirms that the discretised-reflection formulation successfully captures the essential organisation of mode solutions under FBG feedback. 
+This agreement gives further validattion for this model as a tractable framework for extended spectral and stability analysis.
+%
+\subsubsection{Bifurcations of EGMs}
+\label{subsubsec:naumenko}
+%
+\begin{figure}[!t]
+    \centering
+
+    \includegraphics[width=\linewidth]{Images/EGM_components_2D_coloured_with_closeup.pdf}
+
+    \caption{Regions in the $(\wz, \wB)$-plane indicating the number of isolated EGM-components exist up to 11 according to the colourbar. 
+    A closeup of the region with the highest density of EGM components is shown in the inset.
+    The values of $(\wz,\wB)$ plotted in Figure~\ref{fig:EGM_fold_varywB} are indicated by the dots along the line $\wz=0.06$.}
+
     \label{fig:EGM_components}
 \end{figure}
 %
-Figure~\ref{fig:Naumenko_rB003} compare results obtained by both the multiple EC reflection FBG feedback and discretised FBG models for varying grating reflectivity, bandwidth and detuning. 
-In order to to obtain valid EGM solutions, for both parameter sets, $N=10 > N_\text{min}=7$ was used. 
-Solutions are projected in the frequency-intensity plane where $I = |E|^2$, in contrast to the usual projection in the inversion-frequency plane, causing an inversion of the cavity modes about the frequency axis. 
-The photon lifetime $\tau_p=24\,\text{ps}$ was used to convert grating bandwidths in Hz to their nondimensionalised $\wz$ form. 
-Clearly, excellent agreement in the mode structure is achieved, in particular for the low feedback rate case. 
-Firstly, considering no detuning, low feedback and varying bandwidths as is the case in Figure~\ref{fig:Naumenko_rB003}, 
-for a wide bandwidth of the Bragg reflector (in this case, a main lobe width of 40/3 GHz or $2\wz=0.64\pi$ in nondimensionalised form), EGMs lie on a closed curve, resembling a COF ECM structure, as expected. 
-The MGM (mode with highest power) is located for near the edge of the left side of the closed curve, indicated by an '$\times$' in the figure. 
-As the FBG bandwidth is decreased, the number of EGMs decreases, and the EGM solution curve and MGM narrows as they are confined to within the bandwidth of the main lobe, 
-in agreement with results obtained from Sections~\ref{sec:EGM_Lorentzian} and \ref{sec:EGM_discretised} and with results obtained for a single Lorentzian filter \cite{yousefi1999dynamical}. 
-Further narrowing the filter bandwidth introduces satellite EGMs, indicated with triangles, due to the side lobes of the FBG reflection spectrum. 
-It is noted that this effect does not occur in the single Lorentzian filter for zero detuning. 
-At this point, the MGM as nearly at the Bragg frequency, in agreement with physical intuition. 
-Increasing the feedback rate considerably, and detuning the FBG from the laser's free-running frequency, as shown in Figure~\ref{fig:Naumenko_rB02}, 
-also detune the EGM modes, and split the modes into three disjoint curves, corresponding to the main lobe and two side lobes nearest to the laser's free-running frequency. 
-This splitting of solution curves was similarly observed for the single Lorentzian filter \cite{yousefi1999dynamical}, but at most two disjoint curves can be formed \cite{green2006mode}, while in this case already three distinct solution curves are present. 
-Significant distortion in the EGM structure along the intensity axis can be seen for the discretised reflection case compared to the Multiple EC reflection model, 
-which can be attributed to the lack of a gain suppression factor in this model in this simplified model. 
-In any case, excellent agreement in the locations of the EGM components, MGM, and number of EGM solutions demonstrates the ability of the discretised reflections model to capture the solution structure of FBG feedback.
+\begin{figure}[!t]
+    \centering
+    \begin{overpic}[width=\linewidth]{Images/EGM_fold_varywB_wz006.pdf}
+        % Row a
+        \put(11.5,96){(a)}
+        \put(36.5,96){(e)}
+        \put(61.2,96){(i)}
+        % Row b
+        \put(11.5,72){(b)}
+        \put(36.5,72){(f)}
+        \put(61.2,72){(j)}
+        % Row c
+        \put(11.5,48){(c)}
+        \put(36.5,48){(g)}
+        \put(61.2,48){(k)}
+        % Row d
+        \put(11.5,24.5){(d)}
+        \put(36.5,24.5){(h)}
+        \put(61.2,24.5){(l)}
+    \end{overpic}
+
+    \caption{Graph of the EGM component function $G(\w_s)$ from \eqref{eq:EGM_components} for $\wz = 0.06$ and varying $\wB$, whose particular values are indicated by dots along the line $\wz=0.06$ in Figure~\ref{fig:EGM_components}.
+    The roots (hollow circles) bound intervals of $\w_s$ values corresponding to egm components (thick lines); one interval always contains $\w_s = 0$ (the free running laser mode) and another contains the grating's Bragg frequency for $\wB \in [0.04505, 0.16895]$.
+    }
+
+    \label{fig:EGM_fold_varywB}
+\end{figure}
+%
+The advantages of the discretised model in understanding the mode structure become apparent when examining the bifurcation patterns of the EGM solutions.
+Analytic expressions for the EGM components and their bifurcation points can be derived from the discretised model, providing valuable insights into the stability and dynamics of the system.
+The number of EGM components can be studied by setting the envelope of $f(\w_s)$ given by \eqref{eq:discretised_ws_envelope} equal to $g(\w_s)$, which yields the $\w_s$ values at the intersections as the roots of the function
+%
+\begin{equation}
+    \label{eq:EGM_components}
+    G(\w_s) = \w_s^2 - (1+\a^2)\left( \eta \, (1-t) \frac{S_N}{S} \right)^2.
+ \end{equation}
+ %
+Moreover, these roots bound intervals of $\w_s$-values that correspond to different EGM-components, so that the function $G(\w_s)$ presents a geometrical interpretation of the EGM-components. 
+The number of EGM-components changes when fold points (with respect to $\w_s$) of the envelope pass through the line $g(\w_s)$. 
+These fold points are given by roots of the first derivative of \eqref{eq:EGM_components} with respect to $\w_s$, that is, by
+%
+\begin{gather}
+    \label{eq:EGM_components_fold}
+    \begin{aligned}
+        \frac{\partial G}{\partial \w_s} &= \dt (1+\a^2)\left( \eta \, (1-t) \frac{S_N}{S} \right)^2 \times \\ 
+        &\bigg(  \frac{t}{S^2} \sin(\phi_\text{F}) - N \frac{t^{N}}{{S_N}^2}\sin(N\phi_\text{F}) \bigg) + \w_s = 0.
+    \end{aligned}
+\end{gather}
 %
 \par
+%
+The locus of the passage through folds as the FBG parameters $\wz$ and $\wB$ are varied can be found with the pseudo-arclength continuation routines of \texttt{DDE-BifTool} \cite{sieber2014dde} to simultaneously solve the implicit equations \eqref{eq:EGM_components} and \eqref{eq:EGM_components_fold}, that is, by solving $G(\w_s) = \sfrac{dG}{d\w_s} = 0$.
+Figure~\ref{fig:EGM_components} shows the locus of the passage through folds (computed by continuation) in projection onto the $(\w_s, \wB)$-plane.
+In the white region outside the curve shown in Figure~\ref{fig:EGM_components} one finds a single EGM-component, while inside the shaded region there are two or more isolated EGM-components.
+The outermost curves meet at cusp points.
+Within this region containing more than one isolated component, further bifurcations can occur as $\wz$ and $\wB$ vary allowing for the emergence of an arbitrariry number of EGM components, as illustrated by the inset of Figure~\ref{fig:EGM_components}.
+An explicit example of this behaviour can be seen in Figure~\ref{fig:EGM_fold_varywB}(a)-(l) which shows the the transition
+
+
+the graph of $G(\w_s)$ for $\wz = 0.06$ and increasing $\wB \in [0, 0.018]$.
+The number of EGM-components changes when fold points (with respect to $\w_s$) of the envelope pass through the line $G(\w_s) = 0$.
+Finally, we note that the region shown in Figure~\ref{fig:EGM_components} scales linearly with the effective feedback strength $\eta (1-t) \sqrt{1 + \alpha^2}$.
+In other words, the region retains its shape yet grows linearly with $\eta (1-t) \sqrt{1 + \alpha^2}$.
+%
+\par
+%
+
 %
 \subsection{Stability Fluctuations}
 \label{subsec:lichaos_skenderas}
