@@ -1,0 +1,14 @@
+{
+  "figure": "Documents/Writing/LaTeX_PRE_Discretised_Modelling/Images/EGM_components_varyN.pdf",
+  "script": "Documents/Python scripts/LK work/Integration/LK_FBG_discretised/EGMs/tau121_ECM regions/LK_FBG_discretised_EGM_regions_tau121.ipynb",
+  "data_files": [
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-06-30_17-48_N5_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-06-30_17-48_N10_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-06-30_17-48_N20_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-07-03_17-18_N50_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-07-03_17-18_N100_bifurcation_data.csv",
+    "/Users/jste924/Documents/MATLAB/LK_DDEBifTool/studies/EGM_components/EGM_components_wBwzws_2025-07-03_17-18_N1000_bifurcation_data.csv"
+  ],
+  "date": "2025-09-18 14:21:47",
+  "git_commit": "1163ed56673978f24b614bb19d78bb465ed96727"
+}

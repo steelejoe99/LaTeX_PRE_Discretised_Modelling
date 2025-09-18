@@ -99,7 +99,7 @@ Resulting in
 %
 \begin{equation*}
 \left\{\begin{array}{l}
-\displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} N-\gamma_{p}\left(|E|^{2}-1\right)\right] E+\gamma_{c} \xi_{f} e^{i\theta} F(s) \\
+\displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} N-\gamma_{p}\left(|E|^{2}-1\right)\right] E+\gamma_{c} \xi_{f} e^{i\theta} F \\
 \displaystyle \frac{d N}{d s}=-\left(\gamma_{s}+\gamma_{n}|E|^{2}\right) N-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^{2}\right)\left(|E|^{2}-1\right)
 \end{array}\right.
 \end{equation*}
@@ -108,7 +108,7 @@ Resulting in
 % %
 % \begin{equation*}
 % \left\{\begin{array}{l}
-% \displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{n}}{\gamma_{s} \tilde{J}} N-\frac{\gamma_{p}}{\gamma_{c}}\left(|E|^{2}-1\right)\right] E+\xi_{p} e^{i\theta} F(s) \\
+% \displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{n}}{\gamma_{s} \tilde{J}} N-\frac{\gamma_{p}}{\gamma_{c}}\left(|E|^{2}-1\right)\right] E+\xi_{p} e^{i\theta} F \\
 % \displaystyle \frac{d N}{d s}=-\left(\frac{\gamma_{s}}{\gamma_{c}}+\frac{\gamma_{n}}{\gamma_{c}}|E|^{2}\right) N-\frac{\gamma_{s} \tilde{J}}{\gamma_{c}}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^2\right)\left(|E|^{2}-1\right)
 % \end{array}\right.
 % \end{equation*}
@@ -122,14 +122,14 @@ Focusing on the first equation, we use:
 to obtain:
 %
 \begin{equation*}
-    \frac{d E}{d s} \approx \frac{1}{2} \frac{\gamma_n \gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+ \gamma_c \xi_{f} e^{i\theta} F(s)
+    \frac{d E}{d s} \approx \frac{1}{2} \frac{\gamma_n \gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+ \gamma_c \xi_{f} e^{i\theta} F
 \end{equation*}
 %
 Then, for the second equation,
 %
 \begin{align*}
-\displaystyle \frac{d N}{d s} &= -\gamma_s N - \gamma_n|E|^{2} N - \gamma_s \tilde{J}|E|^2 + \frac{\gamma_s \gamma_p \tilde{J}} {\gamma_{c}}|E|^{4}\\
-&\hspace{3.2cm} + \gamma_{s} \tilde{J} - \frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{2}\\
+\displaystyle \frac{d N}{d s} &= -\gamma_s N - \gamma_n|E|^{2} N + \gamma_{s} \tilde{J} - \frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{2}\\
+&\hspace{3.2cm} - \gamma_s \tilde{J}|E|^2 + \frac{\gamma_s \gamma_p \tilde{J}} {\gamma_{c}}|E|^{4}\\
 &\hspace{-0.7cm} =\gamma_{s} \tilde{J}-\gamma_{s} N-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N\right]|E|^{2}+\frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{4}
 \end{align*}
 %
@@ -137,7 +137,7 @@ Neglecting the $|E|^{4}$ term, the system can therefore be written as:
 %
 \begin{equation*}
 \left\{\begin{array}{l}
-\displaystyle \frac{d E}{d s}=\frac{1}{2} \frac{\gamma_{n}\gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+\gamma_c\xi_{f} e^{i\theta} F(s) \\ 
+\displaystyle \frac{d E}{d s}=\frac{1}{2} \frac{\gamma_{n}\gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+\gamma_c\xi_{f} e^{i\theta} F \\ 
 \displaystyle \frac{d N}{d s}=\gamma_{s} \tilde{J}-\gamma_{s} N-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N\right]|E|^{2}\end{array}\right.
 \end{equation*}
 %
@@ -204,13 +204,13 @@ Now, rescaling time by $t=\tau_\text{in} s$, one obtains
 %
 \begin{equation*}
 \left\{\begin{aligned}
-\frac{d E}{d s} &= \frac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)\left(N-N_{\text {th }}\right) E + \ln \left(\frac{\bar{F}(s)}{E}\right) E
+\frac{d E}{d s} &= \frac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)\left(N-N_{\text {th }}\right) E + \ln \left(\frac{\bar{F}}{E}\right) E
 \\
 \frac{d N}{d s} &= \frac{\tau_{\text{in}}\left(J-\bar{J}_0\right)}{e V}-\frac{\tau_\text{in}}{\tau_e} N-\left[\frac{\tau_\text{in}}{\Gamma \tau_{ph}}+G_N \tau_\text{in}\left(N-N_{\text{th}}\right)\right]|E|^2
 \end{aligned}\right.
 \end{equation*}
 %
-Which is precisely the form \eqref{eq:dimensionalised_LK} when replacing the multiple EC reflection term $E \ln \left( \bar{F}(s) / E \right)$ with $\kappa_{0,\mathrm{eff}} \, e^{-i C_p} F(s)$ for
+Which is precisely the form \eqref{eq:dimensionalised_LK} when replacing the multiple EC reflection term $E \ln \left( \bar{F} / E \right)$ with $\kappa_{0,\mathrm{eff}} \, e^{-i C_p} F$ for
 %
 \[ \alpha = \alpha , \quad N_N = N_{\text{th}}, \quad G_\text{M0} = \tau_\text{in} \Gamma G_N, \quad G_\text{N0} = G_N \tau_\text{in} 
 \]
@@ -227,13 +227,13 @@ where:
 $\k_0 = \k_{0,\mathrm{eff}} R$ can be determined by reducing the multiple EC reflection feedback term as a single reflection,
 %
 \begin{equation*}
-E \ln \left( \frac{\bar{F}(s)}{E} \right) \overset{n=1}{\approx} \frac{1-R_2^2}{R_2}e^{-iC_p} \mathcal{F}^{-1}\big[ \rho(\w) \mathcal{F}\left[ E(s-\tau_0) \right](\w) \big](s)
+E \ln \left( \frac{\bar{F}}{E} \right) \overset{n=1}{\approx} \frac{1-R_2^2}{R_2}e^{-iC_p} \mathcal{F}^{-1}\big[ \rho(\w) \mathcal{F}\left[ E(s-\tau_0) \right](\w) \big](s)
 \end{equation*}
 %
 which is precisely in our notation
 %
 \begin{equation*}
-E \ln \left(\frac{\bar{F}(s)}{E}\right)=\frac{1-R_2^2}{R_2} e^{-i C_p} F(s)
+E \ln \left(\frac{\bar{F}}{E}\right)=\frac{1-R_2^2}{R_2} e^{-i C_p} F
 \end{equation*}
 %
 Therefore, in the single reflection case:
@@ -264,6 +264,7 @@ where $\underline{F}(t)=(\dot{E}(t), \dot{N}(t))^T$, which results in
 %
 \begin{gather}
 \begin{aligned}
+    \label{eq:variational}
     \dot{\delta E}(t) &= (1+i \alpha)[\delta E \; N + E \; \delta N]\\
                 &\hspace{1cm} + \eta(1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^{k} e^{-i \wB \dt} \delta E\left(t-\tau_{k}\right) \\
     \dot{\delta N}(t) &=-\frac{1}{T}\left[2(1+2 N) \text{Re}\left\{\overline{E} \; \delta E\right\} + (1+2|E|^{2} ) \delta N \right]
