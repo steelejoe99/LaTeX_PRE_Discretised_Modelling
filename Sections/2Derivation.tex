@@ -4,8 +4,8 @@
 %
 To overcome the limitations of convolution-based models and the absence of analytical ECM analyses, we seek a representation of FBG feedback that links directly to physical parameters while preserving the mathematically tractable delay–differential structure of the LK equations.
 One promising route is to approximate the distributed reflection process directly in the time domain through discretised reflections.
-Although most approaches in the literature begin with the spectral response of the grating, the reflection spectrum can also be modelled by approximating the grating as a sequence of discrete layers, each contributing a reflection and transmission event \cite{poladian2000simple, ghiringhelli2002time, feced2002efficient, skaar2001synthesis}. 
-This construction amounts to a discretised version of the impulse response $\tilde{\rho}(t)$ that would otherwise be obtained from $\rho(\omega)$ by an inverse Fourier transform. 
+Although most approaches in the literature begin with the spectral response of the grating, the reflection spectrum can also be modelled by approximating the grating as a sequence of discrete layers, each contributing a reflection and transmission event \cite{poladian2000simple, ghiringhelli2002time, feced2002efficient, skaar2001synthesis}.
+This construction amounts to a discretised version of the impulse response $\tilde{\rho}(t)$ that would otherwise be obtained from $\rho(\omega)$ by an inverse Fourier transform.
 By considering all optical paths that re-emerge from the FBG after a delay of $\tau_k$, the impulse response can be written as a weighted sum of delta functions,
 %
 \begin{equation}
@@ -22,7 +22,7 @@ This simplification yields a particularly transparent formulation of the feedbac
 %
 \par
 %
-We will show in the following that an approximate model for this discretised-reflection framework retains the analytic tractability of the Lorentzian FOF model discussed in section~\ref{subsec:FOF}, while also faithfully reproducing the reflection spectrum of uniform FBGs across a broad frequency range. 
+We will show in the following that an approximate model for this discretised-reflection framework retains the analytic tractability of the Lorentzian FOF model discussed in section~\ref{subsec:FOF}, while also faithfully reproducing the reflection spectrum of uniform FBGs across a broad frequency range.
 This combination of accuracy and simplicity opens the way to both closed-form equations for cavity modes, efficient numerical integration, and advanced numerical methods such as continuation.
 %
 %
@@ -39,7 +39,7 @@ This combination of accuracy and simplicity opens the way to both closed-form eq
         \put(-1,60){(b)}
     \end{overpic}
     
-    \caption{(a) Illustration of the first six layers in the slab decomposition of a uniform FBG, showing transmission and reflection coefficients between adjacent layers ($j=i+1$). 
+    \caption{(a) Illustration of the first six layers in the slab decomposition of a uniform FBG, showing transmission and reflection coefficients between adjacent layers ($j=i+1$).
     (b) Illustration of the contribution to the reflected field arising solely from reflection at the $k^{\text{th}}$ layer, corresponding to the $k^{\text{th}}$ delayed signal.}
     
     \label{fig:discretised_FBG}
@@ -59,11 +59,11 @@ This combination of accuracy and simplicity opens the way to both closed-form eq
     \label{fig:R_approximations}
 \end{figure}
 %
-We model the reflection response of a uniform FBG as arising from partial reflections at evenly spaced boundaries across $N$ layers of the grating. 
-The grating has a uniform average refractive index $\neff$, while each boundary introduces the same transmission coefficient $t$ and reflection coefficient $r$, determined by the normalised refractive index variation $\dn \equiv \dnbar/\neff$. 
-Further, the constant $\neff$ ensures that the round-trip time $\dt$ is constant across all layers so that $\tau_k = k \, \dt$. 
-For tractability, we consider only the dominant propagation paths that undergo a single reflection at the $(k-1)^\text{th}$ layer. 
-A contribution from such a path re-emerges from the grating after a time delay of $k\,\dt$, as sketched in Figure~\ref{fig:discretised_FBG}(b). 
+We model the reflection response of a uniform FBG as arising from partial reflections at evenly spaced boundaries across $N$ layers of the grating.
+The grating has a uniform average refractive index $\neff$, while each boundary introduces the same transmission coefficient $t$ and reflection coefficient $r$, determined by the normalised refractive index variation $\dn \equiv \dnbar/\neff$.
+Further, the constant $\neff$ ensures that the round-trip time $\dt$ is constant across all layers so that $\tau_k = k \, \dt$.
+For tractability, we consider only the dominant propagation paths that undergo a single reflection at the $(k-1)^\text{th}$ layer.
+A contribution from such a path re-emerges from the grating after a time delay of $k\,\dt$, as sketched in Figure~\ref{fig:discretised_FBG}(b).
 In this way, the discretised model mirrors the idea of an impulse response composed of delayed replicas of the input field, but expressed in terms of individual layer reflections.
 %
 \par
@@ -123,7 +123,7 @@ The effective time delay can be written in terms of the layer round-trip time $\
     \tau_{eff} = \frac{R_\text{exact} \dt}{\pi \, \dn}.
 \end{equation}
 %
-The expected delay of the discretised reflections $E[\tau_\text{FBG}]$ is calculated as the weighted average of the delays of all the reflected signals, where the weights are the amplitudes of the reflected signals. 
+The expected delay of the discretised reflections $E[\tau_\text{FBG}]$ is calculated as the weighted average of the delays of all the reflected signals, where the weights are the amplitudes of the reflected signals.
 Mathematically,
 %
 \begin{equation*}
@@ -136,7 +136,8 @@ The sum in the denominator is simply the sum of a geometric sequence, having a c
     \sum_{k=1}^{N} t^{k-1} = \frac{1-t^N}{1-t}.
 \end{equation*}
 %
-The sum in the numerator can be evaluated efficiently by noting that it can be written in terms of a derivative w.r.t. $t$ of the numerator. That is,
+The sum in the numerator can be evaluated efficiently by noting that it can be written in terms of a derivative w.r.t. $t$ of the numerator.
+That is,
 %
 \begin{equation*}
     \sum_{k=1}^{N} t^{k-1} (k-1) = t \, \frac{\partial}{\partial t} \sum_{k=1}^{N} t^{k-1} = \frac{t(1-t^N)}{(1-t)^2} - \frac{N t^N}{1-t}.
@@ -157,18 +158,18 @@ Although the accuracy of delay and reflectivity vary differently with $\dn$, the
 %
 \par
 %
-A key property of the coefficients in \eqref{eq:tr} is that they satisfy $r+t=1$, resembling the familiar balance between reflection and transmission. 
-Unlike true Fresnel coefficients, however, these are effective coefficients: they subsume the cumulative effect of multiple internal transmissions and reflections into a single pair of parameters. 
-In doing so, they preserve the correct scaling of reflectivity with $\dn$ and $N$ while providing a compact, physically transparent description that is straightforward to use in dynamical models such as the LK equations. 
+A key property of the coefficients in \eqref{eq:tr} is that they satisfy $r+t=1$, resembling the familiar balance between reflection and transmission.
+Unlike true Fresnel coefficients, however, these are effective coefficients: they subsume the cumulative effect of multiple internal transmissions and reflections into a single pair of parameters.
+In doing so, they preserve the correct scaling of reflectivity with $\dn$ and $N$ while providing a compact, physically transparent description that is straightforward to use in dynamical models such as the LK equations.
 %
 \begin{equation}
     \label{eq:discretised_impulse_full}
     \tilde{\rho}(t) = (1-t)\sum_{k=0}^{N-1} t^k \, \delta(t-\tau-k\dt)\, e^{-i k \wB \dt},
 \end{equation}
 %
-where each term corresponds to a contribution that has traversed $k$ transmissive layers, been reflected once, and accumulated an additional phase $e^{-i k \wB \dt}$ from propagation through the grating. 
-Since the LK equations are defined relative to the free-running laser frequency (so that $\wZ=0$), the parameter $\wB$ naturally enters as the detuning of the grating's Bragg frequency. 
-This highlights that the FBG acts as a weighted superposition of delayed, phase-shifted replicas of the input field. 
+where each term corresponds to a contribution that has traversed $k$ transmissive layers, been reflected once, and accumulated an additional phase $e^{-i k \wB \dt}$ from propagation through the grating.
+Since the LK equations are defined relative to the free-running laser frequency (so that $\wZ=0$), the parameter $\wB$ naturally enters as the detuning of the grating's Bragg frequency.
+This highlights that the FBG acts as a weighted superposition of delayed, phase-shifted replicas of the input field.
 We remark that if backward transmission were explicitly included, alternative but mathematically consistent definitions of $r$ and $t$ could be derived, though the present choice yields cleaner expressions for the analysis that follows.
 %
 \par
@@ -183,8 +184,8 @@ F(t) &\approx (1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^k E(t-\tau-k\,\dt) e^{-i k \wB
 %
 \par
 %
-Taken together, these results establish the discretised-reflection formulation as a reliable and practical approximation to FBG feedback. 
-Crucially, it preserves the analytic tractability of the LK system while embedding essential features of grating physics, thereby enabling both efficient time-domain simulations and deeper analytical exploration of cavity modes. 
+Taken together, these results establish the discretised-reflection formulation as a reliable and practical approximation to FBG feedback.
+Crucially, it preserves the analytic tractability of the LK system while embedding essential features of grating physics, thereby enabling both efficient time-domain simulations and deeper analytical exploration of cavity modes.
 The central parameter $t$, which enters the LK equations, is determined directly from the target reflectivity via \eqref{eq:R_approx}:
 %
 \begin{equation}
@@ -192,7 +193,7 @@ The central parameter $t$, which enters the LK equations, is determined directly
 t = \big(1-R\big)^{1/N},
 \end{equation}
 %
-providing a transparent connection between physical grating design and the discrete-feedback model. 
+providing a transparent connection between physical grating design and the discrete-feedback model.
 This link ensures that the formulation is not only computationally convenient but also grounded in experimentally tunable parameters, making it a robust foundation for the analyses that follow.
 %
 \par
@@ -279,7 +280,7 @@ We remark that in the plane mirror limit, the front face of the FBG would reflec
     \w_s = - \eta \sqrt{\a^2+1} \sin{(C_p + \w_s \tau + \arctan\a )}
 \end{equation*}
 %
-which is precisely the well studied implicit ECM equation for the canonical COF case, validating the consistency of the derived equations. \cite{rottschafer2007ecm}.
+which is precisely the well studied implicit ECM equation for the canonical COF case, validating the consistency of the derived equations \cite{rottschafer2007ecm}.
 Given the solutions for $\w_s$, one can calculate $N_s$ and $E_s$ through
 %
 \begin{equation}
@@ -303,7 +304,7 @@ Moreover, by substituting the CW ansatz back into \eqref{eq:LK_discretised}, one
     \label{eq:discretised_Ns_curve}
     \begin{aligned}
         \hspace{-0.5em}N_s(\w_s) = &\frac{\a \w_s}{1+\a^2} \pm \\
-                    &\frac{1}{1+\a^2}\sqrt{-\w_s^2 + (1+\a^2) \left(\eta (1-t) \frac{S_N}{S} \right)^2}.    
+                    &\frac{1}{1+\a^2}\sqrt{-\w_s^2 + (1+\a^2) \left(\eta (1-t) \frac{S_N}{S} \right)^2}.
     \end{aligned}
 \end{gather}
 %
@@ -342,11 +343,11 @@ Finally, while the grating’s reflectivity and detuning are controlled through 
         \put(-1,42){(d)}
     \end{overpic}%
     }
-    \caption{(a) Illustrations of gratings with equal length but different layer numbers $N$. 
-    (b), (c) Equivalence in EGM structure between different grating numbers $N \in [10, 22500]$ by keeping $N\dt$ constant, each providing near identical reflection zero locations $\wB \pm n\wz, \; n \in \mathbb{N}$. 
+    \caption{(a) Illustrations of gratings with equal length but different layer numbers $N$.
+    (b), (c) Equivalence in EGM structure between different grating numbers $N \in [10, 22500]$ by keeping $N\dt$ constant, each providing near identical reflection zero locations $\wB \pm n\wz, \; n \in \mathbb{N}$.
     EGM frequencies $\w_s$ are intersections of $f(\w_s)$ (blue curve) and $g(\w_s)$ (green curve) in (a), while the envelope $f_\text{env}$, consisting of two curves is in black.
-    The EGM solutions and their curve in the $(\w_s, N_s)$-plane are shown in (b). 
-    The red dots correspond to a discrete set of EGMs, where modes are indicated with circles while antimodes are indicates by squares. 
+    The EGM solutions and their curve in the $(\w_s, N_s)$-plane are shown in (b).
+    The red dots correspond to a discrete set of EGMs, where modes are indicated with circles while antimodes are indicates by squares.
     The black curve connecting the the set of EGMs is given by \eqref{eq:discretised_Ns_curve}.
     (d) EGM solutions over a wide frequency range $\w_s \in [-20\wz, 20\wz]$.
     In panels (b)–(d), results for $N=10$ are plotted in lighter shades, while results for $N=22500$ are plotted in darker shades.
@@ -360,7 +361,7 @@ Finally, while the grating’s reflectivity and detuning are controlled through 
     \hspace{1em}
     \includegraphics[width=0.87\linewidth]{Images/discretised_EGM_minimumN.pdf}
     
-    \caption{EGM solutions for varying detuning $\wB$ with $\wz=0.1$ (left) and $\wz=0.02$ (right) and $N=10$ in both cases. 
+    \caption{EGM solutions for varying detuning $\wB$ with $\wz=0.1$ (left) and $\wz=0.02$ (right) and $N=10$ in both cases.
     Valid region solution regions correspding to the frequency range $\wB \pm 5 \wz$ are plotted with opaque lines while the entire frequency region is plotted with semi transparent lines.}
     
     \label{fig:discretised_EGM_minimumN}
@@ -368,17 +369,17 @@ Finally, while the grating’s reflectivity and detuning are controlled through 
 %
 \par
 %
-At this point, the EGM equations allow us to directly visualise the spectral structure predicted by the discretised reflection model. 
-In particular, the solution envelope $f_\text{env}(\w_s)$ provides a direct analogue of the FBG reflection spectrum, just as the envelope in the FOF case recovers a Lorentzian profile \cite{green2006mode}, while the envelope in the COF case being flat (and thus frequency indepedent) \cite{rottschafer2007ecm}. 
-This makes it a natural diagnostic for selecting the effective grating parameters $(R, N, \dt)$. 
-To anchor the discussion, we fix the laser and EC parameters to the canonical values $\tau = 121, \a = 3.5, \eta R = 0.0455, C_p = 0, T = 550, P = 0.186$ \cite{heil2003delay,krauskopf2004dynamics}, and prescribe a grating bandwidth $\wz = 0.1$ with detuning $\wB=0$. 
+At this point, the EGM equations allow us to directly visualise the spectral structure predicted by the discretised reflection model.
+In particular, the solution envelope $f_\text{env}(\w_s)$ provides a direct analogue of the FBG reflection spectrum, just as the envelope in the FOF case recovers a Lorentzian profile \cite{green2006mode}, while the envelope in the COF case being flat (and thus frequency indepedent) \cite{rottschafer2007ecm}.
+This makes it a natural diagnostic for selecting the effective grating parameters $(R, N, \dt)$.
+To anchor the discussion, we fix the laser and EC parameters to the canonical values $\tau = 121, \a = 3.5, \eta R = 0.0455, C_p = 0, T = 550, P = 0.186$ \cite{heil2003delay,krauskopf2004dynamics}, and prescribe a grating bandwidth $\wz = 0.1$ with detuning $\wB=0$.
 For 1550 nm light, this choice of $\wz$ corresponds to $N \approx 22500$ layers (see Appendix~\ref{app:LK_nondim} for details).
 %
 \par
 %
-We first examine how the envelope changes with reflectivity $R$ while keeping the product $\eta R$ fixed. 
-As shown in Figure~\ref{fig:discretised_EGM_envelope_variations}, well-resolved transmission zeros at $\w_s = \wB \pm n\wz$ emerge only when $R$ is small. 
-This motivates adopting the practically relevant limit $R\ll1$, in which $\eta$ is rescaled so that the effective feedback rate $\eta_\text{eff} \equiv \eta R$ remains fixed. 
+We first examine how the envelope changes with reflectivity $R$ while keeping the product $\eta R$ fixed.
+As shown in Figure~\ref{fig:discretised_EGM_envelope_variations}, well-resolved transmission zeros at $\w_s = \wB \pm n\wz$ emerge only when $R$ is small.
+This motivates adopting the practically relevant limit $R\ll1$, in which $\eta$ is rescaled so that the effective feedback rate $\eta_\text{eff} \equiv \eta R$ remains fixed.
 In this regime, \eqref{eq:wztoN} simplifies to
 %
 \begin{equation}
@@ -405,20 +406,20 @@ We therefore may select a layer number $N$ that is low enough to be amenable to 
 %
 \par
 %
-The main practical consequence of working with a reduced grating number $N$ is that only a limited number of side lobes are reproduced accurately.  
-Figure~\ref{fig:discretised_EGM_varyN}(d) illustrates this by plotting the curves $f(\w_s)$ and $f_\text{env}(\w_s)$ over $\w_s \in [-20\wz,20\wz]$ for $N=10$ and $N=22500$ with $N\dt$ fixed.  
-When $N=10$, the envelope repeats after every $10\wz$, so that only five side lobes are physically meaningful before the spectrum develops unphysical repetitions.  
-By contrast, the $N=22500$ case reproduces the correct extended sequence of side lobes expected from a uniform FBG.  
+The main practical consequence of working with a reduced grating number $N$ is that only a limited number of side lobes are reproduced accurately.
+Figure~\ref{fig:discretised_EGM_varyN}(d) illustrates this by plotting the curves $f(\w_s)$ and $f_\text{env}(\w_s)$ over $\w_s \in [-20\wz,20\wz]$ for $N=10$ and $N=22500$ with $N\dt$ fixed.
+When $N=10$, the envelope repeats after every $10\wz$, so that only five side lobes are physically meaningful before the spectrum develops unphysical repetitions.
+By contrast, the $N=22500$ case reproduces the correct extended sequence of side lobes expected from a uniform FBG.
 This highlights the need to choose $N$ small enough to keep the model tractable, but large enough to capture all features relevant to the parameter ranges under study.
 %
 \par
 %
-Figure~\ref{fig:discretised_EGM_minimumN} shows two specific artefacts that arise if $N$ is taken too small, allowing a lower bound on $N$ to be derived.  
-The first is a detuning-induced loss of validity: as $\wB$ increases, the valid spectral window of width $\pm 5\wz$ can shift away from $\w_s=0$, and beyond this range the repeated envelope begins to grow again, which is unphysical.  
-This can be avoided by requiring $N > 2|\wB|_{\max}/\w_{z,\min}$.  
-The second artefact is the appearance of spurious intersections when repeated main lobes cross the line $f(\w_s)=\w_s$, creating artificial EGM branches.  
-The first repetitions of the main lobe occur at $\w_s = \pm N\wz + \wB$, while the envelope reaches extrema at $\pm \eta\sqrt{1+\a^2}$.  
-To prevent such intersections, one must ensure that $N\wz + |\wB| > \eta\sqrt{1+\a^2}$.  
+Figure~\ref{fig:discretised_EGM_minimumN} shows two specific artefacts that arise if $N$ is taken too small, allowing a lower bound on $N$ to be derived.
+The first is a detuning-induced loss of validity: as $\wB$ increases, the valid spectral window of width $\pm 5\wz$ can shift away from $\w_s=0$, and beyond this range the repeated envelope begins to grow again, which is unphysical.
+This can be avoided by requiring $N > 2|\wB|_{\max}/\w_{z,\min}$.
+The second artefact is the appearance of spurious intersections when repeated main lobes cross the line $f(\w_s)=\w_s$, creating artificial EGM branches.
+The first repetitions of the main lobe occur at $\w_s = \pm N\wz + \wB$, while the envelope reaches extrema at $\pm \eta\sqrt{1+\a^2}$.
+To prevent such intersections, one must ensure that $N\wz + |\wB| > \eta\sqrt{1+\a^2}$.
 Taken together, these two requirements provide a practical lower bound for the grating number:
 %
 \begin{equation}

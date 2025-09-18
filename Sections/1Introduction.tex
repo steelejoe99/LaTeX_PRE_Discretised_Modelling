@@ -3,20 +3,20 @@
 \label{sec:introduction}
 %
 Semiconductor lasers are fundamental components in modern photonic technologies.
-Most importantly, their emission wavelengths align with those used in optical communication networks, making them valuable light sources. 
+Most importantly, their emission wavelengths align with those used in optical communication networks, making them valuable light sources.
 In addition, they are orders of magnitude smaller than typical helium–neon lasers, with coherence lengths of only a few millimetres compared to many metres, which enables widespread practical applications \cite{heiskanen2018photobiomodulation}.
 Semiconductor lasers are not only smaller than conventional gas lasers, but also exhibit much higher output coupling, with approximately 70\% of the light intensity escaping them compared to 1-5\% for gas lasers \cite{vantartwijk1995semiconductor}.
 However, this openness makes semiconductor lasers more susceptible to external disturbances, leading to a strong response to incident signals.
 Although undesirable in some practical applications, this sensitivity has made semiconductor lasers a central platform for investigating nonlinear dynamics induced by external optical feedback.
 The influence of external light on laser operation has been extensively investigated since the 1970s, with particular focus on conventional optical feedback (COF) (typically achieved by reflecting output laser light back into the laser cavity using a mirror) as well as on optical injection of laser light from another laser \cite{weiss1991dynamics}.
 Feedback and injection mechanisms have important practical implications: for example, the former arises in the operation of CD players, while the latter is central to laser amplification systems.
-Beyond their direct historical significance, semiconductor lasers with feedback underpin key technologies in modern photonics. 
-Feedback control is exploited to stabilize frequency and linewidth in coherent optical communication \cite{tkach2003regimes}, to enhance sensitivity in precision sensing and metrology, and to enable secure chaos-based encryption schemes \cite{uchida2008fast}. 
+Beyond their direct historical significance, semiconductor lasers with feedback underpin key technologies in modern photonics.
+Feedback control is exploited to stabilize frequency and linewidth in coherent optical communication \cite{tkach2003regimes}, to enhance sensitivity in precision sensing and metrology, and to enable secure chaos-based encryption schemes \cite{uchida2008fast}.
 At the same time, semiconductor lasers with feedback provide a prototypical and experimentally accessible example of delay differential equations (DDEs), serving as a platform to study nonlinear dynamics with relevance extending to control theory \cite{stepan1989retarded}, electronics, and biological systems \cite{mackey1977oscillation}.
 %
 %
 \subsection*{Lang-Kobayashi equations}
-A major breakthrough in understanding the dynamics of semiconductor lasers with external feedback came in 1980 with the seminal work of Lang and Kobayashi, who introduced what are now known as the Lang–Kobayashi (LK) rate equations. 
+A major breakthrough in understanding the dynamics of semiconductor lasers with external feedback came in 1980 with the seminal work of Lang and Kobayashi, who introduced what are now known as the Lang–Kobayashi (LK) rate equations.
 These equations provide a description of the coupled carrier and optical field dynamics of a semiconductor laser subject to COF from a distant mirror \cite{lang1980external}.
 These equations describe the coupled dynamics of the complex electric field $E = E_x + iE_y$ and the carrier inversion $N$ in a semiconductor laser subject to COF from a distant mirror \cite{lang1980external}.
 A nondimensionalized form of these equations, highlighting the key parameters governing the system dynamics, is given by \cite{heil2003delay}
@@ -29,15 +29,15 @@ A nondimensionalized form of these equations, highlighting the key parameters go
     \end{aligned}
 \end{equation}
 %
-where the feedback term is given by $F(t) = e^{-i \w_0 \tau} E(t-\tau)$. 
-These key parameters can be separated into intrinsic laser parameters and external cavity (EC) parameters. 
-The laser, emitting at a single frequency $\w_0$, is characterised by the pump current $P$, the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$. 
+where the feedback term is given by $F(t) = e^{-i \w_0 \tau} E(t-\tau)$.
+These key parameters can be separated into intrinsic laser parameters and external cavity (EC) parameters.
+The laser, emitting at a single frequency $\w_0$, is characterised by the pump current $P$, the linewidth enhancement factor $\a$, and the ratio of photon and electron decay times $T = \tau_e/\tau_p$.
 The external cavity (EC), which in this context is implemented as an optical fibre with refractive index $n_{eff}$, is characterised by the round-trip delay time $\tau = 2L_\text{EC}/n_{eff} c$, the feedback power level (defined as the ratio of power reflected from the external mirror to that from the diode mirror) $\eta$, and the feedback phase $C_p = \w_0 \tau$, corresponding to the number of optical wavelengths in the EC.
-It is noted that these equations are formulated with reference to the centre frequency of the laser, with $\wZ = 0$ at the operating frequency, which implies $C_p = 0$ in the first instance. 
-The application of these equations requires a single-mode laser subject to weak feedback (up to a few percent of the emitted light) from a long EC, typically ranging from centimetres to metres in length. 
+It is noted that these equations are formulated with reference to the centre frequency of the laser, with $\wZ = 0$ at the operating frequency, which implies $C_p = 0$ in the first instance.
+The application of these equations requires a single-mode laser subject to weak feedback (up to a few percent of the emitted light) from a long EC, typically ranging from centimetres to metres in length.
 These assumptions impose several important limitations on the LK model, which can be grouped into restrictions on the laser operating frequency, the cavity, and the feedback strength.
 As the LK equations assume single-mode operation, they do not capture mode competition or spectral dynamics; for approaches to the analysis of multimode lasers, see \cite{yacomotti2004dynamics} and references therein.
-A long EC justifies treating the feedback phase $C_p$ as an independent parameter from the delay $\tau$, since a $2\pi$ phase shift corresponds to only a half-wavelength change (about one micron) in the cavity length, which is negligible at these scales \cite{green2006mode}. 
+A long EC justifies treating the feedback phase $C_p$ as an independent parameter from the delay $\tau$, since a $2\pi$ phase shift corresponds to only a half-wavelength change (about one micron) in the cavity length, which is negligible at these scales \cite{green2006mode}.
 In practice, varying $C_p$ over a full $2\pi$ is achieved by shifting the mirror position using a piezoelectric transducer \cite{heil2003delay} for example, or by changing thermal properties of the cavity itself, introducing a slight variation to the fibre's refractive index and thus effective cavity length \cite{skenderas2021feedback}.
 The weak-feedback condition further ensures that multiple EC reflections between the laser facet and the external mirror can be neglected; if this condition is not satisfied, the feedback $F(t)$ takes a more complex form \cite{vantartwijk1995semiconductor}.
 %
@@ -62,10 +62,10 @@ Moreover, numerical continuation tools for DDEs, such as \texttt{DDE-Biftool}, e
 %
 A central insight of the LK model is the structure of its steady states, known as external cavity modes (ECMs).
 The ECMs form an ellipse in frequency space centred at the free-running laser frequency, with the maximum gain mode (MGM) located on the outer boundary, farthest from the centre frequency.
-The number of ECMs and the frequency interval they occupy increase with feedback strength and EC length. 
+The number of ECMs and the frequency interval they occupy increase with feedback strength and EC length.
 ECMs are typically created in saddle-node pairs as parameters vary, and their stability changes through Hopf bifurcations \cite{heil2003delay, rottschafer2007ecm}.
 The set of ECMs provides the backbone of the LK dynamics: it organises transients and families of periodic and quasi-periodic orbits that arise from Hopf and subsequent bifurcations.
-In regimes such as LFFs and CC, trajectories spend long intervals near weakly stable ECMs before departing along unstable manifolds of neighbouring saddle ECMs, producing intensity dropouts. 
+In regimes such as LFFs and CC, trajectories spend long intervals near weakly stable ECMs before departing along unstable manifolds of neighbouring saddle ECMs, producing intensity dropouts.
 The prevalence and severity of these behaviours increase with the size of the ECM ellipse \cite{heil2003delay, krauskopf2004dynamics}.
 Thus, understanding the geometry, multiplicity, and stability of ECMs is essential for explaining observed dynamical regimes and for devising control strategies.
 This perspective naturally motivates efforts to reduce or confine the set of accessible ECMs, thereby enhancing stability under stronger feedback by limiting the number of available steady-states.
@@ -75,7 +75,7 @@ A crucial step in this direction is understanding how different forms of feedbac
 \subsection*{Phase-conjugate feedback}
 \label{subsec:PCF}
 
-In a single-mode semiconductor laser with phase-conjugate feedback (PCF), the phase-conjugating mirror (PCM) returns a wavefront-inverted replica of the emitted light. 
+In a single-mode semiconductor laser with phase-conjugate feedback (PCF), the phase-conjugating mirror (PCM) returns a wavefront-inverted replica of the emitted light.
 This self-aligning feedback, typically realised through degenerate four-wave mixing in vapours or semiconductors, or by gratings and optical crystals, compensates distortions in the EC.
 By reversing wavefront errors on each round trip, phase conjugation stabilises both beam quality and frequency, motivating its application in semiconductor laser control.
 Owing to these potential stabilisation features, PCF was among the earliest feedback configurations investigated beyond COF \cite{krauskopf1998semiconductor, green2004bifurcation}.
@@ -89,15 +89,16 @@ Because the feedback term retains the same discrete DDE form of the LK equations
 \subsection*{Filtered optical feedback}
 \label{subsec:FOF}
 %
-The most direct method of controlling the ECMs in a semiconductor laser is to filter the light fed back into the cavity, a scheme known as filtered optical feedback (FOF). 
+The most direct method of controlling the ECMs in a semiconductor laser is to filter the light fed back into the cavity, a scheme known as filtered optical feedback (FOF).
 By modifying the spectrum of the reinjected light, FOF reshapes the set of accessible ECMs.
-Several practical implementations of FOF have been investigated. One approach is the insertion of a Fabry–Pérot resonator within the feedback loop \cite{detienne1997semiconductor}. More commonly, the external mirror is replaced by a frequency-selective surface, such as a grating \cite{dahmani1987frequency, harvey1991external, jin1996single}, or by a phase-conjugating surface, for example a Kerr-type nonlinear medium, which in this context acts primarily as a spectral filter \cite{agrawal1984line}.
+Several practical implementations of FOF have been investigated.One approach is the insertion of a Fabry–Pérot resonator within the feedback loop \cite{detienne1997semiconductor}.
+More commonly, the external mirror is replaced by a frequency-selective surface, such as a grating \cite{dahmani1987frequency, harvey1991external, jin1996single}, or by a phase-conjugating surface, for example a Kerr-type nonlinear medium, which in this context acts primarily as a spectral filter \cite{agrawal1984line}.
 As expected, all of these implementations lead to significant linewidth narrowing, resulting in more stable operation around the filter’s free-running frequency.
 This makes FOF a practical approach for stabilising single-mode operation and narrowing emission spectra in photonic applications.
 %
 \par
 %
-Mathematical analysis of FOF poses additional challenges not encountered with COF or PCF. 
+Mathematical analysis of FOF poses additional challenges not encountered with COF or PCF.
 In this case, the spectral components of the electric field must be included explicitly, since their reflection is governed by the frequency response of the chosen filter, denoted $\rho(\w)$.
 Therefore, the feedback term $F(t)$ must be replaced by a more general expression that accounts for this frequency selectivity.
 For a given reflection response, $F(t)$ can be obtained by decomposing the field into its Fourier components, applying the filter’s reflection spectrum $\rho(\w)$, and then taking the inverse Fourier transform \cite{yousefi1999dynamical}.
@@ -135,47 +136,48 @@ They demonstrated that, as expected, the system generally admits fewer external 
 Alongside the reduction in the number of accessible ECMs, the MGM tends to lie closer to the filter frequency (though not exactly at it) rather than at the edge of the fixed-point ellipse as in COF.
 Overall, the formulation of these equations as coupled DDEs allows for detailed investigation through continuation and stability analysis of the stationary states, providing deeper insight into the influence of FOF on semiconductor lasers 
 \cite{erzgraber2006frequency, erzgraber2007bifurcation, erzgraber2007dynamics, fischer2000experimental, fischer2004experimental, green2006mode, 
-hek2007semiconductor, erzgraber2007feedback, fischer2004filtered, yousefi2001global, yousefi2002simulations, yousefi2003nonlinear}. 
+hek2007semiconductor, erzgraber2007feedback, fischer2004filtered, yousefi2001global, yousefi2002simulations, yousefi2003nonlinear}.
 %
 \par
 %
 It has been shown that the EFM can undergo a fundamental topological change, splitting into two disconnected components when the filter is sufficiently detuned.
 This breakup is organised by codimension-two and codimension-three bifurcations, which act as organising centres for the stability boundaries of EFMs in the filter–detuning parameter plane.
-Continuation methods allow these bifurcations, along with the folds and Hopf curves that emanate from them, to be systematically tracked, providing a precise map of where mode break-up, relaxation oscillations, and frequency instabilities arise. 
-The result is a comprehensive picture in which analytic steady-state solutions and numerical continuation of equilibria and periodic orbits combine to reveal not only the number and arrangement of EFMs, but also the mechanisms by which their stability changes. 
+Continuation methods allow these bifurcations, along with the folds and Hopf curves that emanate from them, to be systematically tracked, providing a precise map of where mode break-up, relaxation oscillations, and frequency instabilities arise.
+The result is a comprehensive picture in which analytic steady-state solutions and numerical continuation of equilibria and periodic orbits combine to reveal not only the number and arrangement of EFMs, but also the mechanisms by which their stability changes.
 In this way, FOF has become one of the most thoroughly understood feedback configurations, demonstrating the level of insight that becomes possible when analytic tractability and continuation-based analysis can be brought together.
 %
 %
-\subsection*{Fiber Bragg grating feedback}
+\subsection*{Fibre Bragg grating feedback}
 \label{subsec:FBG_LK}
 %
-\subsubsection*{Fiber Bragg gratings}
+\subsubsection*{Fibre Bragg gratings}
 \label{subsubsec:FBG}
 %
-One reflective frequency-dependent component that has been the focus of extensive research in recent decades is the fiber Bragg grating (FBG).
+One reflective frequency-dependent component that has been the focus of extensive research in recent decades is the fibre Bragg grating (FBG).
 FBGs offer several advantages over other fibre-optic technologies.
 These include all-fibre design, low insertion loss, high return loss, potential for lower cost, and, most notably, exceptional flexibility in tailoring spectral characteristics.
-With current manufacturing techniques, gratings can be fabricated with nearly arbitrary spectral responses and normalised bandwidths ranging from $10^{-4}$ to $0.1$ \cite{erdogan1997fiber}.
+With current manufacturing techniques, gratings can be fabricated with nearly arbitrary spectral responses and normalised bandwidths ranging from $10^{-4}$ to $0.1$ \cite{erdogan1997fibre}.
 The FBG is therefore a natural reflective element for implementing FOF.
 %
 \begin{figure}
     \centering 
     \includegraphics[width=\linewidth]{Images/FBG_setup_dneff_only_1col.pdf}
-    \caption{Sketch of an optical fiber with an FBG written along its length.}
+    \caption{Sketch of an optical fibre with an FBG written along its length.}
     \label{fig:FBG_setup}
 \end{figure}
 %
 \par
 %
 An FBG is defined as a periodic modulation $\delta n_{eff}(z)$ of the refractive index with period $\Lambda$ along an optical fibre of length $L_\text{FBG}$.
-The number of gratings in an FBG is therefore $N = L_\text{FBG}/\Lambda$. The most general form of this periodic modulation is
+The number of gratings in an FBG is therefore $N = L_\text{FBG}/\Lambda$.
+The most general form of this periodic modulation is
 %
 \begin{equation}
 \label{eq:dneff}
     \delta n_{eff}(z) = \dnbar(z) \left[ 1 + v \cos{\left( \frac{2 \pi}{\Lambda} z + \phi(z) \right)} \right].
 \end{equation}
 %
-Here, $\dnbar(z)$ describes the envelope of the periodic modulation along $L_\text{FBG}$; for example, $\dnbar(z) \sim e^{-z^2}$ yields a Gaussian refractive index profile. 
+Here, $\dnbar(z)$ describes the envelope of the periodic modulation along $L_\text{FBG}$; for example, $\dnbar(z) \sim e^{-z^2}$ yields a Gaussian refractive index profile.
 In addition to the envelope, $v$ denotes the fringe visibility of the index modulation, and $\phi(z)$ allows variation of the grating period along the fibre, enabling different frequencies to be reflected at different positions.
 This flexibility allows tailoring of the spectral response through modulation depth and phase, directly influencing the accessible ECM structure.
 %
@@ -194,7 +196,7 @@ In this case, using coupled-mode theory and the synchronous approximation, one c
 \end{equation}
 %
 with $R(z) = A(z) \exp{ \left( -i \left( \phi/2 -\delta z \right) \right) }, \; S(z) = B(z) \exp{ \left( -i \left( \phi/2 + \delta z \right) \right) }$.
-For further details, see \cite{erdogan1997fiber} and references therein.
+For further details, see \cite{erdogan1997fibre} and references therein.
 The parameters $\delta$, the wavevector mismatch, $\kappa$, the alternating-current (AC) coupling coefficient, and $\hat{\sigma}$, the direct-current (DC) self-coupling coefficient, are given by
 %
 \begin{align}
@@ -212,7 +214,8 @@ Since $\k$ and $\hat{\sigma}$ may depend on $z$, \eqref{eq:wave_eqs} cannot in g
 %
 At this point, all the necessary ingredients are in place to calculate the key characteristic of an FBG, its reflection spectrum $\rho(\w)$.
 Physically, the primary interest lies in the reflection spectrum of light reflected at the front FBG interface, assuming no reflection from the back interface.
-Therefore, \eqref{eq:wave_eqs} is typically solved by setting $z = 0$ at the midpoint of the FBG, imposing boundary conditions $R(-L_\text{FBG}/2) = 1$ and $S(L_\text{FBG}/2) = 0$, and integrating backwards from $L_\text{FBG}/2$ to $-L_\text{FBG}/2$. The amplitude reflection coefficient is then given by
+Therefore, \eqref{eq:wave_eqs} is typically solved by setting $z = 0$ at the midpoint of the FBG, imposing boundary conditions $R(-L_\text{FBG}/2) = 1$ and $S(L_\text{FBG}/2) = 0$, and integrating backwards from $L_\text{FBG}/2$ to $-L_\text{FBG}/2$
+The amplitude reflection coefficient is then given by
 %
 \begin{equation}
 \label{eq:rho}
@@ -237,18 +240,18 @@ Therefore, $\k$ and $\hat{\sigma}$ are constant in $z$, which allows the reflect
     \rho = \frac{-\k \sinh\left( L_\text{FBG}\right)}{\hat{\sigma} \sinh\left(\gamma L_\text{FBG}\right) + i\gamma \cosh\left(\gamma L_\text{FBG}\right)}
 \end{equation}
 %
-where $\gamma = \sqrt{\k^2 - \hat{\sigma}^2}$ determines whether the field decays or oscillates within the grating. 
-Several key features of the reflection spectrum $\rho(\w)$ are most clearly visualised by plotting it as a function of normalised frequency detuning while varying $\kappa L_\text{FBG}$ for a fixed $N$ \cite{erdogan1997fiber}.
+where $\gamma = \sqrt{\k^2 - \hat{\sigma}^2}$ determines whether the field decays or oscillates within the grating.
+Several key features of the reflection spectrum $\rho(\w)$ are most clearly visualised by plotting it as a function of normalised frequency detuning while varying $\kappa L_\text{FBG}$ for a fixed $N$ \cite{erdogan1997fibre}.
 %
 \begin{equation*}
     \frac{\w - \w_\text{max}}{\w_\text{max}} = \frac{\hat{\sigma} L_\text{FBG}  }{\pi N}
 \end{equation*}
 %
-Figure~\ref{fig:uniform_spectra_varykL} shows representative amplitude reflectivity and group delay spectra for three uniform gratings, plotted against normalised frequency detuning. 
+Figure~\ref{fig:uniform_spectra_varykL} shows representative amplitude reflectivity and group delay spectra for three uniform gratings, plotted against normalised frequency detuning.
 The gratings are centred at the common laser wavelength of 1550 nm, with $\kappa L_\text{FBG} \in {0.5, 2, 5}$ and a fixed $N = 5000$, chosen to illustrate weak, moderate, and strong coupling regimes.
 Increasing $N$ (and thus $L_\text{FBG}$) results in a narrower reflection bandwidth, whereas decreasing $N$ (and thus $L_\text{FBG}$) produces a broader one, provided that $\kappa L_\text{FBG}$ remains constant.
 The reflection spectrum consists of a main lobe and a series of side lobes, separated by reflection zeros that are symmetrically spaced in wavelength on either side of the main lobe.
-For gratings with low $\kappa L_\text{FBG}$, such as 0.5, the main lobe has a bandwidth, defined as the interval between its reflection zeros, that is twice the width of the side lobes \cite{erdogan1997fiber}.
+For gratings with low $\kappa L_\text{FBG}$, such as 0.5, the main lobe has a bandwidth, defined as the interval between its reflection zeros, that is twice the width of the side lobes \cite{erdogan1997fibre}.
 Evidently, increasing $\kappa L_\text{FBG}$ increases the grating's maximum reflectivity and also broadens the main-lobe bandwidth while narrowing that of the side lobes.
 Additionally, the time delay is approximately constant for low reflectivities but becomes increasingly distorted as $\kappa L_\text{FBG}$ increases.
 Away from the main lobes, the time delays across all three cases are approximately the same, due to keeping the number of grating periods $N$ constant.
@@ -269,7 +272,8 @@ Figure~\ref{fig:uniform_spectra_varyLdneff} shows examples of reflection spectra
     \w_D = \frac{\pi c}{\Lambda n_{eff}^2}
 \end{equation}
 %
-highlighted to demonstrate the intrinsic shift of the Bragg resonance from the design frequency. The reflection spectrum of a uniform grating has a maximum reflectivity
+highlighted to demonstrate the intrinsic shift of the Bragg resonance from the design frequency.
+The reflection spectrum of a uniform grating has a maximum reflectivity
 %
 \begin{equation}
 \label{eq:rmax}
@@ -297,17 +301,17 @@ Outside the main lobe, the reflectivity peaks of the side lobes decay exponentia
 %
 \begin{figure}[!t]
     \includegraphics[width=\linewidth]{Images/Uniform_varying_L_dneff.pdf}
-    \caption{Examples of the magnitude and group delay of uniform FBG reflection spectra, illustrating the effect of varying $\dnbar$ and $L_\text{FBG}$. 
+    \caption{Examples of the magnitude and group delay of uniform FBG reflection spectra, illustrating the effect of varying $\dnbar$ and $L_\text{FBG}$.
     The nominal case (black curves) corresponds to $\dnbar = 5\e{-5}\neff$ and $L_\text{FBG} = 2.64,\text{mm}$; in (a) the grating length is doubled to $L_\text{FBG} = 5.28,\text{mm}$, and in (b) the index change is doubled to $\dnbar = 1\e{-4}\neff$.}
     \label{fig:uniform_spectra_varyLdneff}
 \end{figure}
 %
 \par
 %
-Figure~\ref{fig:uniform_spectra_varyLdneff}(a) shows that doubling $L_\text{FBG}$ increases $R$ because more grating periods contribute to reflection, reducing transmission. 
-At the same time, the bandwidth of each lobe is halved, while the shift of the reflection maximum from the design frequency remains unchanged. 
+Figure~\ref{fig:uniform_spectra_varyLdneff}(a) shows that doubling $L_\text{FBG}$ increases $R$ because more grating periods contribute to reflection, reducing transmission.
+At the same time, the bandwidth of each lobe is halved, while the shift of the reflection maximum from the design frequency remains unchanged.
 In addition, the group delay is approximately doubled, since the light interacts with twice as many grating periods.
-In contrast, doubling $\dnbar$, as shown in (b), again increases $R$, but now the shift from the Bragg resonance increases while the bandwidth remains unchanged. 
+In contrast, doubling $\dnbar$, as shown in (b), again increases $R$, but now the shift from the Bragg resonance increases while the bandwidth remains unchanged.
 The time delay is approximately the same between both cases, since the number of grating periods is unchanged.
 Because these two parameters jointly determine the three key spectral features (resonance shift, maximum reflectivity, and bandwidth), it is not possible to vary one feature independently of the others.
 Instead, a slight compensation to the grating period $\Lambda$ can be made, which shifts $\w_\text{max}$ while leaving $\wz$ and $R$ essentially unchanged.
@@ -324,18 +328,18 @@ Using this approximation, together with \eqref{eq:wBragg} and \eqref{eq:wz}, $\d
 \end{align}
 %
 These expressions provide a direct inversion from spectral targets (bandwidth, reflectivity, and centre frequency) to physical grating parameters, enabling practical FBG design from desired optical specifications.
-Taken together, these analytic results for uniform gratings provide the essential foundation for incorporating FBGs into feedback models of semiconductor lasers. 
+Taken together, these analytic results for uniform gratings provide the essential foundation for incorporating FBGs into feedback models of semiconductor lasers.
 This framework links grating design directly to ECM structure and dynamics, setting the stage for analysing FBG feedback within the LK equations.
 %
 %
 \section*{FBG distributed feedback}
 \label{sec:FBG_feedback}
 %
-The spectral selectivity of FBGs, combined with their practical advantages already noted such as all-fibre integration, low insertion loss, and design flexibility, makes them especially well suited for FOF in semiconductor laser systems. 
-Building on the analytic understanding of uniform gratings, FBGs provide a direct route to reshaping the ECM structure in semiconductor lasers by tailoring their feedback spectrum. 
+The spectral selectivity of FBGs, combined with their practical advantages already noted such as all-fibre integration, low insertion loss, and design flexibility, makes them especially well suited for FOF in semiconductor laser systems.
+Building on the analytic understanding of uniform gratings, FBGs provide a direct route to reshaping the ECM structure in semiconductor lasers by tailoring their feedback spectrum.
 This dual role, as practical devices and theoretical benchmarks, has motivated investigations of how FBG feedback modifies semiconductor laser dynamics within the LK framework.
 A schematic of a semiconductor laser under external feedback from an FBG is shown in Figure~\ref{fig:FBG_setup}.
-As discussed in \ref{subsubsec:FBG}, the reflection spectrum of an FBG can exhibit considerable complexity. 
+As discussed in \ref{subsubsec:FBG}, the reflection spectrum of an FBG can exhibit considerable complexity.
 Since an FBG acts as a spectral filter, the feedback term $F(t)$ is given by \eqref{eq:FOF} with reflection spectrum $\rho(\w)$ given by \eqref{eq:uniform_rho}.
 Equivalently, the feedback term can be expressed as a time-domain convolution,
 %
@@ -352,19 +356,19 @@ Despite the substantial computational and analytical challenges posed by this fe
 %
 \par
 %
-Early studies of FBG feedback relied mainly on numerical investigations, which provided limited analytic insight but revealed several important features of the resulting dynamics. 
-A primary motivation was the generation of broadband chaotic signals for applications such as high-speed optical random bit generation \cite{uchida2008fast} and chaos-based secure communication \cite{annovazzi2008secure}. 
-Compared with conventional mirror feedback, FBG feedback was shown to suppress the time-delay signature (TDS) much more effectively, thereby concealing the EC delay that autocorrelation-based attacks can exploit in encryption systems \cite{li2012distributed, jiang2021characterizing}. 
-This improvement was attributed to the distributed reflections along the FBG, which spread out the effective feedback delay. 
-Numerical studies demonstrated that TDS suppression improves as the FBG bandwidth decreases, owing to the stronger group-delay dispersion introduced by narrower gratings, while the FBG length plays little role in the suppression \cite{li2012distributed}. 
-However, this benefit comes with a trade-off: as the bandwidth narrows, the parameter regions supporting chaos shrink and are progressively replaced by stable period-1 oscillations \cite{li2020stable}. 
-Interestingly, FBG feedback can also generate chaos at shorter delays than mirror feedback, broadening the design space for compact devices \cite{li2012distributed}. 
-Beyond bandwidth effects, detuning between the laser frequency and the Bragg frequency plays a critical role: optimal TDS suppression occurs under positive detuning, consistent with the red-shift of the cavity resonance induced by the antiguidance effect \cite{li2015chaotic}. 
+Early studies of FBG feedback relied mainly on numerical investigations, which provided limited analytic insight but revealed several important features of the resulting dynamics.
+A primary motivation was the generation of broadband chaotic signals for applications such as high-speed optical random bit generation \cite{uchida2008fast} and chaos-based secure communication \cite{annovazzi2008secure}.
+Compared with conventional mirror feedback, FBG feedback was shown to suppress the time-delay signature (TDS) much more effectively, thereby concealing the EC delay that autocorrelation-based attacks can exploit in encryption systems \cite{li2012distributed, jiang2021characterizing}.
+This improvement was attributed to the distributed reflections along the FBG, which spread out the effective feedback delay.
+Numerical studies demonstrated that TDS suppression improves as the FBG bandwidth decreases, owing to the stronger group-delay dispersion introduced by narrower gratings, while the FBG length plays little role in the suppression \cite{li2012distributed}.
+However, this benefit comes with a trade-off: as the bandwidth narrows, the parameter regions supporting chaos shrink and are progressively replaced by stable period-1 oscillations \cite{li2020stable}.
+Interestingly, FBG feedback can also generate chaos at shorter delays than mirror feedback, broadening the design space for compact devices \cite{li2012distributed}.
+Beyond bandwidth effects, detuning between the laser frequency and the Bragg frequency plays a critical role: optimal TDS suppression occurs under positive detuning, consistent with the red-shift of the cavity resonance induced by the antiguidance effect \cite{li2015chaotic}.
 Together, these results established FBG feedback as both a practical route to more secure chaotic carriers and a rich platform for exploring how spectral filtering reshapes external feedback laser dynamics.
 %
 \par
 %
-The convolution representation for $F(t)$ can also be expressed as a distributed delay term. 
+The convolution representation for $F(t)$ can also be expressed as a distributed delay term.
 By definition,
 \begin{equation*}
 \tilde{\rho}(t) \otimes E(t-\tau) = \int_{-\infty}^{\infty} \tilde{\rho}(t-s) E(s-\tau)\,ds.
@@ -391,13 +395,13 @@ In addition, the broader dispersion of CFBGs enriches the dynamical behaviour of
 %
 \par
 %
-More recently, investigations have extended beyond the generation of chaotic signals, yet, as in earlier work, the use of the convolution representation for $F(t)$ has confined most studies to numerical integration of time series. 
-\Skenderas \textit{et al.} carried out a series of studies examining how detailed spectral features of FBGs impact semiconductor laser stability \cite{skenderas2021feedback, skenderas2022influence, skenderas2024impact}. 
-They showed that the positions of the zeros in the FBG reflection spectrum exert a strong influence on stability, with fluctuations emerging when these zeros overlap with the relaxation oscillation side lobes of the laser. 
-This effect was quantified by tracking the feedback rate required to trigger Hopf bifurcations for gratings of varying length (and thus bandwidth), highlighting that longer (narrower-band) gratings introduce stability oscillations even when overall reflectivity is kept constant. 
-An important observation was that detuning asymmetry, long observed in FBG feedback, was confirmed to be an intrinsic feature of the interaction between the spectral phase of the grating and the laser dynamics. 
-In later experimental work, they further demonstrated that small variations in the feedback phase, such as those induced by thermal tuning of the grating, can produce significant cyclic changes in stability, showing that both offset phase and phase fluctuations play a crucial role in shaping the dynamics \cite{skenderas2024impact}. 
-Overall, these studies show that while FBG feedback shares many broad features with filtered optical feedback, the detailed shape of the reflection spectrum—its zeros, side lobes, and phase—adds layers of complexity that strongly affect stability boundaries. 
+More recently, investigations have extended beyond the generation of chaotic signals, yet, as in earlier work, the use of the convolution representation for $F(t)$ has confined most studies to numerical integration of time series.
+\Skenderas \textit{et al.} carried out a series of studies examining how detailed spectral features of FBGs impact semiconductor laser stability \cite{skenderas2021feedback, skenderas2022influence, skenderas2024impact}.
+They showed that the positions of the zeros in the FBG reflection spectrum exert a strong influence on stability, with fluctuations emerging when these zeros overlap with the relaxation oscillation side lobes of the laser.
+This effect was quantified by tracking the feedback rate required to trigger Hopf bifurcations for gratings of varying length (and thus bandwidth), highlighting that longer (narrower-band) gratings introduce stability oscillations even when overall reflectivity is kept constant.
+An important observation was that detuning asymmetry, long observed in FBG feedback, was confirmed to be an intrinsic feature of the interaction between the spectral phase of the grating and the laser dynamics.
+In later experimental work, they further demonstrated that small variations in the feedback phase, such as those induced by thermal tuning of the grating, can produce significant cyclic changes in stability, showing that both offset phase and phase fluctuations play a crucial role in shaping the dynamics \cite{skenderas2024impact}.
+Overall, these studies show that while FBG feedback shares many broad features with filtered optical feedback, the detailed shape of the reflection spectrum—its zeros, side lobes, and phase—adds layers of complexity that strongly affect stability boundaries.
 %
 \par
 %

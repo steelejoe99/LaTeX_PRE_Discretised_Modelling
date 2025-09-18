@@ -4,257 +4,305 @@
 %
 \let\cleardoublepage\origcleardoublepage
 %
-To model the dynamics of a semiconductor laser with optical feedback from an external cavity, we use the well-known \textbf{Lang-Kobayashi equations} \cite{lang1980external}. These delay differential equations describe how the complex electric field \( E \) of the laser and the carrier inversion \( N \) evolve in time under the influence of both intrinsic gain mechanisms and delayed feedback. In dimensionalised form, the equations are written as:
+The LK equations in dimensional form are
 %
 \begin{gather}
 \label{eq:dimensionalised_LK}
 \begin{aligned}
-\frac{d E}{d s} &= \frac{1}{2} G_{\mathrm{M}0}(1 + i \alpha) \left[N - N_N\right] E + \kappa_0 e^{-i C_p} F(s, \tau_0)\\
-\frac{d N}{d s} &= J_0 - \gamma_0 N - \left[\Gamma_{\mathrm{M}0} + G_{\mathrm{N}0}(N - N_N)\right] |E|^2.\\
+\frac{d E}{d s} &= \tfrac{1}{2} G_{\mathrm{M}0}(1 + i \alpha)\,(N - N_N) E 
++ \kappa_0 e^{-i C_p} F(s, \tau_0), \\[0.3em]
+\frac{d N}{d s} &= J_0 - \gamma_0 N 
+- \left[\Gamma_{\mathrm{M}0} + G_{\mathrm{N}0}(N - N_N)\right] |E|^2,
 \end{aligned}
-\raisetag{-1.5em} % adjust as needed
 \end{gather}
 %
-The physical parameters in these equations are defined as follows:
-\begin{itemize}
-  \item \( \alpha \): linewidth enhancement factor
-  \item \( \gamma_0 \): carrier decay rate
-  \item \( \Gamma_{\mathrm{M}0} \): cavity decay rate
-  \item \( \kappa_0 \): feedback strength
-  \item \( \tau_0 \): external round-trip delay
-  \item \( G_{\mathrm{M}0}, G_{\mathrm{N}0} \): small-signal gain coefficients
-  \item \( J_0 \): pump current
-  \item \( N_N \): inversion at threshold
-\end{itemize}
+where \(E\) is the slowly varying complex field amplitude and \(N\) the carrier density.
+The parameters are defined as follows: 
+\(\alpha\) is the linewidth enhancement factor, 
+\(\gamma_0\) the carrier decay rate, 
+\(\Gamma_{\mathrm{M}0}\) the cavity decay rate, 
+\(\kappa_0\) the feedback strength, 
+and \(\tau_0\) the external round–trip delay. 
+The material response enters through the small-signal gain coefficients 
+\(G_{\mathrm{M}0}\) and \(G_{\mathrm{N}0}\), 
+while \(J_0\) denotes the pump current and \(N_N\) the inversion at threshold.
 %
 \par
 %
-To simplify the equations and reduce the number of parameters, we introduce scaled variables:
-%
+To simplify the equations and reduce the number of parameters, we introduce scaled variables
 \[
-X = \frac{G_{\mathrm{M}0}}{2 \gamma_p}(N - N_N), \quad A = \sqrt{\frac{G_{\mathrm{N}0}}{2 \gamma_0}} E,
+X = \frac{G_{\mathrm{M}0}}{2 \gamma_p}(N - N_N), 
+\qquad 
+A = \sqrt{\frac{G_{\mathrm{N}0}}{2 \gamma_0}}\, E,
 \]
-where \( \gamma_p = \Gamma_{\mathrm{M}0} G_{\mathrm{M}0} / G_{\mathrm{N}0} \) is a rescaled photon lifetime. Rescaling time via \( t = \gamma_p s \), the Lang-Kobayashi equations become:
-%
+where \( \gamma_p = \Gamma_{\mathrm{M}0} G_{\mathrm{M}0} / G_{\mathrm{N}0} \) is a rescaled photon lifetime. 
+Rescaling time as \( t = \gamma_p s \), the Lang–Kobayashi equations become
 \[
 \begin{gathered}
-\frac{d A}{d t} = (1 + i \alpha) A X + \eta e^{-i C_p} F(t,\tau) \\
-T \frac{d X}{d t} = P - X - (1 + 2X)|A|^2
+\frac{d A}{d t} = (1 + i \alpha)\, A X + \eta e^{-i C_p} F(t,\tau), \\[0.3em]
+T \frac{d X}{d t} = P - X - (1 + 2X)|A|^2.
 \end{gathered}
 \]
+Here, the dimensionless parameters are defined as follows. 
+The pumping rate above threshold is 
+\[
+P = \frac{G_{\mathrm{M}0}}{2 \gamma_p \gamma_0}(J_0 - \gamma_0 N_N),
+\]
+the ratio of photon to carrier lifetime is 
+\[
+T = \frac{\gamma_p}{\gamma_0},
+\]
+the normalized feedback strength is 
+\[
+\eta = \frac{\kappa_0 G_{\mathrm{N}0}}{G_{\mathrm{M}0} \Gamma_{\mathrm{M}0}},
+\]
+and the rescaled external delay is 
+\[
+\tau = \gamma_p \tau_0.
+\]
 %
-The transformed parameters are defined as:
+As a concrete example, consider the dimensionalised parameters  
+$
+\alpha = 3.5, \; 
+\gamma_0 = 1.0 \times 10^9, \; 
+\Gamma_{\mathrm{M}0} = 0.55 \times 10^9, \;
+\kappa_0 = 25.0 \times 10^9, \; 
+\tau_0 = 0.22 \times 10^{-9}, \;
+G_{\mathrm{M}0} = 50.0, \; 
+G_{\mathrm{N}0} = 0.05, \; 
+J_0 = 8.0 \times 10^9, \; 
+N_N = 5.0.
+$
 %
-\begin{itemize}
-  \item \( P = \frac{G_{\mathrm{M}0}}{2 \gamma_p \gamma_0}(J_0 - \gamma_0 N_N) \): pumping rate above threshold
-  \item \( T = \frac{\gamma_p}{\gamma_0} \): ratio of photon to carrier lifetime
-  \item \( \eta = \frac{\kappa_0 G_{\mathrm{N}0}}{G_{\mathrm{M}0} \Gamma_{\mathrm{M}0}} \): normalized feedback strength
-  \item \( \tau = \gamma_p \tau_0 \): rescaled external delay
-\end{itemize}
+These yield a rescaled photon lifetime \(\gamma_p = 5.5 \times 10^{11}\), giving the nondimensionalised parameters
 %
-For example, dimensionalised parameter values $\alpha = 3.5, \, \gamma_0 = 1.0 \times 10^9, \, \Gamma_{\mathrm{M}0} = 0.55 \times 10^9,\,
-\kappa_0 = 25.0 \times 10^9, \, \tau_0 = 0.22 \times 10^{-9}, \, G_{\mathrm{M}0} = 50.0, \, G_{\mathrm{N}0} = 0.05, \, J_0 = 8.0 \times 10^9, \,
-N_N = 5.0$ result in $\gamma_p = 5.5 \times 10^{11}$ and nondimensionalised parameter values $\a = 3.5, \, P = 0.136, \, T = 550, \, \eta = 0.0455, \, \tau = 121$.
+$
+\alpha = 3.5, \; 
+P = 0.136, \; 
+T = 550, \; 
+\eta = 0.0455, \; 
+\tau = 121,
+$
 %
-It is noted that one can get from this nondimensionalised time to seconds by multiplying by the factor $\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}$.
-For 1550 nm light, the lasers angular frequency corresponds to $\w_c=1216\;\text{rad\,ps}^{-1}$. 
-It is then important to note that $\wz$ in the derived form of the LK equations is a dimensionless quantity normalised by the cavity lifetime $\tau_p$, 
-which for these laser parameters is equal to $1.82 \,\text{ps}$, see Appendix~\ref{app:LK_approx} for details. 
-Therefore, the angular frequency is nondimensionalised to $\w_\text{max}=2211$ and then, beginning with a reflectivity $R = 0.5$ the grating number, calculated through \eqref{eq:wztoN}, is $N \approx 22440$. 
+which are the values used in Sections~\ref{subsec:FBG_discretised_derivation} and~\ref{subsec:EGM_structure}.  
+%
+\par
+%
+The nondimensionalised time unit corresponds to a photon lifetime of \(\tau_p = 1/\gamma_p = 1.82 \times 10^{-12}\,\text{s}\). 
+For operation at \(\lambda = 1550\,\text{nm}\), the laser angular frequency is \(\omega_c = 1216\,\text{rad\,ps}^{-1}\). 
+It follows that \(\wz\) in the LK equations is dimensionless, normalised by \(\tau_p = 1/\gamma_p = 1.82\,\text{ps}\). 
+With this scaling, the angular frequency is nondimensionalised to \(\omega_{\max} = 2211\), which in turn requires \(N \approx 22{,}500\) layers according to~\eqref{eq:wz_approx}.
 %
 %
-\section{Convolution FBG LK model equivalence}
+\subsection{Discretisation of dimensionalised convolution FBG–LK model}
 \label{app:Li_chaos_nondim}
 %
-The form of the equations analysed by Li \textit{et. al} \cite{li2012distributed,li2015chaotic,li2020stable} are given by
+We show here how the convolution-based model of Li \textit{et al.} \cite{li2012distributed,li2015chaotic,li2020stable} reduces, under mild and explicitly stated approximations, to the dimensionalised LK form \eqref{eq:dimensionalised_LK} used throughout this paper.
 %
+Li \textit{et al.} consider
+%
+\begin{equation} 
+    \left\{ 
+        \begin{aligned} \frac{d a}{d t} &= \frac{1-i b}{2} \left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} \tilde{n} - \gamma_{p}\left(|a|^{2}-1\right)\right] a \\ 
+            &\hspace{2cm} + \gamma_{c} \xi_{f} e^{i \theta} \left[r(t) e^{-i \Delta \Omega t}\right] * a\!\left(t-\tau_\text{RT}\right) \\ 
+            \frac{d \tilde{n}}{d t} &= -\left(\gamma_{s}+\gamma_{n}|a|^{2}\right) \tilde{n} - \gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|a|^{2}\right) \left(|a|^{2}-1\right) 
+        \end{aligned} \right. 
+\end{equation}
+%
+where $r(t)$ is the impulse response associated with the FBG reflectivity and $\Delta\Omega$ is the grating detuning. 
+For consistency with \eqref{eq:dimensionalised_LK}, define the notational relabeling
+$
+a=E,\; \tilde{n}=N,\;
+F(t):=\big[r(t)e^{-i\Delta\Omega t}\big]*E\!\left(t-\tau_{\rm RT}\right),\; t=s,
+$
+ which gives
 \begin{equation}
+\label{eq:Li_rewritten}
 \left\{
 \begin{aligned}
-\frac{d a}{d t} &= \frac{1-i b}{2}
-   \left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} \tilde{n}
-         - \gamma_{p}\left(|a|^{2}-1\right)\right] a \\
-&\hspace{2cm} + \gamma_{c} \xi_{f} e^{i \theta}
-   \left[r(t) e^{-i \Delta \Omega t}\right] * a\!\left(t-\tau_\text{RT}\right) \\
-\frac{d \tilde{n}}{d t} &= -\left(\gamma_{s}+\gamma_{n}|a|^{2}\right) \tilde{n}
-   - \gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|a|^{2}\right)
-   \left(|a|^{2}-1\right)
+\frac{d E}{d s} &= \frac{1-ib}{2}
+\left[\frac{\gamma_{c}\gamma_{n}}{\gamma_{s}\tilde{J}}\,N
+      -\gamma_{p}\big(|E|^{2}-1\big)\right]E
++ \gamma_{c}\,\xi_{f}\, e^{i\theta} F, \\
+\frac{d N}{d s} &= -\big(\gamma_{s}+\gamma_{n}|E|^{2}\big) N
+   - \gamma_{s}\tilde{J}\!\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^{2}\right)\!\big(|E|^{2}-1\big).
 \end{aligned}
 \right.
 \end{equation}
-
 %
-we first make a change of notation:
+\par
 %
-\begin{equation*}
-\left\{\begin{aligned}
-a & =E \\
-\tilde{n} & =N \\
-F(t) & =\left[r(t) e^{-i \Delta \Omega t}\right] * a\left(t-\tau_\text{RT}\right) \\
-t & =s
-\end{aligned}\right.
-\end{equation*}
+We assume the usual near-threshold/weak-saturation ordering used by Li \textit{et al.}:
 %
-Resulting in
-%
-\begin{equation*}
-\left\{\begin{array}{l}
-\displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{c} \gamma_{n}}{\gamma_{s} \tilde{J}} N-\gamma_{p}\left(|E|^{2}-1\right)\right] E+\gamma_{c} \xi_{f} e^{i\theta} F \\
-\displaystyle \frac{d N}{d s}=-\left(\gamma_{s}+\gamma_{n}|E|^{2}\right) N-\gamma_{s} \tilde{J}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^{2}\right)\left(|E|^{2}-1\right)
-\end{array}\right.
-\end{equation*}
-%
-% Now, rescaling time by $s=\gamma_{c} t$
-% %
-% \begin{equation*}
-% \left\{\begin{array}{l}
-% \displaystyle \frac{d E}{d s}=\frac{1-ib}{2}\left[\frac{\gamma_{n}}{\gamma_{s} \tilde{J}} N-\frac{\gamma_{p}}{\gamma_{c}}\left(|E|^{2}-1\right)\right] E+\xi_{p} e^{i\theta} F \\
-% \displaystyle \frac{d N}{d s}=-\left(\frac{\gamma_{s}}{\gamma_{c}}+\frac{\gamma_{n}}{\gamma_{c}}|E|^{2}\right) N-\frac{\gamma_{s} \tilde{J}}{\gamma_{c}}\left(1-\frac{\gamma_{p}}{\gamma_{c}}|E|^2\right)\left(|E|^{2}-1\right)
-% \end{array}\right.
-% \end{equation*}
-% %
-Focusing on the first equation, we use:
-%
-\begin{equation*}
-    \frac{\gamma_{n}\gamma_{c}}{\gamma_{s} \tilde{J}} \gg \gamma_{p}
-\end{equation*}
-%
-to obtain:
-%
-\begin{equation*}
-    \frac{d E}{d s} \approx \frac{1}{2} \frac{\gamma_n \gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+ \gamma_c \xi_{f} e^{i\theta} F
-\end{equation*}
-%
-Then, for the second equation,
-%
-\begin{align*}
-\displaystyle \frac{d N}{d s} &= -\gamma_s N - \gamma_n|E|^{2} N + \gamma_{s} \tilde{J} - \frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{2}\\
-&\hspace{3.2cm} - \gamma_s \tilde{J}|E|^2 + \frac{\gamma_s \gamma_p \tilde{J}} {\gamma_{c}}|E|^{4}\\
-&\hspace{-0.7cm} =\gamma_{s} \tilde{J}-\gamma_{s} N-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N\right]|E|^{2}+\frac{\gamma_{s} \gamma_{p} \tilde{J}}{\gamma_{c}}|E|^{4}
-\end{align*}
-%
-Neglecting the $|E|^{4}$ term, the system can therefore be written as:
-%
-\begin{equation*}
-\left\{\begin{array}{l}
-\displaystyle \frac{d E}{d s}=\frac{1}{2} \frac{\gamma_{n}\gamma_c}{\gamma_{s} \tilde{J}}(1-ib) N E+\gamma_c\xi_{f} e^{i\theta} F \\ 
-\displaystyle \frac{d N}{d s}=\gamma_{s} \tilde{J}-\gamma_{s} N-\left[\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right)+\gamma_{n} N\right]|E|^{2}\end{array}\right.
-\end{equation*}
-%
-which is precisely the form of \eqref{eq:dimensionalised_LK} for
-%
-$$
+\[
+\frac{\gamma_{c}\gamma_{n}}{\gamma_{s}\tilde{J}} \gg \gamma_{p},
+\]
+so the $-\tfrac{1-ib}{2}\gamma_p(|E|^2-1)E$ term may be dropped in the field equation to leading order. 
+Under this ordering, \eqref{eq:Li_rewritten} becomes
+\begin{equation}
+\label{eq:Li_leading}
+\left\{
 \begin{aligned}
-& b = -\a, \; \theta=-C_{p}, \; G_\text{M0}=\frac{\gamma_{n}}{\gamma_{s} \tilde{J}}, \; \kappa_{0}=\gamma_{c} \xi_{f}, \\
-& J_{0}=\gamma_{s} \tilde{J}, \; \gamma_{0}=\gamma_{s}, \; \Gamma_\text{M0}=\gamma_{s} \tilde{J}\left(1+\frac{\gamma_{p}}{\gamma_{c}}\right), \; G_\text{N0}=\gamma_{n}
+\frac{d E}{d s} &\approx 
+\frac{1}{2}\frac{\gamma_{c}\gamma_{n}}{\gamma_{s}\tilde{J}}\,(1-ib)\,N E
++ \gamma_{c}\xi_f e^{i\theta} F,\\[0.25em]
+\frac{d N}{d s} &= -\gamma_s N - \gamma_n|E|^2 N 
+- \gamma_s\tilde{J}\!\left(1-\frac{\gamma_p}{\gamma_c}|E|^2\right)\!(|E|^2-1).
 \end{aligned}
-$$
+\right.
+\end{equation}
+Expanding the carrier equation and grouping powers of $|E|^2$ yields
+\begin{align*}
+\frac{d N}{d s} 
+&= \gamma_s\tilde{J} - \gamma_s N 
+  - \Big[\gamma_s\tilde{J}\!\left(1+\tfrac{\gamma_p}{\gamma_c}\right)+\gamma_n N\Big]|E|^2
+  + \frac{\gamma_s\gamma_p\tilde{J}}{\gamma_c}|E|^4.
+\end{align*}
+Neglecting the quartic term $|E|^4$ under weak saturation gives the closed system
+\begin{equation}
+\label{eq:Li_reduced}
+\left\{
+\begin{aligned}
+\frac{d E}{d s} &= 
+\frac{1}{2}\frac{\gamma_{c}\gamma_{n}}{\gamma_{s}\tilde{J}}\,(1-ib)\,N E
++ \gamma_{c}\xi_f e^{i\theta} F,\\
+\frac{d N}{d s} &= \gamma_s\tilde{J} - \gamma_s N 
+- \Big[\gamma_s\tilde{J}\!\left(1+\tfrac{\gamma_p}{\gamma_c}\right)+\gamma_n N\Big]|E|^2.
+\end{aligned}
+\right.
+\end{equation}
+%
+\par
+%
+Comparing \eqref{eq:Li_reduced} with \eqref{eq:dimensionalised_LK}, we obtain the one-to-one parameter correspondence
+%
+$
+b=-\alpha,\; \theta=-C_p,\; 
+G_{\mathrm{M}0}=\gamma_c\gamma_n/\gamma_s\tilde{J},\;
+\kappa_0=\gamma_c\xi_f,\;
+J_0=\gamma_s\tilde{J},\; 
+\gamma_0=\gamma_s,\; 
+\Gamma_{\mathrm{M}0}=\gamma_s\tilde{J}\!\left(1+\gamma_p/\gamma_c\right),\;
+G_{\mathrm{N}0}=\gamma_n,
+$
+%
+and the external delay $\tau_0=\tau_{\rm RT}$. 
+The convolution kernel $r(t)e^{-i\Delta\Omega t}$ plays the role of the (dimensioned) impulse response used in \eqref{eq:dimensionalised_LK}, with $\Delta\Omega$ corresponding to the grating detuning.
+%
+\par
+%
+In summary, under the standard weak-saturation ordering and after neglecting the quartic $|E|^4$ term, the convolution-based equations of \cite{li2012distributed,li2015chaotic,li2020stable} reduce exactly to the dimensionalised LK form \eqref{eq:dimensionalised_LK}, with the above parameter identifications and with the feedback written as a time-domain convolution against the FBG impulse response.
+This establishes the formal equivalence used for the comparisons in the main text.
 %
 %
-\section{Multiple EC reflection FBG LK model conversion}
+\section{Discretisation of multiple external-cavity reflections in the FBG LK model}
 \label{app:EC_multiple}
 %
+A key extension of the single-reflection Lang–Kobayashi model is to include multiple reflections within the EC. 
+In this case, the reflected field can be written as
 \begin{equation*}
-    E_r(t) = E(t) + \frac{R_2^2 - 1}{R_2^2} \sum_{n=1}^\infty (-R_2 R)^n e^{-i n C_p} E(t-n \tau)
+    E_r(t) = E(t) + \frac{R_2^2 - 1}{R_2^2} \sum_{n=1}^\infty (-R_2 R)^n e^{-i n C_p} E(t-n \tau),
 \end{equation*}
 %
-Indeed, truncating this expression for $F(t)$ to first order reduces to single reflection feedback. Taking the Taylor expansion of the logarithm,
+where $R_2$ is the reflectivity of the front facet of the laser, $R$ the external mirror reflectivity, and $C_p$ the cavity phase. 
+Truncating this series to first order recovers the familiar single-reflection feedback term. 
+Indeed, expanding the logarithm in the feedback term gives
 %
 \begin{equation*}
     \begin{aligned}
-        &E(t) \ln{\left[ \frac{E_r(t)}{E(t)} \right]} = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}\left( \frac{E_r(t)}{E(t)} - 1\right)^n \\
-        &\,\overset{n=1}{\approx} E(t)\left( \frac{E(t) + \frac{R_2^2 - 1}{R_2^2}(-R_2 R)e^{-i C_p} E(t - \tau) - E(t)}{E(t)} \right)\\
-        &\;\;= \eta e^{-i C_p} E(t - \tau)
-    \end{aligned}   
+    E(t) \ln{\!\left(\frac{E_r(t)}{E(t)}\right)} 
+    &\approx E(t)\!\left(\frac{\tfrac{R_2^2 - 1}{R_2^2}(-R_2 R)e^{-i C_p} E(t-\tau)}{E(t)}\right) \\
+    &= \eta e^{-i C_p} E(t-\tau),
+    \end{aligned}
 \end{equation*}
 %
-as desired.
-
-The form of the LK equations studied by Naumenko \textit{et al.} \cite{naumenko2003characteristics,naumenko2004slow} is given by
-\begin{equation}
-\left\{
-\begin{aligned}
-\frac{d E}{d t} &= \left[\frac{1}{2} \Gamma G_N \big\{ i \alpha\left(N-N_{\text {th }}\right)+g(N, I) \big\} \right. \\
-                &\left.\hspace{2cm} - \frac{1}{2 \tau_\mu}+\frac{1}{\tau_\text{in}} \ln \left(\frac{\bar{F}(t)}{E}\right)+i \Delta \omega_0\right] E\\
-\frac{d N}{d t} &= \frac{I}{e V}-\frac{N}{\tau_N(N)}-G_N \, g(N, I) I
-\end{aligned}
-\right.
-\end{equation}
+as expected.
 %
-where $g(N, I)$ is the nonlinear gain, $N / \tau_N(N)$ is the spontaneous emission rate, $\Delta \omega_0$ is the frequency chirp due to thermal effects when the injection current is changed, and,
 %
-\begin{gather}
-\begin{aligned}
-\bar{F}(t) &=  E+\frac{(-1)}{2 \pi} \frac{\left(1-r_2^2\right)}{r_2^2} \sum_{n=1}^{\infty} e^{-i \omega_0 n \tau} \times \\
-            &\int_{-\infty}^{+\infty} d \omega\left(-r_2 r_B(\omega)\right)^n e^{i \omega(t-n \tau)} \int_{-\infty}^{+\infty} d t^{\prime} E\left(t^{\prime}\right) e^{-i \omega t^{\prime}}
-\end{aligned}
+\subsubsection*{Multiple-reflection formulation}
+%
+Naumenko \textit{et al.} \cite{naumenko2003characteristics,naumenko2004slow} generalised the LK equations to explicitly incorporate this logarithmic multiple-reflection term:
+%
+\begin{equation*} 
+    \left\{\begin{aligned}
+         \frac{d E}{d s} &= \frac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)\left(N-N_{\text {th }}\right) E + \ln \left(\frac{\bar{F}}{E}\right) E \\ 
+        \frac{d N}{d s} &= \frac{\tau_{\text{in}}\left(J-\bar{J}_0\right)}{e V}-\frac{\tau_\text{in}}{\tau_e} N-\left[\frac{\tau_\text{in}}{\Gamma \tau_{ph}}+G_N \tau_\text{in}\left(N-N_{\text{th}}\right)\right]|E|^2 
+    \end{aligned}\right. 
+\end{equation*}
+%
+with
+%
+\begin{gather} 
+    \begin{aligned} 
+    \bar{F}(t) &= E+\frac{(-1)}{2 \pi} \frac{\left(1-r_2^2\right)}{r_2^2} \sum_{n=1}^{\infty} e^{-i \omega_0 n \tau} \times \\ 
+    &\int_{-\infty}^{+\infty} d \omega\left(-r_2 r_B(\omega)\right)^n e^{i \omega(t-n \tau)} \int_{-\infty}^{+\infty} d t^{\prime} E\left(t^{\prime}\right) e^{-i \omega t^{\prime}} 
+    \end{aligned} 
 \end{gather}
 %
-Assuming a negligible gain compression factor and thermal frequency detuning (by setting $\epsilon \approx 0$ and $k=0$, respectively, following the expressions in \cite{naumenko2003characteristics}), and linearising the spontaneous emission rate, these equations can be rewritten as
+%
+\subsubsection*{Reduction to the standard LK form}
+%
+By neglecting gain compression ($\epsilon \approx 0$) and thermal detuning ($k=0$), and linearising the spontaneous emission term, the equations reduce to
 %
 \begin{equation*}
-\left\{\begin{aligned}
-\frac{d E}{d t} &= \frac{1}{2} \Gamma G_N(1+i \alpha)\left(N-N_\text{th}\right) E + \frac{1}{\tau_\text{in}} \ln \left(\frac{\bar{F}(t)}{E}\right) E 
-\\
-\frac{d N}{d t} &= \frac{J-\bar{J}_0}{e V}-\frac{N}{\tau_0}-\left[\frac{1}{\Gamma \tau_{p h}} + G_N\left(N-N_\text{th}\right)\right]|E|^2
-\end{aligned}\right.
+\left\{
+\begin{aligned}
+\frac{d E}{d t} &= \tfrac{1}{2} \Gamma G_N(1+i \alpha)(N-N_\text{th}) E 
++ \frac{1}{\tau_\text{in}} \ln \!\left(\tfrac{\bar{F}(t)}{E}\right) E, \\
+\frac{d N}{d t} &= \frac{J-\bar{J}_0}{e V}-\frac{N}{\tau_0}
+-\Big[\tfrac{1}{\Gamma \tau_{ph}} + G_N(N-N_\text{th})\Big]|E|^2.
+\end{aligned}
+\right.
 \end{equation*}
 %
-Now, rescaling time by $t=\tau_\text{in} s$, one obtains
+Rescaling time by $t=\tau_\text{in} s$ yields
 %
 \begin{equation*}
-\left\{\begin{aligned}
-\frac{d E}{d s} &= \frac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)\left(N-N_{\text {th }}\right) E + \ln \left(\frac{\bar{F}}{E}\right) E
-\\
-\frac{d N}{d s} &= \frac{\tau_{\text{in}}\left(J-\bar{J}_0\right)}{e V}-\frac{\tau_\text{in}}{\tau_e} N-\left[\frac{\tau_\text{in}}{\Gamma \tau_{ph}}+G_N \tau_\text{in}\left(N-N_{\text{th}}\right)\right]|E|^2
-\end{aligned}\right.
+\left\{
+\begin{aligned}
+\frac{d E}{d s} &= \tfrac{1}{2} \tau_\text{in} \Gamma G_N(1+i \alpha)(N-N_{\text{th}}) E + \ln \!\left(\tfrac{\bar{F}}{E}\right) E, \\
+\frac{d N}{d s} &= \tfrac{\tau_{\text{in}}(J-\bar{J}_0)}{e V}-\tfrac{\tau_\text{in}}{\tau_e} N
+-\Big[\tfrac{\tau_\text{in}}{\Gamma \tau_{ph}}+G_N \tau_\text{in}(N-N_{\text{th}})\Big]|E|^2,
+\end{aligned}
+\right.
 \end{equation*}
 %
-Which is precisely the form \eqref{eq:dimensionalised_LK} when replacing the multiple EC reflection term $E \ln \left( \bar{F} / E \right)$ with $\kappa_{0,\mathrm{eff}} \, e^{-i C_p} F$ for
+which matches the dimensionalised LK form \eqref{eq:dimensionalised_LK} when identifying
 %
-\[ \alpha = \alpha , \quad N_N = N_{\text{th}}, \quad G_\text{M0} = \tau_\text{in} \Gamma G_N, \quad G_\text{N0} = G_N \tau_\text{in} 
-\]
-\[
-J_0 = \frac{\tau_\text{in}(J-\bar{J}_0)}{e V}, \quad \gamma_0 = \frac{\tau_\text{in}}{\tau_e}, \quad \Gamma_\text{N0} = \frac{\tau_\text{in}}{\Gamma \tau_\text{ph}}, \quad \tau_0 = \frac{2 L_\text{ext} n_\text{ext}}{c \tau_\text{in}} 
-\]
+$
+\alpha = \alpha, \; 
+N_N = N_{\text{th}}, \; 
+G_\text{M0} = \tau_\text{in} \Gamma G_N, \; 
+G_\text{N0} = G_N \tau_\text{in}, \;
+J_0 = \tau_\text{in}(J-\bar{J}_0)/e V, \;
+\gamma_0 = \tau_\text{in}/\tau_e, \; 
+\Gamma_\text{M0} = \tau_\text{in}/\Gamma \tau_{ph}, \; 
+\tau_0 = 2 L_\text{ext} n_\text{ext}/c \tau_\text{in}
+$.
 %
-where:
+\par
+%
+Finally, the multiple-reflection feedback term reduces in the single-reflection limit to
 %
 \begin{equation*}
-\tau_\text{ph}=\frac{1}{c \alpha_\text{in} / n_g - 1 / \tau_\text{in} \ln \left(R_1 R_2\right)} \text{ and } N_{\text{th}} = N_0+\frac{1}{\Gamma G_N \tau_\text{ph}} 
+    E \ln \left(\tfrac{\bar{F}}{E}\right) \approx \frac{1-R_2^2}{R_2} e^{-i C_p} F,
 \end{equation*}
 %
-$\k_0 = \k_{0,\mathrm{eff}} R$ can be determined by reducing the multiple EC reflection feedback term as a single reflection,
+so that
 %
 \begin{equation*}
-E \ln \left( \frac{\bar{F}}{E} \right) \overset{n=1}{\approx} \frac{1-R_2^2}{R_2}e^{-iC_p} \mathcal{F}^{-1}\big[ \rho(\w) \mathcal{F}\left[ E(s-\tau_0) \right](\w) \big](s)
+    \kappa_0 = \frac{1-R_2^2}{R_2} R.
 \end{equation*}
 %
-which is precisely in our notation
+\par
 %
-\begin{equation*}
-E \ln \left(\frac{\bar{F}}{E}\right)=\frac{1-R_2^2}{R_2} e^{-i C_p} F
-\end{equation*}
-%
-Therefore, in the single reflection case:
-%
-\begin{equation*}
-    \k_0=\frac{1-R_2^2}{R_2} R
-\end{equation*}
-%
-Then, we can convert to the non-dimensionalised model following the transformations in Appendix~\ref{sec:LK_nondim}.
+Thus the Naumenko model and the standard LK formulation are equivalent up to the choice of effective feedback strength, completing the connection between multiple- and single-reflection descriptions.
 %
 %
-\section{Derivation of Variational equations for the Discretised reflection FBG LK Equations}
+subsection{Derivation of Variational equations for the Discretised reflection FBG LK Equations}
 \label{app:lyapunov}
 %
-Beginning with the discretised reflections model, consisting of the complex valued electric field variable $E$ and real valued carrier density variable $N$. 
-\begin{align*}
-\dot{E}&=(1+i \alpha) N E+\eta(1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^{k} e^{-i \omega_B \delta \tau} E\left(t-\tau_k \right) \\
-\dot{N}&=\frac{1}{T}\left[P-N-(1+2 N)|E|^{2}\right]
-\end{align*}
-%
-The variational equations are defined as
+Beginning with the discretised reflections model, consisting of the complex valued electric field variable $E$ and real valued carrier density variable $N$ \eqref{eq:LK_discretised}, the variational equations are defined as
 %
 \begin{equation}
     \frac{d}{d t}\binom{\delta E}{\delta N} = \mathbf{J}(\underline{F})\binom{\delta E}{\delta N} + \sum_{k=1}^{N}\mathbf{J}_{\tau_{k}}(\underline{F})\binom{\delta E_{\tau_{k}}}{\delta N_{\tau_{k}}}
@@ -267,6 +315,8 @@ where $\underline{F}(t)=(\dot{E}(t), \dot{N}(t))^T$, which results in
     \label{eq:variational}
     \dot{\delta E}(t) &= (1+i \alpha)[\delta E \; N + E \; \delta N]\\
                 &\hspace{1cm} + \eta(1-t) e^{-i C_p} \sum_{k=0}^{N-1} t^{k} e^{-i \wB \dt} \delta E\left(t-\tau_{k}\right) \\
-    \dot{\delta N}(t) &=-\frac{1}{T}\left[2(1+2 N) \text{Re}\left\{\overline{E} \; \delta E\right\} + (1+2|E|^{2} ) \delta N \right]
+    \dot{\delta N}(t) &=-\frac{1}{T}\left[2(1+2 N) \text{Re}\left\{\overline{E} \; \delta E\right\} + (1+2|E|^{2} ) \delta N \right].
 \end{aligned}
 \end{gather}
+%
+These variational equations then can be used to calculate Lyapunov spectra as done in this work using the method outlined in \cite{farmer1982chaotic}.

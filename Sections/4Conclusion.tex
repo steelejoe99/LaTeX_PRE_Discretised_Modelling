@@ -1,11 +1,98 @@
 % !TeX root = ../main.tex
-\section*{Conclusions and future developments}
+\section{Conclusions and future developments}
 \label{sec:conclusions}
 %
-While a low reflectivity $R$ does provide the desired transmission zeros, the relative errors in both total reflectivity $R_\text{error}$ and delay $\tau_\text{error}$ are larger compared to larger total reflectivities. 
-This is demonstrated in Figure~\ref{fig:NR_Selection}, which visualises the combined relative errors $R_\text{error}$ and $\tau_\text{error}$ using the Euclidean metric $\| R_\text{error}, \tau_\text{error} \|_{_2} = \sqrt{R_\text{error}^2 + \tau_\text{error}^2}$. 
-For the choice $N=10$, a total reflectivity $R_\text{approx} = 0.75$ would provide a lower combined error of 4\% as shown in (a) compared to the $R_\text{approx} = 0.1$ which has a combined error of 19\%. 
-As the ability to effectively describe and analyse transmission zeros of FBGs is of great interest, this increase in combined error, which is still relatively low from a modelling perspective, is a an acceptable trade-off.
+\subsection{Discussion}
+\label{subsec:discussion}
+%
+In this work, we set out to replace the analytically unwieldly convolution-based descriptions of FBG feedback with a formulation that couples directly to grating design parameters while preserving the DDE structure of the LK equations.
+The discretised-reflection model developed here achieves exactly that.
+By representing a uniform FBG as a finite stack of identical layers, each contributing a delayed, phase-shifted replica of the electric field, the feedback term reduces to a finite sum of discrete delays.
+This describes the system within DDE framework, opening the door to closed-form mode equations, rigorous continuation, and variational analyses that are not accessible in the convolution setting.
+%
+\par
+%
+A central ingredient is the introduction of layer-by-layer effective transmission and reflection coefficients, $r$ and $t$, chosen so that the summed delayed contributions reproduce the known total reflectivity of a uniform grating.
+These coefficients are effective rather than Fresnel: they contain the cumulative action of many internal interfaces while satisfying the intuitive balance $r+t=1$.
+This lead to the simple and transparent relation $t = (1-R)^{1/N}$ which links device-level targets (overall reflectivity $R$) to the strength and weighting of the discrete feedback terms.
+Beyond reflectivity, the model also reproduces the effective delay of the grating with high accuracy across parameter ranges of interest, so both amplitude and timing benchmarks are met within a single compact parameterisation.
+%
+\par
+%
+Formally, the discretised impulse response is an exponentially weighted train of delta functions with phase increments that encode propagation through successive layers.
+Substituting this impulse response into the LK equations yielded a feedback term that is a finite sum over delayed fields 
+This construction preserves the DDE form and, in the plane-mirror limit $t\rightarrow 0$ recovers the standard COF feedback term, providing a clean bridge between the mirror and grating cases.
+%
+\par
+%
+On this foundation we derived the EGMs: steady states of the discretised system analogous to ECMs in the mirror case and EFMs in the Lorentzian-filter case.
+We obtained an implicit equation for the EGM frequencies $\w_s$ expressed the EGM envelope in closed form, and recovered the COF ECM relation in the plane-mirror limit.
+Critically, the EGM envelope $f_\text{env}$ acts as a counterpart of the grating’s reflection spectrum: its zeros, lobes, and bandwidth reproduce the spectral structure that the grating imposes.
+This gives a direct spectral interpretation of the time-domain model and supplies a natural diagnostic for design and analysis.
+%
+\par
+%
+We then showed how practical parameter choices render the model both physically faithful and computationally tractable.
+To resolve reflection zeros sharply one should use $R\ll1$ and fold overall feedback into an effective rate $\eta R$.
+With this condition on $R$, the reflection-zero spacing obeys \eqref{eq:wz_approx} and as a result, the bandwidth can be fixed by keeping the product $N\dt$ (equivalently, the grating length) constant.
+This decouples numerical tractability from optical realism: one can work with modest $N$ while preserving the correct spectral window, provided $N$ exceeds the simple lower bounds given by \eqref{eq:Nmin} that prevents artefacts from repeated lobes.
+To this end, we demonstrated that EGM structures remain essentially unchanged when 
+%
+\par
+%
+We extended these analytic expressions by seeking intersections of $f_\text{env}$ to classify and count EGM components.
+Continuation of the coupled conditions \eqref{eq:EGM_components,eq:EGM_components_fold} produces global bifurcation diagrams in the $(\wz,wB)$-plane.
+The boundary between one and two components assumes a cusp-shaped curve remarkably similar to that known for FOF feedback, while additional fold curves accumulate and terminate at cusps to create regions with three or more components.
+We identified “mixed” components (containing neither the free-running frequency nor the Bragg frequency) that have no analogue in the Lorentzian-filter case.
+We further quantified how too-small $N$ distorts inner fold curves and mapped the resulting invalid regions; the predicted $N_\text{min}$ bounds given by \eqref{eq:Nmin} accurately capture the onset of such artefacts.
+%
+\par
+%
+We validated the spectral side of the model by comparing EGM structures to those obtained with the multiple-reflection formulation of Naumenko \textit{et al.}
+Despite their more elaborate feedback representation, our discretised model reproduces the locations of EGM branches, the maximal-gain mode, and the organisation of solutions across bandwidth and detuning with excellent accuracy.
+Distortions along the intensity axis, attributable to gain-suppression effects absent in our simplified equations, do not affect the spectral agreement or number of modes.
+%
+\par
+%
+Turning to dynamics, we connected stability fluctuations to the alignment of feedback zeros with intrinsic laser frequencies.
+Specifically, overlap with the free-running frequency and overlap with the RO frequency. 
+In the first case, zeros suppress the central lasing resonance, creating stability windows whose boundaries mirror the inverse of the reflection profile.
+In the second, zeros suppress the RO sidebands, producing stability peaks at grating lengths that satisfy \eqref{eq:RO_stability}.
+Both mechanisms, previously identified in convolution-based simulations, are recovered here within a framework that permits precise Hopf continuation and direct comparison to EGM stability.
+%
+\par
+%
+Comparisons against two-parameter dynamical mappings from Li \textit{et al.} show close agreement in the organisation of steady, periodic, and complex dynamics across the detuning–feedback plane.
+Our formulation sharpens these maps by overlaying Hopf curves of steady EGMs and, crucially, by enabling computation of the full Lyapunov spectrum via explicit variational equations.
+This makes it possible to diagnose instability growth rates, distinguish quasi-periodic from chaotic regimes, and estimate attractor dimension via the Kaplan–Yorke formula, capabilities that are either impractical or only partially applied in convolution studies.
+In parameter regions previously labelled “chaotic”, we can state precisely where positive exponents occur, where tori bound higher-period windows, and how these sets organise around codimension-2 points.
+%
+\par
+%
+Finally, investigated the RO-suppression mechanism in the context closest to our equations (\Skenderas \textit{et al.}).
+Tracking Hopf loci across grating length and feedback phase, our continuation results reproduce the stability peaks predicted by RO-reflection zero alignment and match the reported LLE-based stability boundaries, while providing higher precision and clearer interpretation.
+In an extended detuning–feedback parameter sweep, we identified double-Hopf, fold–Hopf, and double-torus points and the torus and fold curves they generate.
+These organising centres explain how stability islands, quasi-periodic bands, and transition layers are laid out, insight that is difficult to obtain from time-series diagnostics alone.
+%
+%
+\subsection{Limitations and Outlook}
+\label{subsec:outlook}
+%
+A first limitation of the present study lies in the trade-off between reflectivity and modelling accuracy. 
+While choosing a small total reflectivity $R$ ensures the presence of sharp transmission zeros, it also amplifies the relative errors in both the total reflectivity ($R_\text{error}$) and effective delay ($\tau_\text{error}$). 
+Figure~\ref{fig:NR_Selection} illustrates this trade-off by combining the two errors into a single Euclidean metric, 
+$\| R_\text{error}, \tau_\text{error} \|_{2} = \sqrt{R_\text{error}^2 + \tau_\text{error}^2}$. 
+For instance, with $N=10$, selecting $R_\text{approx}=0.75$ yields a combined error of only $4\%$, whereas $R_\text{approx}=0.1$ increases the error to $19\%$. 
+Although this represents a notable difference, the ability to capture and manipulate transmission zeros—central to the stabilisation mechanisms studied here—justifies the trade-off. 
+From a modelling perspective, these errors remain modest, particularly given the new analytic and computational leverage gained within the DDE framework.
+%
+\par
+%
+A second limitation is that this study focuses on uniform gratings, which provide the most straightforward foundation for deriving a discretised-reflection model and serve as the canonical FBG design. 
+The layered description, however, extends naturally to non-uniform gratings by allowing layer-dependent $r_k$, $t_k$, and $\Delta t_k$, with the analytical and continuation techniques developed here carrying over unchanged. 
+This offers immediate opportunities for modelling gratings widely used in practice—such as Gaussian-apodised or phase-shift FBGs—while retaining the mathematical tractability of the discretised approach. 
+%
+\par
 %
 \begin{figure}
     \centering
@@ -20,3 +107,24 @@ As the ability to effectively describe and analyse transmission zeros of FBGs is
     \label{fig:NR_Selection}
 \end{figure}
 %
+An especially promising direction is the extension of the framework to chirped gratings. 
+Unlike uniform gratings, where each layer contributes an identical delay $\Delta t$ and reflection/transmission coefficient, a chirped grating introduces a frequency dependence into the reflection process. 
+Different spectral components of the incoming field are reflected at different depths, making the effective reflection point frequency dependent \cite{erdogan1997fibre}. 
+In a discretised model this translates into layer-specific delays $\Delta t_k(\omega)$ and reflectivities $r_k(\omega)$, which depend not only on the fixed grating profile but also on the instantaneous optical field itself. 
+The resulting equations couple the laser dynamics to a state-dependent feedback path, placing the system within the broader class of state-dependent delay differential equations (sd-DDEs). 
+%
+\par
+%
+This represents both a challenge and an opportunity. 
+On the one hand, sd-DDEs are more difficult to analyse, as continuation tools must be adapted to handle bifurcations when delays themselves depend on the state. 
+On the other hand, incorporating chirped gratings would capture a far richer set of physical effects central to practical applications, including broadband dispersion compensation, tunable feedback stabilisation, and advanced schemes for chaos control \cite{wang2017time,wang2019key,wang2023critical}. 
+In particular, the ability to tailor how different frequency components interact with the grating in real time may enable selective stabilisation of higher-order modes or controlled shaping of chaotic attractors for secure communication systems. 
+The discretised-reflection formulation thus offers a natural stepping stone toward bridging idealised uniform gratings and the complex non-uniform designs used in state-of-the-art optoelectronic devices.
+%
+\par
+%
+In summary, the discretised-reflection formulation opens a broad outlook beyond the technical advances demonstrated here. 
+By embedding FBG feedback squarely within a DDE framework, it provides a practical and extensible tool for connecting grating design with laser dynamics in a way that is both analytically transparent and computationally efficient. 
+This enables systematic exploration of stability mechanisms, the organisation of nonlinear regimes, and the shaping of chaotic behaviour, with immediate relevance to applications ranging from secure communications to high-precision sensing. 
+More broadly, the approach offers a pathway toward unifying idealised models and realistic device architectures, supporting both fundamental investigations of delay-coupled lasers and the design of next-generation photonic systems where stability, controllability, and harnessed chaos are central requirements.
+
